@@ -1,9 +1,7 @@
-## CSE471 Assignment | Blog 
-**Authors**: Ashrafur Rahman, Fatema Tuj Johora, Mashroor Hasan Bhuiyan
-
+## CSE471 Assignment | Blog
 # Paths to Equilibrium in Games | NeurIPS 2024
-**Orignal Authors**: Bora Yongacoglu, Gürdal Arslan, Lacra Pavel, Serdar Yüksel  
-
+#### **Orignal Authors**: Bora Yongacoglu, Gürdal Arslan, Lacra Pavel, Serdar Yüksel  
+**Blog Authors**: Ashrafur Rahman, Fatema Tuj Johora, Mashroor Hasan Bhuiyan
 ---
 
 ## Introduction  
