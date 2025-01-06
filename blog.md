@@ -1,4 +1,5 @@
-# CSE471 Assignment | Blog | Paths to Equilibrium in Games | NeurIPS 2024
+## CSE471 Assignment | Blog 
+# Paths to Equilibrium in Games | NeurIPS 2024
 **Authors**: Bora Yongacoglu, Gürdal Arslan, Lacra Pavel, Serdar Yüksel  
 
 ---
