@@ -73,24 +73,111 @@ A sequence of strategy profiles ${x^t}_{t=1}^\infty$ is a **satisficing path** i
 
 ---
 
-## Proof Outline: Existence of Satisficing Paths
+## Theorem
 
-The proof establishes that any finite $n$-player normal-form game $\Gamma$ has a satisficing path that terminates at Nash equilibrium.
+The central contribution of the paper is the following theorem:
 
-### Step 1: Define Satisfaction and Unsatisfaction
+_Any finite normal-form game Γ has the satisficing paths property._
 
-For any strategy profile $x$, define:
+It establishes that every finite normal-form game $\Gamma$ has the satisficing paths property,
+ie. for any $x_1 \in X$, there exists a satisficing path $(x_1 , x_2, \dots, x_T)$ such that,
+for some finite $T=T(x_1)$, the strategy profile $x_T$ is a Nash equilibrium.
 
-- $\text{Sat}(x) = \{i \in \{1, \ldots, n\} : x_i \in BR_i(x_{-i})\}$: Satisfied players.
-- $\text{UnSat}(x) = \{1, \ldots, n\} \setminus \text{Sat}(x)$: Unsatisfied players.
+## Proof Outline
 
-### Step 2: Iterative Strategy Updates
+We attempt to outline the proof steps of the theorem,
+sacrificing some rigour for an easier first read.
 
-1. **Initialization**: Start with any initial strategy profile $x^1$.
-2. **Update Unsatisfied Players**: At each step $t$, update the strategies of players in $\text{UnSat}(x^t)$ to increase their satisfaction.
-3. **Stopping Condition**: The process terminates when $\text{UnSat}(x^T) = \emptyset$, i.e., all players are satisfied.
+Let $\Gamma$ be a finite $n$-player normal-form game.
 
-### Step 3: Suboptimal Updates and Convergence
+We have to proof that any $\mathbf{x}_1 \in \mathbf{X}$,
+there exists a satisficing path $(\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_T)$ such that,
+for some finite $T=T(\mathbf{x}_1)$,
+the strategy profile $\mathbf{x}_T$ is a Nash equilibrium.
+
+Before we begin the proof we define some notations used in the paper.
+
+Let $\mathbf{x} \in \mathbf{X}$ be a mixed strategy profile at some time step.
+
+Based on $\mathbf{x}$, we can divide the players $[n]$ in to two disjoint sets,
+
+- **Satisfied Players:**
+  $$\text{Sat}(\mathbf{x}) = \{i \in [n] : x_i \in \text{BR}^i_0(x_{-i})\}$$
+  The players whose strategies are a best response to their
+  opponents' strategies $\mathbf{x}^{-i}$.
+- **Unsatisfied Players:**
+  $$
+  \begin{align*}
+  \text{UnSat}(\mathbf{x})
+  &= \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
+  &= [n] \setminus \text{Sat}(x) \\
+  \end{align*}
+  $$
+  The players whose strategies are not a best response to their
+  opponents' strategies.
+
+Some subsets of the set strategies $\mathbf{X}$ is of particular interest to us:
+
+- **Acessible Strategies** $\text{Access}(\mathbf{x})$:
+
+  $$
+      \text{Access}(\mathbf{x}) = \{
+          \mathbf{y} \in \mathbf{X}: y^i=x^i,
+          \forall i \in \text{Sat}(\mathbf{x})
+       \}
+  $$
+
+  These are the strategies that can be chosen after $\mathbf{x}$
+  since we are restricting the paths to be satisficing.
+  The strategies that can be chosen after $\mathbf{x}$ must share the
+  same strategy for the players in $\text{Sat}(\mathbf{x})$.
+
+- **No Better Strategies**
+  $\text{NoBetter}(\mathbf{x}) \subseteq \text{Access}(\mathbf{x})$:
+
+  $$
+        \text{NoBetter}(\mathbf{x}) = \{
+            \mathbf{y} \in \text{Access}(\mathbf{x}):
+            \text{UnSat}(\mathbf{x}) \subseteq \text{UnSat}(\mathbf{y})
+         \}
+  $$
+
+  These are the accessible strategies that do not satisfy any player
+  who were previously unsatisfied but might make a previously satisfied
+  player unsatisfied. As a consequence,
+  $|\text{UnSat}(\mathbf{x_{t+1}})|\ge|\text{UnSat}(\mathbf{x_{t}})|$.
+
+  It is obvious that $\mathbf{x} \in \text{NoBetter}(\mathbf{x})$
+  since $\text{UnSat}(\mathbf{x}) \subseteq \text{UnSat}(\mathbf{x})$.
+
+- **Worse Strategies**
+  $\text{Worse}(\mathbf{x}) \subseteq \text{NoBetter}(\mathbf{x})$::
+
+  $$
+        \text{Worse}(\mathbf{x}) = \{
+            \mathbf{y} \in \text{NoBetter}(\mathbf{x}):
+            \text{UnSat}(\mathbf{x}) \subsetneq \text{UnSat}(\mathbf{y})
+         \}
+  $$
+
+  These are the accessible strategies that do make the situation worse
+  by making at least one previously satisfied player, unsatisfied. Additionally,
+  all previously unsatisfied players remain unsatisfied as before. This means,
+  $|\text{UnSat}(\mathbf{x_{t+1}})|\geq|\text{UnSat}(\mathbf{x_{t}})+1|$.
+
+  $\text{Worse}(\mathbf{x})$ can be empty (e.g. if $\text{UnSat}(\mathbf{x}=[n]$).
+
+Now that we are done with the essential notations we can begin the proof outline.
+
+Let $\mathbf{x}_1 \in \mathbf{X}$ be any initial strategy.
+We now construct a satisficing path
+$(\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_T)$ of finite length $T$
+where $\mathbf{x}_T$ is a Nash equilibrium.
+
+#### **Step 1: Check Initial Strategy**
+
+If $\mathbf{x}_1$ is a Nash equilibrium we are done.
+Otherwise we continue to the next step.
 
 #### Key Insight: Use of Suboptimal Updates
 
