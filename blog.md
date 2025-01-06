@@ -1,11 +1,5 @@
-Here's a revised and detailed version incorporating the requested introduction, mathematical definitions, and proof outline:
-
----
-
-# Paths to Equilibrium in Games: Constructing Satisficing Dynamics  
-
+# CSE471 Assignment | Blog | Paths to Equilibrium in Games | NeurIPS 2024
 **Authors**: Bora Yongacoglu, Gürdal Arslan, Lacra Pavel, Serdar Yüksel  
-**Date**: January 6, 2025  
 
 ---
 
