@@ -390,8 +390,19 @@ This is the trickier case. We need to show there exists a Nash equilibrium $\mat
 #### **Step 5: Find the Nash equilibrium $\mathbf{x}_\star$**
 
 Since $\text{Sat}(\mathbf{x}_k)\ne\empty$, we cannot change the strategies of satisfied players $\text{Sat}(\mathbf{x}_k)$.
-We can hence create a new game $\Gamma'$ by restricting the strategy space of the satisfied players to their current strategies.
-Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\Gamma'$.
+Let $m = |\text{Sat}(\mathbf{x}_k)|$ be the number of satisfied players.
+We can only change the strategies of $n-m$ unsatisfied players $\text{UnSat}(\mathbf{x}_k)$.
+
+We can create a new game $\bar{\Gamma}$ with $n-m$ players by restricting the strategy space of the satisfied players to their current strategies.
+Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\bar{\Gamma}$. We can extend $\mathbf{\bar{x}}_\star$ to a Nash equilibrium $\mathbf{x}_\star$ of the original game $\Gamma$ by setting the strategies of the satisfied players to their strategies
+in $\mathbf{x}_k$. That is we set,
+
+$$
+\mathbf{x}_\star = \begin{cases}
+    x^i_k, &\text{ for } i \in \text{Sat}(\mathbf{x}_k), \\
+    \bar{x}^i_\star, &\text{ for } i \in \text{UnSat}(\mathbf{x}_k).
+\end{cases}
+$$
 
 ## Insights and Implications
 
@@ -414,38 +425,36 @@ Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\Gamma'$.
 
 Finite continuous normal games can be generalized to discrete Markov games, where the agents observe a sequence of state variables, and the reward function $r_i^t=r_i(s_i^t, \overline{a}^t)$ depends on both the current state and the action profile. The paper suggests that its results Theorem 1 may be extended to these settings, though some technical challenges remain unresolved.
 
-A Markov game with $n$ players and discounted rewards is described by a list 
-$\mathcal{G} = (n, \mathcal{S}, \mathcal{A}, \mathcal{T}, \mathbf{r}, \gamma)$, 
-where $\mathcal{S}$ is a finite set of states, 
-$\mathcal{A} = \mathcal{A}^1 \times \cdots \times \mathcal{A}^n$ 
-is a finite set of action profiles, and 
-$\mathbf{r} = (r^1, r^2, \ldots, r^n)$ 
-is a collection of reward functions, where 
-$r^i: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$ 
-describes the reward to player $i$. 
+A Markov game with $n$ players and discounted rewards is described by a list
+$\mathcal{G} = (n, \mathcal{S}, \mathcal{A}, \mathcal{T}, \mathbf{r}, \gamma)$,
+where $\mathcal{S}$ is a finite set of states,
+$\mathcal{A} = \mathcal{A}^1 \times \cdots \times \mathcal{A}^n$
+is a finite set of action profiles, and
+$\mathbf{r} = (r^1, r^2, \ldots, r^n)$
+is a collection of reward functions, where
+$r^i: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$
+describes the reward to player $i$.
 
-A transition probability function 
-$\mathcal{T} \in \mathcal{P}(\mathcal{S} \mid \mathcal{S} \times \mathcal{A})$ 
-governs the evolution of the state process, described below, and a discount factor 
-$\gamma \in (0,1)$ 
+A transition probability function
+$\mathcal{T} \in \mathcal{P}(\mathcal{S} \mid \mathcal{S} \times \mathcal{A})$
+governs the evolution of the state process, described below, and a discount factor
+$\gamma \in (0,1)$
 is used to aggregate rewards across time.
- 
 
+Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms. The authors have attempted to generalize Theorem 1 for Markov games too by conducting the proofs parallely.
 
-Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms. The authors have attempted to generalize Theorem 1 for Markov games too by conducting the proofs parallely. 
+To begin, one can construct a satisficing path $\{\pi_1, \pi_2, \dots, \pi_k\}$ by growing the set of unsatisfied players at each iteration until either $\text{UnSat}(\pi_k) = \{1, 2, \dots, n\}$ or $\text{Worse}(\pi_k) = \emptyset$. In the latter case, one can consider the subgame involving only the players in $\text{UnSat}(\pi_k)$ and obtain a Markov perfect equilibrium $\tilde{\pi}_{\star}$ for that subgame, which can then be extended to a policy profile $\pi_{\star} \in \text{Acc}(\pi_k)$ by putting
 
-To begin, one can construct a satisficing path $\{\pi_1, \pi_2, \dots, \pi_k\}$ by growing the set of unsatisfied players at each iteration until either $\text{UnSat}(\pi_k) = \{1, 2, \dots, n\}$ or $\text{Worse}(\pi_k) = \emptyset$. In the latter case, one can consider the subgame involving only the players in $\text{UnSat}(\pi_k)$ and obtain a Markov perfect equilibrium $\tilde{\pi}_{\star}$ for that subgame, which can then be extended to a policy profile $\pi_{\star} \in \text{Acc}(\pi_k)$ by putting 
 $$
-\pi^i_{\star}=  
-\begin{cases} 
+\pi^i_{\star}=
+\begin{cases}
     \tilde{\pi}^i_{\star}, &\text{ if } i \in \text{UnSat}(\pi_k), \\
-    \pi^i_k, &\text{ if } i \in \text{Sat}(\pi_k). 
+    \pi^i_k, &\text{ if } i \in \text{Sat}(\pi_k).
 \end{cases}
 $$
 
 To complete the extension of Theorem 1 to Markov games, one must show that this policy $\pi_{\star} \in \Pi$ is a Markov perfect equilibrium of the $n$-player Markov game. We can define $\{f^i\}_{i = 1}^n$ analogous to the auxillary function $\{F^i\}_{i = 1}^n$ defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 1 to the multi-state case.<br>
- However, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven. 
-
+However, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven.
 
 ## Conclusion
 
