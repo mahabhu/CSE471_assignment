@@ -489,11 +489,11 @@ there is no $\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)$ such that $\mathbf{y}
 $$
 \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset
 $$
-That is, there is no NoBetter strategy in the $\zeta$-neighbourhood of $\mathbf{x}_\star$.
+That is, there isn't any $\text{NoBetter}$ strategy in the $\zeta$-neighbourhood of $\mathbf{x}_\star$.
+We can prove a contradiction if we can show that there exists a strategy $\mathbf{z} \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)$. We need to find $\text{NoBetter}$ strategies near $\mathbf{x}_\star$ acessible from $\mathbf{x}_k$.
 
-Let's take $\mathbf{z} \in \text{Access}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)$. $\text{Access}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) \ne \emptyset$ since recall $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$. As there is no NoBetter strategy in the $\zeta$-neighbourhood of $\mathbf{x}_\star$, $\mathbf{z} \notin \text{NoBetter}(\mathbf{x}_k)$. This implies, there exists some player $i \in \text{UnSat}(\mathbf{x}_k)$ unsatisfied at $\mathbf{x}_k$, such that $i$ is satisfied at $\mathbf{z}$,
-$i \in \text{Sat}(\mathbf{z})$.
 
+We define $\mathbf{w}_\xi \in \Chi$ for $\xi \in [0,1]$ as follows,
 $$
 w^i_\xi = \begin{cases}
     (1-\xi)x^i_k + \xi \text{Uniform}(\mathbb{A}^i), 
@@ -508,6 +508,21 @@ $$
 $$
 
 Note that for $i \in \text{UnSat}(\mathbf{x}_k)$, $w^i_\xi$ is a mixture of the current strategy $x^i_k$ and the uniform distribution over the action set $\mathbb{A}^i$. The mixture is weighted by $1-\xi$ and $\xi$  respectively to ensure that $w^i_\xi$ remains a probability distribution.
+
+It can be easily seen that,
+1. $\mathbf{w}_{\xi} \in \text{Access}(\mathbf{x}_k)$. 
+
+    Since only the strategies of the unsatisfied players are changed in $\mathbf{w}_\xi$.
+2. If $i \in \text{UnSat}(\mathbf{x}_k)$, $w^i_\xi$ is fully mixed.
+    
+    That is, it assigns non-zero probability $w^i_\xi(a^i)$ to every action $a^i \in \mathbb{A}^i$.
+    This follows from the definition of $\text{Uniform}(\mathbb{A}^i)$.
+
+For sufficiently small $0 < \xi \le 1$, $\mathbf{w}_\xi \in \text{NoBetter}(\mathbf{x}_k)$. 
+
+Let's consider $\mathbf{z} \in \text{Access}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)$. $\text{Access}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) \ne \emptyset$ since recall $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$.  As there isn't any$\text{NoBetter}$ strategy in the $\zeta$-neighbourhood of $\mathbf{x}_\star$, $\mathbf{z} \notin \text{NoBetter}(\mathbf{x}_k)$. This implies, there exists some player $i \in \text{UnSat}(\mathbf{x}_k)$ unsatisfied at $\mathbf{x}_k$, who is satisfied at $\mathbf{z}$,
+$i \in \text{Sat}(\mathbf{z})$.
+
 
 ## Insights and Implications
 
