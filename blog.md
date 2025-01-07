@@ -229,6 +229,14 @@ The framework holds promise for generalization to dynamic settings, such as:
 
 ---
 
+## Future Works
+Future work could focus on:
+- Extending results to multi-state Markov games and continuous-action spaces.
+- Exploring satisfying paths under practical constraints, such as limited exploration or partial observability.
+- Incorporating ϵ-best responses to account for small estimation errors.
+- Developing efficient algorithms to construct satisfying paths in large-scale and decentralized systems.
+
+---
 ## Conclusion
 
 This work redefines equilibrium-seeking dynamics in games by introducing satisficing paths. By allowing exploratory updates for unsatisfied agents and freezing satisfied agents, it guarantees convergence to Nash equilibrium in finite normal-form games.
