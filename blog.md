@@ -25,7 +25,7 @@ In MARL, multiple agents interact within an environment to achieve individual or
 
 ### Normal-Form Games and Nash Equilibrium
 
-A *normal-form game* is a mathematical representation of a strategic interaction where a finite set of players each select a strategy simultaneously from their respective sets of available actions. The outcome  of the game is determined by the combination of chosen strategies, with each player receiving a reward based on this outcome.
+A _normal-form game_ is a mathematical representation of a strategic interaction where a finite set of players each select a strategy simultaneously from their respective sets of available actions. The outcome of the game is determined by the combination of chosen strategies, with each player receiving a reward based on this outcome.
 
 ### Nash Equilibrium
 
@@ -192,11 +192,9 @@ We are summing over all possible actions $\mathbf{a} \in \mathbf{A}$
 of all players weighted by
 the probabilities of those actions under the mixed strategy profile $\mathbf{x}$.
 
-Some properties of the expected reward function is of interest to us when we
-fix the strategies of all players except player $i$,
-i.e. $\mathbf{x}^{-i}$ is fixed:
+Some properties of the expected reward function is of interest to us:
 
-1. $R^i(x^i, \mathbf{x}^{-i})$ is a linear function.
+1. $R^i$ is a multi-linear function.
 
    This can be easily seen since
 
@@ -211,20 +209,26 @@ i.e. $\mathbf{x}^{-i}$ is fixed:
 
    Here, $w_{\mathbf{x}^{-i}}(\mathbf{\bar{a}}) \in \mathbb{R}$ is constant for a fixed
    $\mathbf{x}^{-i}$ and $\mathbf{\bar{a}}$. This means $R_i(x^i, \mathbf{x}^{-i})$
-   is a linear function of $x^i$.
+   is a linear function of $x^i$ if $\mathbf{x}^{-i}$ is fixed.
+   Therefore, it is a multi-linear function of $\mathbf{x}$.
 
-2. $R^i(x^i, \mathbf{x}^{-i})$ is continuous.
+2. $R^i$ is continuous.
 
    This follows from the fact that it is a linear function.
 
-3. The maximum expected reward
-   $\max_{a^i \in \mathbb{A}^i}R^i(x^i, \mathbf{x}^{-i})$,
-   are attained by pure strategies.
+3. Pure strategies attain the maximum expected reward when opponent strategies are fixed.
+
+   Formally speaking, for any player $i$ and any mixed strategy profile $\mathbf{x}^{-i}$,
+
+   $$
+    \max_{x^i \in \Delta(\mathbb{A}^i)} R^i(x^i, \mathbf{x}^{-i}) =
+    \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i})
+   $$
 
    This is because for fixed opponent strategies,
    the expected reward function is linear.
    Upon fixing $\mathbf{x}^{-i}$ the domain of $R_i(x^i, \mathbf{x}^{-i})$
-   is the set of all mixed strategies for player $i$,
+   is the set of all mixed strategies for player $i$: $\Delta(\mathbb{A}^i)$.
 
    $$
    \Delta(\mathbb{A}^i) =
@@ -252,15 +256,13 @@ i.e. $\mathbf{x}^{-i}$ is fixed:
 
    Generalizing this to higher dimensions, the maximum value of the linear function
    $R^i(x^i, \mathbf{x}^{-i})$ when $\mathbf{x}^{-i}$ is fixed,
-   is attained at the pure strategies $\{\delta_a^i: a^i \in \mathbb{A}^i\}$.
+   is attained at the pure strategies $\{\delta_a^i: a^i \in \mathbb{A}^i\}$. Also note that
+   if multiple pure strategies attain the maximum value, then any mixture of these
+   pure strategies also attains the maximum value.
 
-Property 3 is crucial for our proof. It implies that the maximum expected reward
-is that of the maximizing pure strategy. This means that for any mixed strategy
-
-$$
-\max_{x^i \in \Delta(\mathbb{A}^i)} R^i(x^i, \mathbf{x}^{-i}) =
-\max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i})
-$$
+Property 3 is crucial for our proof. It implies that the maximum expected reward for player $i$
+when the opponents' strategies are fixed
+is that of the maximizing pure strategy.
 
 It also implies that if $x^i$ is a best response to $\mathbf{x}^{-i}$,
 then $x^i$ must be a pure strategy or a mixture of pure strategies which are best responses.
@@ -270,7 +272,8 @@ We state this formally as a lemma.
 ### Lemma 1
 
 $x^i$ is a best response to $\mathbf{x}^{-i}$
-if and only if $x^i$ is a mixture of pure strategies which are best responses to $\mathbf{x}^{-i}$.
+if and only if $x^i$ is a mixture of pure strategies which are individually
+best responses to $\mathbf{x}^{-i}$.
 Formally, expressed as $x^i = \sum_{a^i \in \mathbb{A}^i} \alpha_{a^i} \delta_{a^i}$
 where $\sum_{a^i \in \mathbb{A}^i} \alpha_{a^i} = 1$ and $\alpha_{a^i} \ge 0$,
 $x^i \in \text{BR}^i_0(\mathbf{x}^{-i})$ if and only if
@@ -281,31 +284,6 @@ then $x^i$ must be supported on the set of maximizers
 $\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$. Define this best response as $\mathbf{x}_{\star}$
 
 ## Auxillary Function
-
-We will argue that $\mathbf{x}_{\star}$ is a Nash equilibrium. For this, we introduce a function $F^i : \mathbf{X} \to \mathbb{R}$ given by 
-$$
-F^i ( x^i, \mathbf{x}^{-i} ) = \max_{a^i \in A^i} R^i ( \delta_{a^i} , \mathbf{x}^{-i} ) - R^i ( x^i, \mathbf{x}^{-i} ),
-$$
-for each $\mathbf{x} = (x^i, \mathbf{x}^{-i}) \in \mathbf{X}$. The functions $\{ F^i \}_{i=1}^n$ have the following useful properties. For each player $i \in \{1, 2, \dots, n\}$:
-- (a) $F^i$ is continuous on $\mathbf{X}$,
-- (b) $F^i (\mathbf{x}) \geq 0$ for all $\mathbf{x} \in \mathbf{X}$,
-- (c) for any $\mathbf{x}^{-i} \in \mathbf{X}^{-i}$, a strategy $x^i$ is a best response to $\mathbf{x}^{-i}$ if and only if $F^i (x^i, \mathbf{x}^{-i}) = 0$.
-
-Let $(\mathbf{y}_t)_{t = 1}^{\infty}$ be a sequence in $\text{NoBetter}(\mathbf{x}_k)$ converging to $\mathbf{x}_{\star}$, which exists by Lemma~\ref{lemma:equilibrium-on-boundary}. For any previously satisfied player $i \in \text{Sat}(\mathbf{x}_k)$, since $\text{Worse}(\mathbf{x}_k) = \emptyset$ and $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)$, from a previous observation, we have that $i \in \text{Sat}(\mathbf{y}_t)$. Equivalently, $x^i_k \in \text{BR}^i_0 ( \mathbf{y}^{-i}_t )$. 
-
-Rewriting this using the function $F^i$ and the notation $y^i_t = x^i_k$ for satisfied players $i \in \text{Sat}(\mathbf{x}_k)$, we have 
-$$
-F^i ( y^i_t , \mathbf{y}^{-i}_t ) = 0 
-$$
-for all $t \in \mathbb{N}$ and for any $i \in \text{Sat}(\mathbf{x}_k)$. By continuity of $F^i$, we have
-$$
-0 = \lim_{t \to \infty} F^i ( \mathbf{y}_t ) = F^i \left( \lim_{t \to \infty} \mathbf{y}_t \right) = F^i ( \mathbf{x}_{\star}),
-$$
-establishing that player $i$ is satisfied at $\mathbf{x}_{\star}$, and thus that $\text{Sat}(\mathbf{x}_k) \subset \text{Sat}(\mathbf{x}_{\star})$. Then, by the inclusion property $\text{UnSat}(\mathbf{x}_k) \subset \text{Sat}(\mathbf{x}_{\star})$, we conclude that $\text{Sat}(\mathbf{x}_{\star}) = \{1, 2, \dots, n\}$, and $\mathbf{x}_{\star}$ is a Nash equilibrium accessible from $\mathbf{x}_k$.  
-
-We define $T = k+1$ and $\mathbf{x}_{T} = \mathbf{x}_{\star}$, which completes the proof, since $(\mathbf{x}_1, \dots, \mathbf{x}_T)$ is a satisficing path terminating at a Nash equilibrium.
-\end{proof}
-
 
 ## Proof outline
 
@@ -356,11 +334,31 @@ final step of the above process. We can show $i \le n - 1$.
 - Even if at each step $|\text{UnSat}(\mathbf{x}_t)|$ increases by 1,
   $i$ can be at most $n-1$.
 
-#### **Step 4: Check Final Strategy after Iteration**
+Therefore, the process terminates in at most $n-1$ steps and we are left
+with a satisficing path $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k$.
 
-When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the Nash equilibrium condition.
+#### **Step 4: Check Last Strategy $\mathbf{x}_k$**
 
----
+The process terminates at $\mathbf{x}_k$ if either all players are unsatisfied or no worse strategy is accessible.
+Therefore, there are two cases:
+
+**Case 1: $\text{Sat}(\mathbf{x}_k)=\empty$**
+
+If all players are unsatisfied then the satisficing condition places no restrictions on the next strategy.
+Therefore, we can choose any strategy $\mathbf{x}_{k+1} \in \mathbf{X}$, i.e. $\text{Access}(\mathbf{x}_k) = \mathbf{X}$.
+We choose an arbitrary Nash equilibrium $\mathbf{z}_\star$ and set $\mathbf{x}_{k+1} = \mathbf{z}_\star$.
+
+Therefore, taking $T=k+1 \le n$ we have a satisficing path $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{z}_\star$ where $\mathbf{z}_\star$ is a Nash equilibrium. We are done.
+
+**Case 2:** $\text{Sat}(\mathbf{x}_k)\ne\empty$ and $\text{Worse}(\mathbf{x}_k)=\empty$
+
+This is the trickier case. We need to show there exists a Nash equilibrium $\mathbf{x}_\star$ such that $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$.
+
+#### **Step 5: Find the Nash equilibrium $\mathbf{x}_\star$**
+
+Since $\text{Sat}(\mathbf{x}_k)\ne\empty$, we cannot change the strategies of satisfied players $\text{Sat}(\mathbf{x}_k)$.
+We can hence create a new game $\Gamma'$ by restricting the strategy space of the satisfied players to their current strategies.
+Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\Gamma'$.
 
 ## Insights and Implications
 
