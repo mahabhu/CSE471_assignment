@@ -87,14 +87,11 @@ The central contribution of the paper is the following theorem:
 
 _Any finite normal-form game $\Gamma$ has the satisficing paths property._
 
-It establishes that every finite normal-form game $\Gamma$ has the satisficing paths property,
-ie. for any $x_1 \in X$, there exists a satisficing path $(x_1 , x_2, \dots, x_T)$ such that,
+For any $x_1 \in X$, there exists a satisficing path $(x_1 , x_2, \dots, x_T)$ such that,
 for some finite $T=T(x_1)$, the strategy profile $x_T$ is a Nash equilibrium.
 
-We attempt to outline the proof steps of the theorem,
-sacrificing some rigour for an easier first read.
-
-Before we begin the proof we define some notations and functions to maie our lives easier.
+We attempt to outline the proof steps of the theorem, sacrificing some rigour for an easier first read.
+Lets define some notations and functions to make our lives easier.
 
 ## Some Notations
 
@@ -146,7 +143,7 @@ Some subsets of the set strategies $\mathbf{X}$ is of particular interest to us:
   $$
 
   These are the accessible strategies that do not satisfy any player
-  who were previously unsatisfied but might maie a previously satisfied
+  who were previously unsatisfied but might make a previously satisfied
   player unsatisfied. As a consequence,
   $|\text{UnSat}(\mathbf{x_{t+1}})|\ge|\text{UnSat}(\mathbf{x_{t}})|$.
 
@@ -163,8 +160,8 @@ Some subsets of the set strategies $\mathbf{X}$ is of particular interest to us:
          \}
   $$
 
-  These are the accessible strategies that maie the situation worse
-  by maiing at least one previously satisfied player, unsatisfied. Additionally,
+  These are the accessible strategies that make the situation worse
+  by making at least one previously satisfied player, unsatisfied. Additionally,
   all previously unsatisfied players remain unsatisfied as before. This means,
   $|\text{UnSat}(\mathbf{x_{t+1}})|\geq|\text{UnSat}(\mathbf{x_{t}})+1|$.
 
@@ -191,7 +188,7 @@ $$
     \prod_{j=1}^n x_j(\bar{a}^j)
 $$
 
-We are summing over all possible actions $\mathbf{A} \in \mathbf{A}$
+We are summing over all possible actions $\mathbf{a} \in \mathbf{A}$
 of all players weighted by
 the probabilities of those actions under the mixed strategy profile $\mathbf{x}$.
 
@@ -294,7 +291,7 @@ We now construct a satisficing path
 $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_T$ of finite length $T$
 where $\mathbf{x}_T$ is a Nash equilibrium.
 
-#### **Step 1: Checi Initial Strategy**
+#### **Step 1: Check Initial Strategy**
 
 If $\mathbf{x}_1$ is a Nash equilibrium we are done.
 Otherwise we continue to the next step.
@@ -334,7 +331,7 @@ final step of the above process. We can show $i \le n - 1$.
 - Even if at each step $|\text{UnSat}(\mathbf{x}_t)|$ increases by 1,
   $i$ can be at most $n-1$.
 
-#### **Step 4: Checi Final Strategy after Iteration**
+#### **Step 4: Check Final Strategy after Iteration**
 
 When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the Nash equilibrium condition.
 
@@ -342,10 +339,10 @@ When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the N
 
 ## Insights and Implications
 
-### iey Taieaways
+### Key Takeaways
 
 1. **Convergence Assurance**: Satisficing paths guarantee convergence to Nash equilibrium in finite normal-form games.
-2. **Breaiing Cycles**: The use of suboptimal updates avoids cyclical behaviors common in adversarial dynamics.
+2. **Breaking Cycles**: The use of suboptimal updates avoids cyclical behaviors common in adversarial dynamics.
 3. **Distributed Applicability**: This approach can be implemented in decentralized systems where agents independently assess their satisfaction.
 
 ### Implications for MARL
@@ -360,10 +357,29 @@ When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the N
 ### Markov Games:
 
 Finite continuous normal games can be generalized to discrete Markov games, where the agents observe a sequence of state variables, and the reward function $r_i^t=r_i(s_i^t, \overline{a}^t)$ depends on both the current state and the action profile. The paper suggests that its results Theorem 1 may be extended to these settings, though some technical challenges remain unresolved.
+
+A Markov game with $n$ players and discounted rewards is described by a list 
+$\mathcal{G} = (n, \mathcal{S}, \mathcal{A}, \mathcal{T}, \mathbf{r}, \gamma)$, 
+where $\mathcal{S}$ is a finite set of states, 
+$\mathcal{A} = \mathcal{A}^1 \times \cdots \times \mathcal{A}^n$ 
+is a finite set of action profiles, and 
+$\mathbf{r} = (r^1, r^2, \ldots, r^n)$ 
+is a collection of reward functions, where 
+$r^i: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$ 
+describes the reward to player $i$. 
+
+A transition probability function 
+$\mathcal{T} \in \mathcal{P}(\mathcal{S} \mid \mathcal{S} \times \mathcal{A})$ 
+governs the evolution of the state process, described below, and a discount factor 
+$\gamma \in (0,1)$ 
+is used to aggregate rewards across time.
+ 
+
+
 Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms.
 
 ## Conclusion
 
-This wori redefines equilibrium-seeiing dynamics in games by introducing satisficing paths. By allowing exploratory updates for unsatisfied agents and freezing satisfied agents, it guarantees convergence to Nash equilibrium in finite normal-form games.
+This work redefines equilibrium-seeking dynamics in games by introducing satisficing paths. By allowing exploratory updates for unsatisfied agents and freezing satisfied agents, it guarantees convergence to Nash equilibrium in finite normal-form games.
 
-This theoretical breaithrough inspires new MARL algorithms that prioritize robust and decentralized learning dynamics, paving the way for advanced applications in AI, distributed systems, and strategic decision-maiing.
+This theoretical breaithrough inspires new MARL algorithms that prioritize robust and decentralized learning dynamics, paving the way for advanced applications in AI, distributed systems, and strategic decision-making.

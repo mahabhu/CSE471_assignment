@@ -1,0 +1,79 @@
+\section{Normal-form games}  \label{sec:model}
+
+A finite, $n$-player normal-form game $\Gamma$ is described by a list  $\Gamma = ( n, \bA, \br ), $ where $n$ is the number of players, $\bA = \aa^1 \times \cdots \times \aa^n$ is a finite set of action profiles, and $\br = ( r^i)_{i \in [n]}$ is a collection of reward functions, where $r^i : \bA \to \rr$ describes the reward of player $i$ as a function of the action profile. The $i^{\rm th}$ component of $\bA$ is player $i$'s action set $\aa^i$. 
+
+\noindent \textbf{Description of play.} Each player $i \in [n]$ selects a probability vector $x^i \in \Delta_{\aa^i}$ and then selects its action $a^i$ according to $a^i \sim x^i$. The vector $x^i$ is called player $i$'s mixed strategy, and we denote player $i$'s set of mixed strategies by $\XX^i := \simplex_{\aa^i}$. Players are assumed to select their actions without observing one another's actions, and the collection of actions $\{ a^i : i \in [n]\}$ is assumed to be mutually independent. The set of mixed strategy profiles is denoted $\bX := \XX^1 \times \cdots \XX^n$. After the action profile $\ba = ( a^1, \dots, a^n)$ is selected, each player $i$ receives reward $r^i (  \ba  )$. 
+
+Player $i$'s performance criterion is its expected reward, defined for each strategy profile $\bx \in \bX$ as
+\[
+R^i ( x^i, \bx^{-i} ) = \ee_{\ba\sim \bx} \left[ r^i ( a^1, \dots, a^n ) \right],
+\]
+where $\ee_{\ba \sim \bx}$ signifies that $a^j \sim x^j$ for each player $j \in [n]$ and we have used the convention that $\bx = (x^i, \bx^{-i})$ and $\bx^{-i} = ( x^1, \dots, x^{i-1}, x^{i+1}, \dots, x_n )$. Since player $i$'s objective depends on the strategies of its counterplayers, the relevant optimality notion is that of ($\epsilon$-) best responding.
+
+\begin{definition}
+    A mixed strategy $x^{i}_{*} \in \XX^i$ is called an \emph{$\epsilon$-best response to the strategy $\bx^{-i} \in \bX^{-i}$} if
+        \[
+            R^i ( x^{i}_{*}, \bx^{-i} ) \geq R^i ( x^i, \bx^{-i} ) - \epsilon \quad \forall x^i \in \XX^i . 
+        \]
+\end{definition}
+
+The standard solution concept for $n$-player normal form games is that of ($\epsilon$-) Nash equilibrium, which entails a situation in which all players are simultaneously ($\epsilon$-) best responding to one another. 
+
+\begin{definition}
+    For $\epsilon \geq 0$, a strategy profile $\bx_{*} = ( x^{i}_{*}, \bx^{i}_{*} ) \in \bX$ is called an \emph{$\epsilon$-Nash equilibrium} if, for every player $i \in [n]$, $x^i_{*}$ is an $\epsilon$-best response to $\bx^{-i}_{*}$. 
+\end{definition}
+
+Putting $\epsilon = 0$ above, one recovers the classical definitions of \emph{best responding} and \emph{Nash equilibrium}. For any $\epsilon \geq 0$, the set of $\epsilon$-best responses to a strategy $\bx^{-i}$ is denoted $\BR^i_{\epsilon} ( \bx^{-i} ) \subseteq \XX^i$. 
+
+
+
+\subsection{Satisficing Paths}
+
+
+We now present the concept of satisficing paths as generalized best response paths. 
+
+\begin{definition}
+    A sequence of strategy profiles $(\bx_t)_{t \geq 1}$ in $\bX$ is called a \emph{best response path} if, for every $t \geq 1$ and every player $i \in [n]$, we have
+    \[
+        x^i_{t+1}= 
+            \begin{cases}
+                x^i_t,                                          &\text{if } x^i_t \in \BR^i_0 ( \bx^{-i}_t), \\
+                \text{some } x_{\star}^{i} \in \BR^i_0 (\bx^{-i}_t),   &\text{else}. 
+            \end{cases} 
+    \]
+\end{definition}
+
+The preceding definition of best response paths can be relaxed in several ways, and such relaxations are often desirable to avoid non-convergent cycling behavior (see \cite{mertikopoulos2018cycles} for an example). A common relaxation involves synchronizing players or incorporating inertia, so that only a subset of players switch their strategies at a given time, which can be help achieve coordination in cooperative settings \cite{marden2012revisiting,swenson2018distributed,yongacoglu2022decentralized}. Beyond cooperative settings, the use of best response dynamics to seek Nash equilibrium may not be justified. In purely adversarial settings, for instance, best response paths cycle and fail to converge \cite{balcan2023nash}, and some alternative strategic dynamics are needed to drive play to equilibrium. Consider the following generalization of the best response update:
+\[
+    x^i_{t+1}= 
+        \begin{cases}
+            x^i_t,                                          &\text{if } x^i_t \in \BR^i_0 ( \bx^{-i}_t), \\
+            f^i ( x^i_t, \bx^{-i}_t )                      &\text{else}. 
+        \end{cases} 
+\]
+
+The update defined above is characterized by a ``win--stay, lose--shift" principle \cite{chasparis2013aspiration, posch1999win}, which only constrains the player to continue using a strategy when it is optimal. On the other hand, the player is not forced to use a best response when $x^i_t \notin \BR^i_0 ( \bx^{-i}_t )$, and may experiment with suboptimal responses according to a function $f^i : \bX \to \XX^i$.\footnote{As a special case, $f^i$ may simply be a best response selector, recovering the best response update.} Allowing the function $f^i$ to be any function from $\bX$ to $\XX^i$, one generalizes best response updates and obtains a much larger set of sequences $(\bx_t)_{t \geq 1}$ and greater flexibility to approach equilibrium from new directions. This motivates the following definition of satisficing paths.
+
+\begin{definition}
+    A sequence of strategy profiles $( \bx_t )_{t = 1}^T$, where $T \in \nn \cup \{ \infty\}$, is called a \emph{satisficing path} if it satisfies the following pairwise satisfaction constraint for any player $i \in [n]$ and any $t$:
+        \begin{equation}
+        x^i_t \in \BR^i_{0} ( \bx^{-i}_t ) \Rightarrow x^i_{t+1} = x^i_t .  \label{def:sat-path}
+        \end{equation}
+\end{definition}
+
+The intuition behind satisficing paths is that they are the result of an iterative search process in which players settle upon finding an optimal strategy (i.e. a best response to the strategies of counterplayers) but are free to explore different strategies when they are not already behaving optimally.  Note, however, that the definition above is merely a formal property of sequences of strategy profiles in $\bX$ and is agnostic to how a satisficing path is produced. The latter point will be important in the coming sections, where we analytically obtain a particular satisficing path as part of an existence proof.
+
+
+
+We note that Condition \eqref{def:sat-path} constrains only optimizing players. It does not mandate a particular update for the so-called unsatisfied player $i$, for whom $x^i_t \notin \BR^i_0 ( \bx^{-i}_t )$. In particular, $x^i_{t+1}$ can be any strategy without restriction, and $x^i_{t+1} \notin \BR^i_0 (\bx^{-i}_t)$ is allowed. In addition to best response paths, constant sequences $(\bx_t)_{t \geq 1}$ with $\bx_t \equiv \bx$ are always satisficing paths, even when $\bx$ is not a Nash equilibrium. Moreover, since arbitrary strategy revisions are allowed when a player is unsatisfied, if $\bx_1 \in \bX$ is a strategy profile for which all players are unsatisfied, then $(\bx_1, \bx_2)$ is a satisficing path for any $\bx_2 \in \bX.$
+
+
+
+
+\begin{definition}
+    The game $\Gamma$ has the \emph{satisficing paths property} if for any $\bx_1 \in \bX$, there exists a satisficing path $(\bx_1, \bx_2, \dots )$ such that, for some finite $T = T(\bx_1 )$, the strategy profile $\bx_{T}$ is a Nash equilibrium.\footnote{A more general definition, involving $\epsilon \geq 0$ best responding and strategy subsets was studied in \cite{yongacoglu2023satisficing}. In this paper, we consider true optimality and no strategic constraints, which additionally aids clarity.}
+\end{definition}
+
+
+
+Satisficing paths were initially formalized in \cite{yongacoglu2023satisficing}, where it was proved that two-player games and $n$-player symmetric games have the satisficing paths property. However, whether general-sum $n$-player games have the satisficing paths property was left as an open question. We answer this open question in \Cref{theorem:main}, presented in the next section. 
