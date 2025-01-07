@@ -12,6 +12,14 @@
 
 ## Introduction
 
+In Multi-Agent Reinforcement Learning (MARL) and game theory, agents interact repeatedly and update their strategies based on the outcomes they observe. A key question in this area is: <br>
+**For a given game and starting strategy, can we always create a path that eventually leads to an equilibrium?** 
+<br>
+This paper focuses on answering this question and shows that for any finite n-player normal-form game and any starting strategy, it is always possible to create such a path. Interestingly, the study finds that sometimes making counterintuitive strategy changes, like those that temporarily lower rewards, is essential for reaching equilibrium.
+These findings are important for improving MARL algorithms, helping them reach equilibrium in decentralized and dynamic systems more effectively.
+
+## Definitions:
+
 ### Multi-Agent Reinforcement Learning (MARL)
 
 In MARL, multiple agents interact within an environment to achieve individual or collective goals. Each agent iteratively updates its strategy based on observations and feedback. While MARL has seen significant success in cooperative and adversarial scenarios, achieving convergence to equilibrium in complex, multi-agent environments remains a challenge.
