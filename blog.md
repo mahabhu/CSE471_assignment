@@ -31,6 +31,19 @@ Imagine a group of friends deciding what to do on a weekend. Each friend has the
 A Nash equilibrium happens when everyone has made their choice, and no one can be happier by changing their mind—as long as everyone else sticks to their own decision.
 Finding Nash equilibria is central to MARL but is often computationally challenging due to the coupled nature of the reward functions and the high-dimensional strategy space.
 
+
+### Strategies
+Strategies basically are the complete plan of action that specifies a player’s choice in every possible situation during the game.They consider all possible actions and reactions, which help players predict what will happen and make adjustments.  
+
+### Best Responding Strategy
+Best Responding Strategy is the strategy that maximizes a player’s payoff, given the strategies chosen by other players. It is a rational choice based on the idea that other players' strategies stay the same, so the player cannot improve their payoff by changing their own strategy.
+
+### Satisfied Players
+Satisfied Players are those who are already using a best responding strategy and have no incentive to change.  They are already in nash equilibrium condition, so they do not need to change the strategy.
+
+### Unsatisfied Players
+ Unsatisfied Players are not using the best responding strategy but they can improve their payoff by changing their strategy. These players are in a suboptimal situation and can maximize their payoff by changing their strategy.
+
 ---
 
 ## Problem Statement
@@ -551,6 +564,14 @@ Unfortunately, the extension of Lemma 1 introduces unresolved states which break
 
 In many cases players can evaluate their strategy compared to an optimal strategy, even when they only have partial information. In decentralized algorithms, each player must do so using only information that they can access or estimate locally. For our case, the "win–stay" part of the satisficing principle serves as a local stopping condition, allowing the players to update their strategy without having to look at the entire strategy space. The results of this paper suggest that limitation like this can still be overcome by adapted this algorithm to broader classes of games, while still maintaining guarantees of convergence to equilibrium.
 
+## Future Works
+Future work could focus on:
+- Extending results to multi-state Markov games and continuous-action spaces.
+- Exploring satisfying paths under practical constraints, such as limited exploration or partial observability.
+- Incorporating ϵ-best responses to account for small estimation errors.
+- Developing efficient algorithms to construct satisfying paths in large-scale and decentralized systems.
+
+---
 ## Conclusion
 
 This work redefines equilibrium-seeking dynamics in games by introducing satisficing paths. By allowing exploratory updates for unsatisfied agents and freezing satisfied agents, it guarantees convergence to Nash equilibrium in finite normal-form games.
