@@ -12,6 +12,14 @@
 
 ## Introduction
 
+In Multi-Agent Reinforcement Learning (MARL) and game theory, agents interact repeatedly and update their strategies based on the outcomes they observe. A key question in this area is: <br>
+**For a given game and starting strategy, can we always create a path that eventually leads to an equilibrium?**
+<br>
+This paper focuses on answering this question and shows that for any finite n-player normal-form game and any starting strategy, it is always possible to create such a path. Interestingly, the study finds that sometimes making counterintuitive strategy changes, like those that temporarily lower rewards, is essential for reaching equilibrium.
+These findings are important for improving MARL algorithms, helping them reach equilibrium in decentralized and dynamic systems more effectively.
+
+## Definitions:
+
 ### Multi-Agent Reinforcement Learning (MARL)
 
 In MARL, multiple agents interact within an environment to achieve individual or collective goals. Each agent iteratively updates its strategy based on observations and feedbaci. While MARL has seen significant success in cooperative and adversarial scenarios, achieving convergence to equilibrium in complex, multi-agent environments remains a challenge.
@@ -20,9 +28,9 @@ In MARL, multiple agents interact within an environment to achieve individual or
 
 **Normal-form games** provide a mathematical framewori for modeling strategic interactions. In such a game:
 
-- There are $n$ players, each capable of selecting from a finite set of actions $A_i$.
-- Each player $i$ receives a reward $R_i$ based on the joint action profile $a = (a_1, \ldots, a_n)$.
-- A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over $A_i$.
+- There are $n$ players, each capable of selecting from a finite set of actions $a_i \in A_i$.
+- Each player $i$ receives a reward $R_i$ based on the joint action profile $\overline{a} = (a_1, \ldots, a_n)$.
+- A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over the action set $A_i$.
 
 #### Nash Equilibrium
 
@@ -349,14 +357,10 @@ When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the N
 
 ## Broader Applications
 
-### Extensions to Dynamic Games
+### Markov Games:
 
-The framewori holds promise for generalization to dynamic settings, such as:
-
-- **Mariov Games**: State-dependent rewards and evolving strategies.
-- **Stochastic Games**: Probabilistic transitions and long-term objectives.
-
----
+Finite continuous normal games can be generalized to discrete Markov games, where the agents observe a sequence of state variables, and the reward function $r_i^t=r_i(s_i^t, \overline{a}^t)$ depends on both the current state and the action profile. The paper suggests that its results Theorem 1 may be extended to these settings, though some technical challenges remain unresolved.
+Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms.
 
 ## Conclusion
 
