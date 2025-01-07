@@ -278,9 +278,34 @@ $\alpha_{a^i} \gt 0 \Rightarrow \delta_{a^i} \in \text{BR}^i_0(\mathbf{x}^{-i})$
 
 In other words, if $x^i$ is a best response to $\mathbf{x}^{-i}$,
 then $x^i$ must be supported on the set of maximizers
-$\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$.
+$\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$. Define this best response as $\mathbf{x}_{\star}$
 
 ## Auxillary Function
+
+We will argue that $\mathbf{x}_{\star}$ is a Nash equilibrium. For this, we introduce a function $F^i : \mathbf{X} \to \mathbb{R}$ given by 
+$$
+F^i ( x^i, \mathbf{x}^{-i} ) = \max_{a^i \in A^i} R^i ( \delta_{a^i} , \mathbf{x}^{-i} ) - R^i ( x^i, \mathbf{x}^{-i} ),
+$$
+for each $\mathbf{x} = (x^i, \mathbf{x}^{-i}) \in \mathbf{X}$. The functions $\{ F^i \}_{i=1}^n$ have the following useful properties. For each player $i \in \{1, 2, \dots, n\}$:
+- (a) $F^i$ is continuous on $\mathbf{X}$,
+- (b) $F^i (\mathbf{x}) \geq 0$ for all $\mathbf{x} \in \mathbf{X}$,
+- (c) for any $\mathbf{x}^{-i} \in \mathbf{X}^{-i}$, a strategy $x^i$ is a best response to $\mathbf{x}^{-i}$ if and only if $F^i (x^i, \mathbf{x}^{-i}) = 0$.
+
+Let $(\mathbf{y}_t)_{t = 1}^{\infty}$ be a sequence in $\text{NoBetter}(\mathbf{x}_k)$ converging to $\mathbf{x}_{\star}$, which exists by Lemma~\ref{lemma:equilibrium-on-boundary}. For any previously satisfied player $i \in \text{Sat}(\mathbf{x}_k)$, since $\text{Worse}(\mathbf{x}_k) = \emptyset$ and $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)$, from a previous observation, we have that $i \in \text{Sat}(\mathbf{y}_t)$. Equivalently, $x^i_k \in \text{BR}^i_0 ( \mathbf{y}^{-i}_t )$. 
+
+Rewriting this using the function $F^i$ and the notation $y^i_t = x^i_k$ for satisfied players $i \in \text{Sat}(\mathbf{x}_k)$, we have 
+$$
+F^i ( y^i_t , \mathbf{y}^{-i}_t ) = 0 
+$$
+for all $t \in \mathbb{N}$ and for any $i \in \text{Sat}(\mathbf{x}_k)$. By continuity of $F^i$, we have
+$$
+0 = \lim_{t \to \infty} F^i ( \mathbf{y}_t ) = F^i \left( \lim_{t \to \infty} \mathbf{y}_t \right) = F^i ( \mathbf{x}_{\star}),
+$$
+establishing that player $i$ is satisfied at $\mathbf{x}_{\star}$, and thus that $\text{Sat}(\mathbf{x}_k) \subset \text{Sat}(\mathbf{x}_{\star})$. Then, by the inclusion property $\text{UnSat}(\mathbf{x}_k) \subset \text{Sat}(\mathbf{x}_{\star})$, we conclude that $\text{Sat}(\mathbf{x}_{\star}) = \{1, 2, \dots, n\}$, and $\mathbf{x}_{\star}$ is a Nash equilibrium accessible from $\mathbf{x}_k$.  
+
+We define $T = k+1$ and $\mathbf{x}_{T} = \mathbf{x}_{\star}$, which completes the proof, since $(\mathbf{x}_1, \dots, \mathbf{x}_T)$ is a satisficing path terminating at a Nash equilibrium.
+\end{proof}
+
 
 ## Proof outline
 
@@ -356,9 +381,7 @@ When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the N
 
 ### Markov Games:
 
-Finite continuous normal games can be generalized to discrete Markov games, where the agents observe a sequence of state variables, and the reward function $r_i^t=r_i(s_i^t, \overline{a}^t)$ depends on both the current state and the action profile. The paper suggests that its results Theorem 1 may be extended to these settings, though some technical challenges remain unresolved.
-
-A Markov game with $n$ players and discounted rewards is described by a list 
+A Markov game is a generalization of both normal form games (multiplayer, singleton state) and Markov Decision Process (single player, multi state). There are $n$ players and discounted rewards, described by a list 
 $\mathcal{G} = (n, \mathcal{S}, \mathcal{A}, \mathcal{T}, \mathbf{r}, \gamma)$, 
 where $\mathcal{S}$ is a finite set of states, 
 $\mathcal{A} = \mathcal{A}^1 \times \cdots \times \mathcal{A}^n$ 
@@ -387,9 +410,13 @@ $$
 \end{cases}
 $$
 
-To complete the extension of Theorem 1 to Markov games, one must show that this policy $\pi_{\star} \in \Pi$ is a Markov perfect equilibrium of the $n$-player Markov game. We can define $\{f^i\}_{i = 1}^n$ analogous to the auxillary function $\{F^i\}_{i = 1}^n$ defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 1 to the multi-state case.<br>
- However, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven. 
+Showing that this policy $\pi_{\star} \in \Pi$ is a Markov perfect equilibrium of the $n$-player Markov game, extends Theorem 1 to Markov games. We can define $\{f^i\}_{i = 1}^n$ analogous to the auxillary function $\{F^i\}_{i = 1}^n$ defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 1 to the multi-state case.<br>
 
+Unfortunately, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven. 
+
+### Decentralized Learning
+
+In many cases players can evaluate their strategy compared to an optimal strategy, even when they only have partial information. In decentralized algorithms, each player must do so using only information that they can access or estimate locally. For our case, the "win–stay" part of the satisficing principle serves as a local stopping condition, allowing the players to update their strategy without having to look at the entire strategy space. The results of this paper suggest that limitation like this can still be overcome by adapted this algorithm to broader classes of games, while still maintaining guarantees of convergence to equilibrium.
 
 ## Conclusion
 
