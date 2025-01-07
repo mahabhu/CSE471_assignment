@@ -25,7 +25,7 @@ In MARL, multiple agents interact within an environment to achieve individual or
 
 ### Normal-Form Games and Nash Equilibrium
 
-A *normal-form game* is a mathematical representation of a strategic interaction where a finite set of players each select a strategy simultaneously from their respective sets of available actions. The outcome  of the game is determined by the combination of chosen strategies, with each player receiving a reward based on this outcome.
+A _normal-form game_ is a mathematical representation of a strategic interaction where a finite set of players each select a strategy simultaneously from their respective sets of available actions. The outcome of the game is determined by the combination of chosen strategies, with each player receiving a reward based on this outcome.
 
 ### Nash Equilibrium
 
@@ -182,8 +182,6 @@ Some subsets of the set strategies $\mathbf{X}$ is of particular interest to us:
 
 ## Expected Reward Function
 
-**Expected Reward Function $R^i(\mathbf{x})$**:
-
 The Expected Reward function $R^i$ for player $i$ is their expected reward
 which can be defined as:
 
@@ -205,11 +203,9 @@ We are summing over all possible actions $\mathbf{a} \in \mathbf{A}$
 of all players weighted by
 the probabilities of those actions under the mixed strategy profile $\mathbf{x}$.
 
-Some properties of the expected reward function is of interest to us when we
-fix the strategies of all players except player $i$,
-i.e. $\mathbf{x}^{-i}$ is fixed:
+Some properties of the expected reward function is of interest to us:
 
-1. $R^i(x^i, \mathbf{x}^{-i})$ is a linear function.
+1. $R^i$ is a multi-linear function.
 
    This can be easily seen since
 
@@ -224,20 +220,26 @@ i.e. $\mathbf{x}^{-i}$ is fixed:
 
    Here, $w_{\mathbf{x}^{-i}}(\mathbf{\bar{a}}) \in \mathbb{R}$ is constant for a fixed
    $\mathbf{x}^{-i}$ and $\mathbf{\bar{a}}$. This means $R_i(x^i, \mathbf{x}^{-i})$
-   is a linear function of $x^i$.
+   is a linear function of $x^i$ if $\mathbf{x}^{-i}$ is fixed.
+   Therefore, it is a multi-linear function of $\mathbf{x}$.
 
-2. $R^i(x^i, \mathbf{x}^{-i})$ is continuous.
+2. $R^i$ is continuous.
 
    This follows from the fact that it is a linear function.
 
-3. The maximum expected reward
-   $\max_{a^i \in \mathbb{A}^i}R^i(x^i, \mathbf{x}^{-i})$,
-   are attained by pure strategies.
+3. Pure strategies attain the maximum expected reward when opponent strategies are fixed.
+
+   Formally speaking, for any player $i$ and any mixed strategy profile $\mathbf{x}^{-i}$,
+
+   $$
+    \max_{x^i \in \Delta(\mathbb{A}^i)} R^i(x^i, \mathbf{x}^{-i}) =
+    \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i})
+   $$
 
    This is because for fixed opponent strategies,
    the expected reward function is linear.
    Upon fixing $\mathbf{x}^{-i}$ the domain of $R_i(x^i, \mathbf{x}^{-i})$
-   is the set of all mixed strategies for player $i$,
+   is the set of all mixed strategies for player $i$: $\Delta(\mathbb{A}^i)$.
 
    $$
    \Delta(\mathbb{A}^i) =
@@ -265,15 +267,13 @@ i.e. $\mathbf{x}^{-i}$ is fixed:
 
    Generalizing this to higher dimensions, the maximum value of the linear function
    $R^i(x^i, \mathbf{x}^{-i})$ when $\mathbf{x}^{-i}$ is fixed,
-   is attained at the pure strategies $\{\delta_a^i: a^i \in \mathbb{A}^i\}$.
+   is attained at the pure strategies $\{\delta_a^i: a^i \in \mathbb{A}^i\}$. Also note that
+   if multiple pure strategies attain the maximum value, then any mixture of these
+   pure strategies also attains the maximum value.
 
-Property 3 is crucial for our proof. It implies that the maximum expected reward
-is that of the maximizing pure strategy. This means that for any mixed strategy
-
-$$
-\max_{x^i \in \Delta(\mathbb{A}^i)} R^i(x^i, \mathbf{x}^{-i}) =
-\max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i})
-$$
+Property 3 is crucial for our proof. It implies that the maximum expected reward for player $i$
+when the opponents' strategies are fixed
+is that of the maximizing pure strategy.
 
 It also implies that if $x^i$ is a best response to $\mathbf{x}^{-i}$,
 then $x^i$ must be a pure strategy or a mixture of pure strategies which are best responses.
@@ -283,7 +283,8 @@ We state this formally as a lemma.
 ### Lemma 1
 
 $x^i$ is a best response to $\mathbf{x}^{-i}$
-if and only if $x^i$ is a mixture of pure strategies which are best responses to $\mathbf{x}^{-i}$.
+if and only if $x^i$ is a mixture of pure strategies which are individually
+best responses to $\mathbf{x}^{-i}$.
 Formally, expressed as $x^i = \sum_{a^i \in \mathbb{A}^i} \alpha_{a^i} \delta_{a^i}$
 where $\sum_{a^i \in \mathbb{A}^i} \alpha_{a^i} = 1$ and $\alpha_{a^i} \ge 0$,
 $x^i \in \text{BR}^i_0(\mathbf{x}^{-i})$ if and only if
@@ -291,13 +292,46 @@ $\alpha_{a^i} \gt 0 \Rightarrow \delta_{a^i} \in \text{BR}^i_0(\mathbf{x}^{-i})$
 
 In other words, if $x^i$ is a best response to $\mathbf{x}^{-i}$,
 then $x^i$ must be supported on the set of maximizers
-$\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$. Define this best response as $\mathbf{x}_{\star}$
+$\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$.
 
-## Auxillary Function
+## Auxillary Functions
 
-## Proof outline
+We now discuss a set of functions we call the auxillary functions $\{ F^i: i \in [n] \}$.
+They will come in handy later in the proof.
+The functions $F^i: \mathbf{X} \to \mathbb{R}$ are defined as:
 
-Now that we are done with the essential notations we can begin the proof outline.
+$$
+  F^i(x^i, \mathbf{x}^{-i}) =\max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i}) - R^i(x^i, \mathbf{x}^{-i})
+$$
+
+We now discuss some properties of the auxillary functions,
+which are easy to justify thanks to the heavy lifting we did earlier.
+
+For any $i \in [n]$ and any strategy profile $(x^i, \mathbf{x}^{-i}) \in \mathbf{X}$ the following properties hold:
+
+1. $F^i$ is continuous.
+
+   This follows from the continuity of the expected reward function $R^i$ as the pointwise maximum of
+   finitely many continuous functions is continuous.
+
+2. $F^i \ge 0$ for all $x \in \mathbf{X}$.
+
+   This follows from the definition of $F^i$ and property 3 of the expected reward function.
+   The maximum expected reward for player $i$ when the opponents' strategies are fixed
+   is that of the maximizing pure strategy. Therefore, $R^i(x^i, \mathbf{x}^{-i}) \le \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i})$ for all $x^i \in \Delta(\mathbb{A}^i)$. This implies $F^i(x^i, \mathbf{x}^{-i}) \ge 0$.
+
+3. For any $\mathbf{x}^{-1} \in \Chi^{-1}$, $F^i(x^i, \mathbf{x}^{-i}) = 0$ if and only if $x^i \in \text{BR}^i_0(\mathbf{x}^{-i})$.
+
+   This again follows from the definition of $F^i$ and property 3 of the expected reward function.
+   $F^i(x^i, \mathbf{x}^{-i}) = 0$ if and only if
+   $R^i(x^i, \mathbf{x}^{-i}) = \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, 
+   \mathbf{x}^{-i}) = \max_{x^i \in \Delta(\mathbb{A}^i)} R^i(x^i, \mathbf{x}^{-i})$,
+   i.e. when the expected reward is maximum.
+   This implies $x^i$ is a best response to $\mathbf{x}^{-i}$.
+
+## Proof
+
+Okay, now that we are done with a quite a lot of preliminaries we can begin the actual proof.
 
 Let $\mathbf{x}_1 \in \mathbf{X}$ be any initial strategy.
 We now construct a satisficing path
@@ -348,7 +382,49 @@ final step of the above process. We can show $i \le n - 1$.
 
 When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the Nash equilibrium condition.
 
+The process terminates at $\mathbf{x}_k$ if either all players are unsatisfied or no worse strategy is accessible.
+Therefore, there are two cases:
+
+**Case 1: $\text{Sat}(\mathbf{x}_k)=\empty$**
+
+If all players are unsatisfied then the satisficing condition places no restrictions on the next strategy.
+Therefore, we can choose any strategy $\mathbf{x}_{k+1} \in \mathbf{X}$, i.e. $\text{Access}(\mathbf{x}_k) = \mathbf{X}$.
+We choose an arbitrary Nash equilibrium $\mathbf{z}_\star$ and set $\mathbf{x}_{k+1} = \mathbf{z}_\star$.
+
+Therefore, taking $T=k+1 \le n$ we have a satisficing path $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{z}_\star$ where $\mathbf{z}_\star$ is a Nash equilibrium. We are done.
+
+**Case 2:** $\text{Sat}(\mathbf{x}_k)\ne\empty$ and $\text{Worse}(\mathbf{x}_k)=\empty$
+
+This is the trickier case. We need to show there exists a Nash equilibrium $\mathbf{x}_\star$ such that $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$.
+
+#### **Step 5: Find the Nash equilibrium $\mathbf{x}_\star$**
+
+Since $\text{Sat}(\mathbf{x}_k)\ne\empty$, we cannot change the strategies of satisfied players $\text{Sat}(\mathbf{x}_k)$.
+Let $m = |\text{Sat}(\mathbf{x}_k)|$ be the number of satisfied players.
+We can only change the strategies of $n-m$ unsatisfied players $\text{UnSat}(\mathbf{x}_k)$.
+
+We can create a new game $\bar{\Gamma}$ with $n-m$ players by restricting the strategy space of the satisfied players to their current strategies.
+Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\bar{\Gamma}$. We can extend $\mathbf{\bar{x}}_\star$ to a Nash equilibrium $\mathbf{x}_\star$ of the original game $\Gamma$ by setting the strategies of the satisfied players to their strategies
+in $\mathbf{x}_k$. That is we set,
+
+$$
+\mathbf{x}_\star = \begin{cases}
+    x^i_k, &\text{ for } i \in \text{Sat}(\mathbf{x}_k), \\
+    \bar{x}^i_\star, &\text{ for } i \in \text{UnSat}(\mathbf{x}_k).
+\end{cases}
+$$
+
+Since $x^i_k = x^i_{\star}$ for $i \in \text{Sat}(\mathbf{x}_k)$, $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$.
+
+Therefore, we can set $T=k+1 \le n$ and $\mathbf{x}_T = \mathbf{x}_\star$ and we have a satisficing path $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{x}_T$ where $\mathbf{x}_T$ is a Nash equilibrium. And we are done with the construction of the satisficing path to a Nash equilibrium from any initial strategy $\mathbf{x}_1 \in \Chi$.
+
 ---
+
+But **wait**! We didn't proof that $\mathbf{x}_\star$ is indeed a Nash equilibrium. We need to show that $\mathbf{x}_\star$ is a Nash equilibrium of the original game $\Gamma$. So, here comes the hard part.
+
+#### Proof: $\mathbf{x}_\star$ is a Nash equilibrium of $\Gamma$
+
+since $\mathbf{x}_\star$ is a Nash equilibrium of the new game $\bar{\Gamma}$, we have:1
 
 ## Insights and Implications
 
@@ -369,38 +445,37 @@ When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the N
 
 ### Markov Games:
 
-A Markov game is a generalization of both normal form games (multiplayer, singleton state) and Markov Decision Process (single player, multi state). There are $n$ players and discounted rewards, described by a list 
-$\mathcal{G} = (n, \mathcal{S}, \mathcal{A}, \mathcal{T}, \mathbf{r}, \gamma)$, 
-where $\mathcal{S}$ is a finite set of states, 
-$\mathcal{A} = \mathcal{A}^1 \times \cdots \times \mathcal{A}^n$ 
-is a finite set of action profiles, and 
-$\mathbf{r} = (r^1, r^2, \ldots, r^n)$ 
-is a collection of reward functions, where 
-$r^i: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$ 
-describes the reward to player $i$. 
+A Markov game is a generalization of both normal form games (multiplayer, singleton state) and Markov Decision Process (single player, multi state). There are $n$ players and discounted rewards, described by a list
+$\mathcal{G} = (n, \mathcal{S}, \mathcal{A}, \mathcal{T}, \mathbf{r}, \gamma)$,
+where $\mathcal{S}$ is a finite set of states,
+$\mathcal{A} = \mathcal{A}^1 \times \cdots \times \mathcal{A}^n$
+is a finite set of action profiles, and
+$\mathbf{r} = (r^1, r^2, \ldots, r^n)$
+is a collection of reward functions, where
+$r^i: \mathcal{S} \times \mathcal{A} \to \mathbb{R}$
+describes the reward to player $i$.
 
-A transition probability function 
-$\mathcal{T} \in \mathcal{P}(\mathcal{S} \mid \mathcal{S} \times \mathcal{A})$ 
-governs the evolution of the state process, described below, and a discount factor 
-$\gamma \in (0,1)$ 
+A transition probability function
+$\mathcal{T} \in \mathcal{P}(\mathcal{S} \mid \mathcal{S} \times \mathcal{A})$
+governs the evolution of the state process, described below, and a discount factor
+$\gamma \in (0,1)$
 is used to aggregate rewards across time.
- 
 
+Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms. The authors have attempted to generalize Theorem 1 for Markov games too by conducting the proofs parallely.
 
-Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms. The authors have attempted to generalize Theorem 1 for Markov games too by conducting the proofs parallely. 
+To begin, one can construct a satisficing path $\{\pi_1, \pi_2, \dots, \pi_k\}$ by growing the set of unsatisfied players at each iteration until either $\text{UnSat}(\pi_k) = \{1, 2, \dots, n\}$ or $\text{Worse}(\pi_k) = \emptyset$. In the latter case, one can consider the subgame involving only the players in $\text{UnSat}(\pi_k)$ and obtain a Markov perfect equilibrium $\tilde{\pi}_{\star}$ for that subgame, which can then be extended to a policy profile $\pi_{\star} \in \text{Acc}(\pi_k)$ by putting
 
-To begin, one can construct a satisficing path $\{\pi_1, \pi_2, \dots, \pi_k\}$ by growing the set of unsatisfied players at each iteration until either $\text{UnSat}(\pi_k) = \{1, 2, \dots, n\}$ or $\text{Worse}(\pi_k) = \emptyset$. In the latter case, one can consider the subgame involving only the players in $\text{UnSat}(\pi_k)$ and obtain a Markov perfect equilibrium $\tilde{\pi}_{\star}$ for that subgame, which can then be extended to a policy profile $\pi_{\star} \in \text{Acc}(\pi_k)$ by putting 
 $$
-\pi^i_{\star}=  
-\begin{cases} 
+\pi^i_{\star}=
+\begin{cases}
     \tilde{\pi}^i_{\star}, &\text{ if } i \in \text{UnSat}(\pi_k), \\
-    \pi^i_k, &\text{ if } i \in \text{Sat}(\pi_k). 
+    \pi^i_k, &\text{ if } i \in \text{Sat}(\pi_k).
 \end{cases}
 $$
 
 Showing that this policy $\pi_{\star} \in \Pi$ is a Markov perfect equilibrium of the $n$-player Markov game, extends Theorem 1 to Markov games. We can define $\{f^i\}_{i = 1}^n$ analogous to the auxillary function $\{F^i\}_{i = 1}^n$ defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 1 to the multi-state case.<br>
 
-Unfortunately, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven. 
+Unfortunately, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven.
 
 ### Decentralized Learning
 
