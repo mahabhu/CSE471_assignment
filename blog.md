@@ -20,9 +20,9 @@ In MARL, multiple agents interact within an environment to achieve individual or
 
 **Normal-form games** provide a mathematical framework for modeling strategic interactions. In such a game:
 
-- There are $n$ players, each capable of selecting from a finite set of actions $A_i$.
-- Each player $i$ receives a reward $R_i$ based on the joint action profile $a = (a_1, \ldots, a_n)$.
-- A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over $A_i$.
+- There are $n$ players, each capable of selecting from a finite set of actions $a_i \in A_i$.
+- Each player $i$ receives a reward $R_i$ based on the joint action profile $\overline{a} = (a_1, \ldots, a_n)$.
+- A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over the action set $A_i$.
 
 #### Nash Equilibrium
 
