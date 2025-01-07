@@ -220,14 +220,10 @@ When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the N
 
 ## Broader Applications
 
-### Extensions to Dynamic Games
+### Markov Games: 
 
-The framework holds promise for generalization to dynamic settings, such as:
-
-- **Markov Games**: State-dependent rewards and evolving strategies.
-- **Stochastic Games**: Probabilistic transitions and long-term objectives.
-
----
+Finite continuous normal games can be generalized to discrete Markov games, where the agents observe a sequence of state variables, and the reward function $r_i^t=r_i(s_i^t, \overline{a}^t)$ depends on both the current state and the action profile. The paper suggests that its results Theorem 1 may be extended to these settings, though some technical challenges remain unresolved.
+Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms.
 
 ## Conclusion
 
