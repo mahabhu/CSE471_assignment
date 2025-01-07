@@ -278,11 +278,33 @@ $\alpha_{a^i} \gt 0 \Rightarrow \delta_{a^i} \in \text{BR}^i_0(\mathbf{x}^{-i})$
 
 In other words, if $x^i$ is a best response to $\mathbf{x}^{-i}$,
 then $x^i$ must be supported on the set of maximizers
-$\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$. Define this best response as $\mathbf{x}_{\star}$
+$\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$.
+## Auxillary Functions
+We now discuss a set of functions we call the auxillary functions $\{ F^i: i \in [n] \}$.
+They will come in handy later in the proof.
+The functions $F^i: \mathbf{X} \to \mathbb{R}$ are defined as:
+$$
+  F^i(x^i, \mathbf{x}^{-i}) =\max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i}) - R^i(x^i, \mathbf{x}^{-i})
+$$
+We now discuss some properties of the auxillary functions,
+which are easy to justify thanks to the heavy lifting we did earlier.
+For any $i \in [n]$ and any strategy profile $(x^i, \mathbf{x}^{-i}) \in \mathbf{X}$ the following properties hold:
+1. $F^i$ is continuous.
+   This follows from the continuity of the expected reward function $R^i$ as the pointwise maximum of
+   finitely many continuous functions is continuous.
+2. $F^i \ge 0$ for all $x \in \mathbf{X}$.
+   This follows from the definition of $F^i$ and property 3 of the expected reward function.
+   The maximum expected reward for player $i$ when the opponents' strategies are fixed
+   is that of the maximizing pure strategy. Therefore, $R^i(x^i, \mathbf{x}^{-i}) \le \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i})$ for all $x^i \in \Delta(\mathbb{A}^i)$. This implies $F^i(x^i, \mathbf{x}^{-i}) \ge 0$.
+3. For any $\mathbf{x}^{-1} \in \Chi^{-1}$, $F^i(x^i, \mathbf{x}^{-i}) = 0$ if and only if $x^i \in \text{BR}^i_0(\mathbf{x}^{-i})$.
+   This again follows from the definition of $F^i$ and property 3 of the expected reward function.
+   $F^i(x^i, \mathbf{x}^{-i}) = 0$ if and only if
+   $R^i(x^i, \mathbf{x}^{-i}) = \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, 
+   \mathbf{x}^{-i}) = \max_{x^i \in \Delta(\mathbb{A}^i)} R^i(x^i, \mathbf{x}^{-i})$,
+   i.e. when the expected reward is maximum.
+   This implies $x^i$ is a best response to $\mathbf{x}^{-i}$.
 
-## Auxillary Function
-
-## Proof outline
+## Proof
 
 Now that we are done with the essential notations we can begin the proof outline.
 
