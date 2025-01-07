@@ -1,0 +1,57 @@
+\section{Discussion} \label{sec:discussion}
+
+
+\subsection*{Extension to Markov games}
+
+This paper focused on normal-form games with finitely many actions per player due to the central position that normal-form games occupy in game theory. Indeed, insights and intuition developed in normal-form games are helpful for understanding more complex models of strategic interaction. Of special note, finite normal-form games can be generalized to model dynamic strategic environments where rewards and environmental parameters evolve over time according to the history of play. We now describe the extension of \Cref{theorem:main} to Markov games, one generalization of finite normal-form games that is a popular model in MARL. {Due to space limitations, a formal model for Markov games is postponed to \Cref{appendix:markov-games}. 
+
+In an $n$-player Markov game, agents interact across discrete time. Each agent $i \in [n]$ observes a sequence of state variables $\{ s_t \}_{t \geq 1}$ taking values in a finite state space $\SS$ and selects a sequence of actions $\{ a^i_t \}_{t \geq 1}$ taking values in a finite action set $\aa^i$. In this dynamic model, player $i$'s reward in period $t$, denoted $r^i_t = r^i ( s_t, \ba_t )$, depends on both the action profile $\ba_t$ and also on the state $s_t$. The state process evolves according to a (jointly controlled) transition probability function $\TT$ as $s_{t+1} \sim \TT ( \cdot | s_t, \ba_t )$. Rewards are discounted across time using a discount factor $\gamma \in (0,1)$, and player $i$ attempts to maximize its expected $\gamma$-discounted return. In this generalization of finite normal-form games, \emph{policies} (defined as mappings from states to probability distributions over actions) generalize mixed strategies, and the solution concept of \emph{Markov perfect equilibrium} refines the concept of Nash equilibrium and serves as a popular stability objective for MARL algorithm designers \cite{zhang2021multi}. 
+
+{Partial results for multi-state Markov games have previously been obtained in special classes of games and used to produce MARL algorithms \cite{yongacoglu2023satisficing}. The analysis presented in this paper uses a rather different approach that seems promising for extending those results.} In the proof of \Cref{theorem:main}, we used functions $\{ F^i \}_{i=1}^n$ to characterize best responding in a finite normal-form game. In fact, analogous functions can also be obtained for policies in multi-state Markov games, and these functions satisfy the same desired properties invoked in the proof of \Cref{theorem:main} (c.f. \cite[Lemmas 2.10-2.13]{yongacoglu2023satisficing}). For this reason, and due to the central role of continuity in our proof, it seems likely that \Cref{theorem:main} can be extended to general-sum Markov games. However, one aspect of the extension remains open, namely the generalization of \Cref{lemma:equilibrium-on-boundary}. {In \Cref{appendix:markov-games}, we describe the issue that precludes direct generalization of our normal-form proof of \Cref{lemma:equilibrium-on-boundary}, but we note that this appears to be related only to the proof technique rather than a fundamental obstacle to the generalization.}
+
+
+
+
+
+
+
+\subsection*{On decentralized learning}
+
+Multi-agent reinforcement learning algorithms based on the ``win--stay, lose--shift'' principle characteristic of satisficing paths are especially well suited to decentralized applications, since players are often able to estimate the performance of their current strategy as well as the performance of an optimal strategy, even under partial information. In decentralized problems, coordinated search of the set $\bX$ of strategy profiles for a Nash equilibrium is typically infeasible, and players must select successor strategies in a way the depends only on quantities that can be locally accessed or estimated. 
+
+For instance, consider a trivial coordinated search method, where player $i$ selects $x^i_{t+1}$ uniformly at random from $\XX^i$ whenever $\bx_t$ was not a Nash equilibrium and selects $x^i_{t+1} = x^i_t$ only when $\bx_t$ is a Nash equilibrium. This process is clearly ill suited to decentralized applications, because player $i$'s strategy update depends on both a locally estimable condition (whether player $i$ is best responding to $\bx^{-i}_t$) as well as a condition that cannot be locally estimated (whether another player $j \not=i $ is best responding to $\bx^{-j}_t$.) The satisfaction (win--stay) constraint plays a key role as a \emph{local} stopping condition for satisficing paths, and rules out coordinated search of the set $\bX$ such as the trivial update outlined above. Examples of decentralized or partially decentralized learning algorithms leveraging satisficing paths in their analysis include \cite{foster2006regret,marden2009payoff,arslan2017decentralized,yongacoglu2023satisficing}. The analytic results of this paper suggest that algorithms such as these can be extended to wider classes of games and enjoy equilibrium guarantees under different informational constraints on the players. 
+
+
+
+
+\subsection*{On complexity and dynamics}
+
+In \Cref{theorem:main}, we showed that for any finite $n$-player normal-form game $\Gamma$ and any initial strategy profile $\bx_1 \in \bX$, there exists a satisficing path $ \bx_1, \dots , \bx_T $ of finite length $T = T(\bx_1)$ terminating at a Nash equilibrium $\bx_T$. From the proof of \Cref{theorem:main}, one makes the following observations. First, the length of such a path can be uniformly bounded above as $T(\bx_1 ) \leq n$. Second, there exists a collection of strategy update functions $\left\{ f^i_{\Gamma} : \bX \to \XX^i \middle| i \in [n] \right\}$ whose joint orbit is the satisficing path described by the proof of \Cref{theorem:main}. That is, $f^i_{\Gamma} ( \bx_t ) = x^i_{t+1}$ for each player $i \in [n]$, every $0 \leq t \leq T-1$, and every $\bx_1 \in \bX$, where $x^i_t$ is player $i$'s component of $\bx_t$ in the satisficing path initialized at $\bx_1$. 
+
+
+
+
+The proof of \Cref{theorem:main} is semi-constructive. At each step along the path, we describe how the next strategy profile should be picked (e.g. $\bx_{t+1} \in \Worse(\bx_t)$), but we do not suggest an algorithm for computing it. In at least one place, namely Case 1 where  we put $\bx_{T} := \bz_{\star}$, the path construction involves moving jointly to a Nash equilibrium in one step. The computational complexity of such a step is prohibitive \cite{daskalakis2009complexity}, underscoring that ours is an analytical existence result rather than a computational prescription.
+
+Although we have shown that there exists a discrete-time dynamical system on $\bX$ that converges to Nash equilibrium in $n$ steps and can be characterized by update functions $\{ f^i_{\Gamma} \}_{i=1}^n$, we note that our possibility result does not contradict the impossibility results of \cite{hart2003uncoupled, babichenko2012completely} or \cite{milionis2023impossibility}. In particular, the functions $\{ f^i_{\Gamma} \}_{i=1}^n$ need not be (and usually will not be) continuous, violating the regularity conditions of \cite{hart2003uncoupled} and \cite{milionis2023impossibility}, and furthermore the functions $\{ f^i_{\Gamma} \}_{i=1}^n$ depend crucially on the game $\Gamma$ in a way that violates the uncoupledness conditions of \cite{hart2003uncoupled} and \cite{babichenko2012completely}.
+
+ 
+
+\subsection*{Open questions and future directions}
+
+Several interesting questions about satisficing paths remain open. We now briefly describe some that we find especially practical or theoretically relevant.
+
+% Direction 1: epsilon > 0, normal-form games
+
+While this paper dealt with satisficing paths defined using a best responding constraint, the original definition was stated using an $\epsilon$-best responding constraint, according to which a player who was $\epsilon$-best responding was not allowed to switch its strategy. Putting $\epsilon = 0$, one recovers the definition used here, but one may also select $\epsilon > 0$, which can be desirable to accommodate for estimation error in multi-agent reinforcement learning applications. The added constraint reduces freedom to switch strategies, and thus makes it more challenging to construct paths starting from a given strategy profile. On the other hand, the collection of Nash equilibria is a strict subset of the set of $\epsilon$-Nash equilibria, and one can attempt to guide the process to a different terminal point in a larger set. At this time, it is not clear to us whether the main result of this paper holds for small $\epsilon > 0$. It is clear, however, that the proof technique used here will have to be modified, since we have relied on Lemma~\ref{lemma:equilibrium-on-boundary}, whose proof involved an indifference condition and invoked the fundamental theorem of algebra, and relaxing to $\epsilon > 0$ would render such an argument ineffective. 
+
+
+% Direction 2: any epsilon, multi-state general-sum games with n > 2.
+
+A second interesting question for future work is whether multi-state Markov games with $n > 2$ players have the satisficing paths property. The case with $n=2$ was resolved by \cite{yongacoglu2023satisficing}, but the proof technique used there did not generalize to $n \geq 3$. By contrast, our proof technique readily accommodates any number of players, but is designed for stateless normal-form games. Our proof used multi-linearity of the expected reward functions $\{ R^i \}_{i = 1}^n$, which does not generally hold in the multi-state setting. 
+
+% Direction 3: subsets and quantization
+
+In this work, satisficing paths were defined in a way that allowed an unsatisfied player $i$ to change its strategy to any strategy in its set $\XX^i$, without constraint. This is interesting in many problems where the set of strategies can be explicitly and directly parameterized, but may be unrealistic in games where the set of strategies is poorly understood or in which a player can effectively represent only a subset of its strategies $\YY^i \subsetneq \XX^i$. In such games, the question more relevant for algorithm design is whether the game admits satisficing paths to equilibrium within the restricted subset $\YY^1 \times \cdots \times \YY^n$. This point was implicitly appreciated by both \cite{foster2006regret} and \cite{germano2007global} and explicitly noted in \cite{yongacoglu2023satisficing}. Some negative results were recently established in \cite{yongacoglu2024generalizing} for games admitting pure strategy Nash equilibrium when randomized action selection was not allowed and the constrained set was given by $\YY^i = \aa^i$, underscoring the importance of the topology of the sets appearing in the proof of \Cref{theorem:main}.
+
+
