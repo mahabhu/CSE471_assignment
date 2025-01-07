@@ -15,8 +15,7 @@
 In Multi-Agent Reinforcement Learning (MARL) and game theory, agents interact repeatedly and update their strategies based on the outcomes they observe. A key question in this area is: <br>
 **For a given game and starting strategy, can we always create a path that eventually leads to an equilibrium?**
 <br>
-This paper focuses on answering this question and shows that for any finite n-player normal-form game and any starting strategy, it is always possible to create such a path. Interestingly, the study finds that sometimes making counterintuitive strategy changes, like those that temporarily lower rewards, is essential for reaching equilibrium.
-These findings are important for improving MARL algorithms, helping them reach equilibrium in decentralized and dynamic systems more effectively.
+This paper focuses on answering this question and shows that for any finite $n$-player normal-form game and any starting strategy, it is always possible to create such a path. The study also shows that sometimes making counterintuitive changes to strategy changes, e.g. temporarily lower rewards, are essential for reaching equilibrium. These findings are important for improving MARL algorithms, helping them reach equilibrium more effectively.
 
 ## Definitions:
 
@@ -26,22 +25,12 @@ In MARL, multiple agents interact within an environment to achieve individual or
 
 ### Normal-Form Games and Nash Equilibrium
 
-**Normal-form games** provide a mathematical framewori for modeling strategic interactions. In such a game:
+A *normal-form game* is a mathematical representation of a strategic interaction where a finite set of players each select a strategy simultaneously from their respective sets of available actions. The outcome  of the game is determined by the combination of chosen strategies, with each player receiving a reward based on this outcome.
 
-- There are $n$ players, each capable of selecting from a finite set of actions $a_i \in A_i$.
-- Each player $i$ receives a reward $R_i$ based on the joint action profile $\overline{a} = (a_1, \ldots, a_n)$.
-- A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over the action set $A_i$.
+### Nash Equilibrium
 
-#### Nash Equilibrium
-
-A strategy profile $x^* = (x_1^*, x_2^*, \ldots, x_n^*)$ is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
-
-$$
-R_i(x_i^*, x_{-i}^*) \geq R_i(x_i, x_{-i}^*) \quad \forall x_i \in X_i, \quad \forall i \in \{1, \ldots, n\},
-$$
-
-where $x_{-i}^*$ represents the strategies of all players except $i$.
-
+Imagine a group of friends deciding what to do on a weekend. Each friend has their preferences (movies, bowling, or staying home), and their happiness depends not only on what they choose but also on what others decide.
+A Nash equilibrium happens when everyone has made their choice, and no one can be happier by changing their mind—as long as everyone else sticks to their own decision.
 Finding Nash equilibria is central to MARL but is often computationally challenging due to the coupled nature of the reward functions and the high-dimensional strategy space.
 
 ---
@@ -54,13 +43,13 @@ The authors investigate whether **satisficing paths**—strategy update sequence
 
 For any finite normal-form game and any initial strategy profile, can we construct a satisficing path that guarantees convergence to Nash equilibrium?
 
-### iey Insight
+### Key Insight
 
-The paper proves that such a path always exists. Interestingly, this result leverages **suboptimal updates**—a departure from conventional reward-improving approaches—to achieve equilibrium and avoid cyclical behaviors.
+The paper proves that such a path always exists. Interestingly, this result leverages **suboptimal updates**—a departure from conventional reward improving approaches to achieve equilibrium and avoid cyclical behaviors.
 
 ---
 
-## Mathematical Framewori
+## Mathematical Framework
 
 ### Game Representation
 
@@ -69,8 +58,9 @@ A finite $n$-player normal-form game $\Gamma$ is defined by:
 1. $n$: Number of players.
 2. $A = A_1 \times A_2 \times \cdots \times A_n$: Set of joint actions.
 3. $r = (r_1, r_2, \ldots, r_n)$: Reward functions, where $r_i: A \to \mathbb{R}$ specifies the reward for player $i$.
+4. Each player $i$ receives a reward $R_i$ based on the joint action profile $\overline{a} = (a_1, \ldots, a_n)$, where $a_i \in A_i$.
 
-The strategy profile $x = (x_1, x_2, \ldots, x_n)$ consists of mixed strategies $x_i \in X_i = \Delta(A_i)$, where $\Delta(A_i)$ is the probability simplex over $A_i$.
+The strategy profile $x = (x_1, x_2, \ldots, x_n)$ consists of mixed strategies $x_i \in X_i = \Delta(A_i)$, where $\Delta(A_i)$ is the probability simplex over $A_i$. A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over the action set $A_i$.
 
 ### Satisficing Paths
 
@@ -78,6 +68,16 @@ A sequence of strategy profiles ${x^t}_{t=1}^\infty$ is a **satisficing path** i
 
 - $x_i^{t+1} = x_i^t$ if $x_i^t$ is a best response to $x_{-i}^t$.
 - $x_i^{t+1} \in X_i$ (freely updated) if $x_i^t$ is not a best response.
+
+### Nash Equilibrium
+
+A strategy profile $x^* = (x_1^*, x_2^*, \ldots, x_n^*)$ is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
+
+$$
+R_i(x_i^*, x_{-i}^*) \geq R_i(x_i, x_{-i}^*) \quad \forall x_i \in X_i, \quad \forall i \in \{1, \ldots, n\},
+$$
+
+where $x_{-i}^*$ represents the strategies of all players except $i$.
 
 ---
 
