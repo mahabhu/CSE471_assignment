@@ -2,8 +2,6 @@
 
 # Paths to Equilibrium in Games | NeurIPS 2024
 
----
-
 ### **Original Authors**: Bora Yongacoglu, Gürdal Arslan, Lacra Pavel, Serdar Yüisel
 
 ##### **Blog Authors**: Ashrafur Rahman, Fatema Tuj Johora, Mashroor Hasan Bhuiyan
@@ -21,7 +19,7 @@ This paper focuses on answering this question and shows that for any finite $n$-
 
 ### Multi-Agent Reinforcement Learning (MARL)
 
-In MARL, multiple agents interact within an environment to achieve individual or collective goals. Each agent iteratively updates its strategy based on observations and feedbaci. While MARL has seen significant success in cooperative and adversarial scenarios, achieving convergence to equilibrium in complex, multi-agent environments remains a challenge.
+In MARL, multiple agents interact within an environment to achieve individual or collective goals. Each agent iteratively updates its strategy based on observations and feedback. While MARL has seen significant success in cooperative and adversarial scenarios, achieving convergence to equilibrium in complex, multi-agent environments remains a challenge.
 
 ### Normal-Form Games and Nash Equilibrium
 
@@ -47,8 +45,6 @@ For any finite normal-form game and any initial strategy profile, can we constru
 
 The paper proves that such a path always exists. Interestingly, this result leverages **suboptimal updates**—a departure from conventional reward improving approaches to achieve equilibrium and avoid cyclical behaviors.
 
----
-
 ## Mathematical Framework
 
 ### Game Representation
@@ -60,7 +56,7 @@ A finite $n$-player normal-form game $\Gamma$ is defined by:
 3. $r = (r_1, r_2, \ldots, r_n)$: Reward functions, where $r_i: A \to \mathbb{R}$ specifies the reward for player $i$.
 4. Each player $i$ receives a reward $R_i$ based on the joint action profile $\overline{a} = (a_1, \ldots, a_n)$, where $a_i \in A_i$.
 
-The strategy profile $x = (x_1, x_2, \ldots, x_n)$ consists of mixed strategies $x_i \in X_i = \Delta(A_i)$, where $\Delta(A_i)$ is the probability simplex over $A_i$. A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over the action set $A_i$.
+The strategy profile $x = (x_1, x_2, \ldots, x_n)$ consists of mixed strategies $x_i \in X_i = \Delta_{A^i}$, where $\Delta_{A^i}$ is the probability simplex over $A_i$. A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over the action set $A_i$.
 
 ### Satisficing Paths
 
@@ -85,9 +81,8 @@ where $x_{-i}^*$ represents the strategies of all players except $i$.
 
 The central contribution of the paper is the following theorem:
 
-_Any finite normal-form game $\Gamma$ has the satisficing paths property._
-
-For any $x_1 \in X$, there exists a satisficing path $(x_1 , x_2, \dots, x_T)$ such that,
+> Any finite normal-form game $\Gamma$ has the satisficing paths property.
+> That is, for any $x_1 \in X$, there exists a satisficing path $(x_1 , x_2, \dots, x_T)$ such that,
 for some finite $T=T(x_1)$, the strategy profile $x_T$ is a Nash equilibrium.
 
 We attempt to outline the proof steps of the theorem, sacrificing some rigour for an easier first read.
@@ -269,15 +264,15 @@ We state this formally as a lemma.
 
 ### Lemma 1
 
-$x^i$ is a best response to $\mathbf{x}^{-i}$
+> $x^i$ is a best response to $\mathbf{x}^{-i}$
 if and only if $x^i$ is a mixture of pure strategies which are individually
 best responses to $\mathbf{x}^{-i}$.
 Formally, expressed as $x^i = \sum_{a^i \in \mathbb{A}^i} \alpha_{a^i} \delta_{a^i}$
 where $\sum_{a^i \in \mathbb{A}^i} \alpha_{a^i} = 1$ and $\alpha_{a^i} \ge 0$,
 $x^i \in \text{BR}^i_0(\mathbf{x}^{-i})$ if and only if
 $\alpha_{a^i} \gt 0 \Rightarrow \delta_{a^i} \in \text{BR}^i_0(\mathbf{x}^{-i})$.
-
-In other words, if $x^i$ is a best response to $\mathbf{x}^{-i}$,
+>
+>In other words, if $x^i$ is a best response to $\mathbf{x}^{-i}$,
 then $x^i$ must be supported on the set of maximizers
 $\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$.
 
@@ -340,11 +335,11 @@ as follows:
 2. At each step, we arbitrarilly choose a worse strategy
    so that the number of unsatisfied players increases. <br>
    We can choose $\mathbf{x}_{t+1} \in \text{Worse}(\mathbf{x}_t)$ if
-   $\text{Worse}(\mathbf{x}_t) \neq \empty$.
+   $\text{Worse}(\mathbf{x}_t) \neq \emptyset$.
 3. If no worse strategy is accessible from $\mathbf{x}_t$ at time step $t$
-   we stop, i.e. if $\text{Sat}(\mathbf{x}_t) = \empty$
+   we stop, i.e. if $\text{Sat}(\mathbf{x}_t) = \emptyset$
    (all players are already unsatisfied) or
-   $\text{Worse}(\mathbf{x}_t) = \empty$
+   $\text{Worse}(\mathbf{x}_t) = \emptyset$
    (no worse strategy is accessible).
 
 #### **Step 3: Termination within at most $n-1$ Steps**
@@ -372,7 +367,7 @@ When $\text{UnSat}(x^T) = \emptyset$, the strategy profile $x^T$ satisfies the N
 The process terminates at $\mathbf{x}_k$ if either all players are unsatisfied or no worse strategy is accessible.
 Therefore, there are two cases:
 
-**Case 1: $\text{Sat}(\mathbf{x}_k)=\empty$**
+**Case 1: $\text{Sat}(\mathbf{x}_k)=\emptyset$**
 
 If all players are unsatisfied then the satisficing condition places no restrictions on the next strategy.
 Therefore, we can choose any strategy $\mathbf{x}_{k+1} \in \mathbf{X}$, i.e. $\text{Access}(\mathbf{x}_k) = \mathbf{X}$.
@@ -380,13 +375,13 @@ We choose an arbitrary Nash equilibrium $\mathbf{z}_\star$ and set $\mathbf{x}_{
 
 Therefore, taking $T=k+1 \le n$ we have a satisficing path $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{z}_\star$ where $\mathbf{z}_\star$ is a Nash equilibrium. We are done.
 
-**Case 2:** $\text{Sat}(\mathbf{x}_k)\ne\empty$ and $\text{Worse}(\mathbf{x}_k)=\empty$
+**Case 2:** $\text{Sat}(\mathbf{x}_k)\ne\emptyset$ and $\text{Worse}(\mathbf{x}_k)=\emptyset$
 
 This is the trickier case. We need to show there exists a Nash equilibrium $\mathbf{x}_\star$ such that $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$.
 
 #### **Step 5: Find the Nash equilibrium $\mathbf{x}_\star$**
 
-Since $\text{Sat}(\mathbf{x}_k)\ne\empty$, we cannot change the strategies of satisfied players $\text{Sat}(\mathbf{x}_k)$.
+Since $\text{Sat}(\mathbf{x}_k)\ne\emptyset$, we cannot change the strategies of satisfied players $\text{Sat}(\mathbf{x}_k)$.
 Let $m = |\text{Sat}(\mathbf{x}_k)|$ be the number of satisfied players.
 We can only change the strategies of $n-m$ unsatisfied players $\text{UnSat}(\mathbf{x}_k)$.
 
@@ -395,9 +390,9 @@ Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\bar{\Gamma}
 in $\mathbf{x}_k$. That is we set,
 
 $$
-\mathbf{x}_\star = \begin{cases}
-    x^i_k, &\text{ for } i \in \text{Sat}(\mathbf{x}_k), \\
-    \bar{x}^i_\star, &\text{ for } i \in \text{UnSat}(\mathbf{x}_k).
+x^i_\star = \begin{cases}
+    x^i_k, &\text{ if } i \in \text{Sat}(\mathbf{x}_k), \\
+    \bar{x}^i_\star, &\text{ if } i \in \text{UnSat}(\mathbf{x}_k).
 \end{cases}
 $$
 
@@ -411,7 +406,95 @@ But **wait**! We didn't proof that $\mathbf{x}_\star$ is indeed a Nash equilibri
 
 #### Proof: $\mathbf{x}_\star$ is a Nash equilibrium of $\Gamma$
 
-since $\mathbf{x}_\star$ is a Nash equilibrium of the new game $\bar{\Gamma}$, we have:1
+The way we constructed $\mathbf{x}_\star$ from $\mathbf{\bar{x}}_\star$, the players unsatisfied in $\mathbf{x}_k$ are satisfied in $\mathbf{x}_\star$.
+
+This is because $\mathbf{\bar{x}}_\star$ is a Nash equilibrium of the restricted game $\bar{\Gamma}$ we considered where only the the unsatisfied players $\text{UnSat}(\mathbf{x}_k)$ were allowed to change their strategies. In a Nash equilibrium all the players are satisfied. Therefore, the players $\text{UnSat}(\mathbf{x}_k)$ must be satisfied in $\mathbf{\bar{x}}_\star$.
+
+$$
+\text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)
+$$
+
+What remains to be shown is,
+
+$$
+\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)
+$$
+
+The satisfied players $\text{Sat}(\mathbf{x}_k)$ should also satisfied in $\mathbf{x}_\star$.
+
+Here our old friends, the auxillary functions, come to the rescue. Using the auxillary functions, a bit of algebra and limits of sequences, we can show that the satisfied players $\text{Sat}(\mathbf{x}_k)$ are also satisfied in $\mathbf{x}_\star$.
+
+But before that, a simple observation. <br>
+In the case we are dealing with,
+$\text{Sat}(\mathbf{x}) \ne \emptyset$ and $\text{Worse}(\mathbf{x}_k)=\emptyset$. So, there is no worse
+strategy in $\text{NoBetter}(\mathbf{x}_k)$ which unsatisfy a previously satisfied player
+$i \in \text{Sat}(\mathbf{x}_k)$. This leads to the following:
+
+> **Observation 1:** For any strategy $\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)$,
+> the satisfied players in $\mathbf{x}_k$ are also satisfied in $\mathbf{y}$. That is,
+> $$
+\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
+$$
+
+Now if only we could show that $\mathbf{x}_\star \in \text{NoBetter}(\mathbf{x}_k)$, we would be done. <br>
+But that is impossible because $\text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)$. $\mathbf{x}_\star$ satisfies the unsatisfied players in $\mathbf{x}_k$. So, $\mathbf{x}_\star$ can not be in $\text{NoBetter}(\mathbf{x}_k)$.
+
+Fortunately, though we can proof that a sequence of $\text{NoBetter}(\mathbf{x}_k)$ strategies converges to $\mathbf{x}_\star$.
+
+### Lemma 2
+
+> If $\text{Worse}(\mathbf{x}_k) = \emptyset$, then there exists a sequence of strategies $\{\mathbf{y}\_t\}_{t=1}^\infty$ with
+> $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)$ for each $t$,such that $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)$ for all $t$ and $\lim_{t \to \infty} \mathbf{y}_t = \mathbf{x}_\star$.
+
+Before, we delve into the proof of the lemma, we need to brief about the algebra of the space of strategies $\Chi$.
+
+As noted before, the strategies $x^i \in \chi^i = \Delta_{\mathbb{A}^i}$, which is the probability simplex in $\mathbb{R}^{\mathbb{A}^i}$. That is to say, the strategies are vectors in $|\mathbb{A}^i|$ dimensional space. Therefore, $\chi^i$ inherits the Euclidean metric.
+Distance and neighbourhoods in $\chi^i$ are defined in terms of the familiar Euclidean metric,
+$d(x^i, y^i) = \sqrt{\sum_{a^i \in \mathbb{A}^i} (x^i(a^i) - y^i(a^i))^2}$.
+
+Similarly, the Euclidean metric applies to the mixed strategy profile space $\Chi$. For $\mathbf{x}, \mathbf{y} \in \Chi$, the distance between $\mathbf{x}$ and $\mathbf{y}$ can be defined as,
+
+$$
+d(\mathbf{x}, \mathbf{y}) = \sqrt{\sum_{i=1}^n d(x^i, y^i)^2}
+$$
+
+For $\zeta > 0$, the $\zeta$-neighbourhood of a strategy profile $\mathbf{x} \in \Chi$ can be defined as,
+
+$$
+N_\zeta(\mathbf{x}) = \{\mathbf{y} \in \Chi: d(\mathbf{x}, \mathbf{y}) < \zeta\}
+$$
+
+**Proof:**
+
+Recall the definition of limit of a sequence. A sequence $\{\mathbf{y}_t\}_{t=1}^\infty$ converges to $\mathbf{x}_\star$ if for any $\zeta > 0$, there exists a $T$ such that for all $t \ge T$, $\mathbf{y}_t \in N_\zeta(\mathbf{x}_\star)$. That is, there are $\mathbf{y}_t$ arbitrarily close to $\mathbf{x}_\star$. 
+
+For such a sequence to exist in , we need to show that for any $\zeta > 0$, there exists a $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_\star)$ such that 
+$\mathbf{y}_t \in N_\zeta(\mathbf{x}_\star)$.
+
+We assume the contrary, that no such sequence exists. Then there exists an $\zeta > 0$ such that 
+there is no $\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)$ such that $\mathbf{y} \in N_\zeta(\mathbf{x}_\star)$. Which means, 
+$$
+\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset
+$$
+That is, there is no NoBetter strategy in the $\zeta$-neighbourhood of $\mathbf{x}_\star$.
+
+Let's take $\mathbf{z} \in \text{Access}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)$. $\text{Access}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) \ne \emptyset$ since recall $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$. As there is no NoBetter strategy in the $\zeta$-neighbourhood of $\mathbf{x}_\star$, $\mathbf{z} \notin \text{NoBetter}(\mathbf{x}_k)$. This implies, there exists some player $i \in \text{UnSat}(\mathbf{x}_k)$ unsatisfied at $\mathbf{x}_k$, such that $i$ is satisfied at $\mathbf{z}$,
+$i \in \text{Sat}(\mathbf{z})$.
+
+$$
+w^i_\xi = \begin{cases}
+    (1-\xi)x^i_k + \xi \text{Uniform}(\mathbb{A}^i), 
+    &\text{ if } i \in \text{UnSat}(\mathbf{x}_k) \\
+    x^i_k, & \text{ else. }
+\end{cases}
+$$
+
+Where, $\text{Uniform}(\mathbb{A}^i)$ is the uniform distribution over the action set $\mathbb{A}^i$. 
+$$
+\text{Uniform}(\mathbb{A}^i)(a^i) = \frac{1}{|\mathbb{A}^i|}
+$$
+
+Note that for $i \in \text{UnSat}(\mathbf{x}_k)$, $w^i_\xi$ is a mixture of the current strategy $x^i_k$ and the uniform distribution over the action set $\mathbb{A}^i$. The mixture is weighted by $1-\xi$ and $\xi$  respectively to ensure that $w^i_\xi$ remains a probability distribution.
 
 ## Insights and Implications
 
