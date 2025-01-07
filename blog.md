@@ -33,6 +33,19 @@ Imagine a group of friends deciding what to do on a weekend. Each friend has the
 A Nash equilibrium happens when everyone has made their choice, and no one can be happier by changing their mind—as long as everyone else sticks to their own decision.
 Finding Nash equilibria is central to MARL but is often computationally challenging due to the coupled nature of the reward functions and the high-dimensional strategy space.
 
+
+### Strategies
+Strategies basically are the complete plan of action that specifies a player’s choice in every possible situation during the game.They consider all possible actions and reactions, which help players predict what will happen and make adjustments.  
+
+### Best Responding Strategy
+Best Responding Strategy is the strategy that maximizes a player’s payoff, given the strategies chosen by other players. It is a rational choice based on the idea that other players' strategies stay the same, so the player cannot improve their payoff by changing their own strategy.
+
+### Satisfied Players
+Satisfied Players are those who are already using a best responding strategy and have no incentive to change.  They are already in nash equilibrium condition, so they do not need to change the strategy.
+
+### Unsatisfied Players
+ Unsatisfied Players are not using the best responding strategy but they can improve their payoff by changing their strategy. These players are in a suboptimal situation and can maximize their payoff by changing their strategy.
+
 ---
 
 ## Problem Statement
