@@ -169,8 +169,6 @@ Some subsets of the set strategies $\mathbf{X}$ is of particular interest to us:
 
 ## Expected Reward Function
 
-**Expected Reward Function $R^i(\mathbf{x})$**:
-
 The Expected Reward function $R^i$ for player $i$ is their expected reward
 which can be defined as:
 
@@ -411,7 +409,9 @@ Therefore, we can set $T=k+1 \le n$ and $\mathbf{x}_T = \mathbf{x}_\star$ and we
 
 But **wait**! We didn't proof that $\mathbf{x}_\star$ is indeed a Nash equilibrium. We need to show that $\mathbf{x}_\star$ is a Nash equilibrium of the original game $\Gamma$. So, here comes the hard part.
 
-### **Prove that $\mathbf{x}_\star$ is a Nash equilibrium**
+#### Proof: $\mathbf{x}_\star$ is a Nash equilibrium of $\Gamma$
+
+since $\mathbf{x}_\star$ is a Nash equilibrium of the new game $\bar{\Gamma}$, we have:1
 
 ## Insights and Implications
 
