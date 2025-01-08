@@ -482,7 +482,7 @@ Let $m = |\text{Sat}(\mathbf{x}_k)|$ be the number of satisfied players.
 We can only change the strategies of $n-m$ unsatisfied players $\text{UnSat}(\mathbf{x}_k)$.
 
 We can create a new game $\bar{\Gamma}$ with $n-m$ players by restricting the strategy space of the satisfied players to their current strategies.
-Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\bar{\Gamma}$. We can extend $\mathbf{\bar{x}}_\star$ to a Nash equilibrium $\mathbf{x_\star}$ of the original game $\Gamma$ by setting the strategies of the satisfied players to their strategies
+Let $\mathbf{\bar{x}_\star}$ be a Nash equilibrium of the new game $\bar{\Gamma}$. We can extend $\mathbf{\bar{x}_\star}$ to a Nash equilibrium $\mathbf{x_\star}$ of the original game $\Gamma$ by setting the strategies of the satisfied players to their strategies
 in $\mathbf{x}_k$. That is we set,
 
 $$
@@ -502,9 +502,9 @@ But **wait**! We didn't proof that ${\mathbf{x_\star}}$ is indeed a Nash equilib
 
 #### Proof: $\mathbf{x_\star}$ is a Nash equilibrium of $\Gamma$
 
-The way we constructed $\mathbf{x_\star}$ from $\mathbf{\bar{x}}_\star$, the players unsatisfied in $\mathbf{x}_k$ are satisfied in $\mathbf{x_\star}$.
+The way we constructed $\mathbf{x_\star}$ from $\mathbf{\bar{x}_\star}$, the players unsatisfied in $\mathbf{x}_k$ are satisfied in $\mathbf{x_\star}$.
 
-This is because $\mathbf{\bar{x}}_\star$ is a Nash equilibrium of the restricted game $\bar{\Gamma}$ we considered where only the the unsatisfied players $\text{UnSat}(\mathbf{x}_k)$ were allowed to change their strategies. In a Nash equilibrium all the players are satisfied. Therefore, the players $\text{UnSat}(\mathbf{x}_k)$ must be satisfied in $\mathbf{\bar{x}}_\star$.
+This is because $\mathbf{\bar{x}_\star}$ is a Nash equilibrium of the restricted game $\bar{\Gamma}$ we considered where only the the unsatisfied players $\text{UnSat}(\mathbf{x}_k)$ were allowed to change their strategies. In a Nash equilibrium all the players are satisfied. Therefore, the players $\text{UnSat}(\mathbf{x}_k)$ must be satisfied in $\mathbf{\bar{x}_\star}$.
 
 $$
 \text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x_\star})
