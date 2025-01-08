@@ -612,6 +612,7 @@ $\mathbf{w}_\xi$ isn't just any random set of strategy profiles. It has some int
 3. $\mathbf{w}_\xi \in N_\epsilon(\mathbf{x}_k)$, for sufficiently small $\xi > 0$.
 
    This can be seen by choosing $\xi < \epsilon/2n$.
+
    $$
    |\mathbf{x}_k - \mathbf{w}_\xi| = \sqrt{\sum_{i=1}^n \left |x^i_k - w^i_\xi \right |^2} 
    = \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)} \left |x^i_k - w^i_\xi\right |^2} \\
@@ -620,6 +621,7 @@ $\mathbf{w}_\xi$ isn't just any random set of strategy profiles. It has some int
    \le \xi \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}   2^2} 
    \le 2\xi \sqrt{\sum_{i \in [n]} 1} \lt 2n\xi \lt \epsilon
    $$
+
    Note that the last line can be understood if we consider that
    every $x \in \Delta_{\mathbb{A}^i}$ is a vector in the $|\mathbb{A}^i|$ dimensional hyper-sphere of radius 1,
    since probabilities sum to 1. 
@@ -759,6 +761,7 @@ Recall by property 3, $\mathbf{z}_\lambda$ is a fully mixed strategy as $i^{\dag
  so $z^{i^{\dagger}}_\lambda(a^{i^{\dagger}}) > 0$ for all $a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}$.
 By lemma 1, we have that all the pure strategies $\{\delta_{a^{i^{\dagger}}}: a^{i^{\dagger}} \in\mathbb{A}^{i^{\dagger}}\}$ are also best responses to $\mathbf{z}^{-i^{\dagger}}_\lambda$.
 Which means,
+
 $$
    R^{i^{\dagger}}\left (z^{i^{\dagger}}_\lambda, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) = 
     R^{i^{\dagger}}\left (\delta_{a^{i^{\dagger}}}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ), 
@@ -766,6 +769,7 @@ $$
 $$
 
 So, for any $a, a' \in \mathbb{A}^{i^{\dagger}}$, we have,
+
 $$
    R^{i^{\dagger}}\left (\delta_{a}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) = 
       R^{i^{\dagger}}\left (\delta_{a'}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) \\
