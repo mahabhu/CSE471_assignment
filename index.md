@@ -10,39 +10,122 @@
 
 ## Introduction
 
-In Multi-Agent Reinforcement Learning (MARL) and game theory, agents interact repeatedly and update their strategies based on the outcomes they observe. A key question in this area is: <br>
-**For a given game and starting strategy, can we always create a path that eventually leads to an equilibrium?**
-<br>
-This paper focuses on answering this question and shows that for any finite $n$-player normal-form game and any starting strategy, it is always possible to create such a path. The study also shows that sometimes making counterintuitive changes to strategy changes, e.g. temporarily lower rewards, are essential for reaching equilibrium. These findings are important for improving MARL algorithms, helping them reach equilibrium more effectively.
+The paper deals with paths to equilibrium in finite normal-form games, a central topic in game-theory.
+In a finite normal-form game, the players interact with each other and update their strategies to maximise their rewards.
+The rewards of the players are determined by the combination of chosen strategies. Eventually, the game reaches
+a point where no player can improve their reward by changing their strategy. This is called a Nash Equilibrium.
+
+Many different algorithms have been developed to find Nash Equilibrium in normal-form games.
+Particularly Multi-Agent Reinforcement Learning (MARL) algorithms have been used to find Nash Equilibrium in games.
+In Multi-Agent Reinforcement Learning, multiple agents interact within an environment and use the Reinforcement Learning
+technique to learn the best strategy to achieve their goals. In many of these algorithms, to limit the 
+space of strategies, the agents are restricted to a constraint: if it is already responding best
+ to the other agents' strategies, it should not change its strategy. This is called the satisficing condition.
+
+A sequence of strategies meeting the satisficing condition is called a satisficing path. Since, many MARL
+algorithms use satisficing paths to reach equilibrium, it is important to know if such paths always exist.
+So the key question is: 
+
+**For a given game and starting strategy, can we always create a satisficing path that eventually leads to an equilibrium?**
+
+This paper focuses on answering this question and shows that for any finite $n$-player normal-form game 
+and any starting strategy, it is always possible to create such a path. 
+The study also shows that sometimes making counterintuitive changes to strategy changes,
+ e.g. temporarily switching to strategies that lower rewards, are essential for reaching equilibrium. 
+
+ These findings are important for improving MARL and similar algorithms, providing theoretical guarantees as 
+   well as practical insights into helping them reach equilibrium more effectively.
+ Also, the results might be extended to stateful Markov games.
 
 ## Definitions:
 
-### Multi-Agent Reinforcement Learning (MARL)
+Before we dive into the details of the paper, let's define some key terms that will be used throughout the blog.
+We now define this terms informally. For the mathematically inclined, we will provide the formal definitions later.
 
-In MARL, multiple agents interact within an environment to achieve individual or collective goals. Each agent iteratively updates its strategy based on observations and feedback. While MARL has seen significant success in cooperative and adversarial scenarios, achieving convergence to equilibrium in complex, multi-agent environments remains a challenge.
+### Normal-Form Games
 
-### Normal-Form Games and Nash Equilibrium
+A _normal-form game_ is a mathematical representation of a strategic interaction 
+where a finite set of players each select a strategy simultaneously from their respective sets of available actions. 
+The outcome of the game is determined by the combination of chosen strategies, 
+with each player receiving a reward based on this outcome.
 
-A _normal-form game_ is a mathematical representation of a strategic interaction where a finite set of players each select a strategy simultaneously from their respective sets of available actions. The outcome of the game is determined by the combination of chosen strategies, with each player receiving a reward based on this outcome.
+In other words, a normal-form game can be thought of as a table or a matrix 
+where each row represents the action for one player and each column represents the action for another player.
+The cell or value at the intersection of a row and a column represents the reward or payoff for the corresponding players.
+
+For example for a two-player game of rock-paper-scissors, the table would look like this:
+
+|   | Rock | Paper | Scissors |
+|---|------|-------|----------|
+| **Rock** | 0,0 | -1,1 | 1,-1 |
+| **Paper** | 1,-1 | 0,0 | -1,1 |
+| **Scissors** | -1,1 | 1,-1 | 0,0 |
+
+In this table, the rows represent the actions of Player 1 (Rock, Paper, Scissors) 
+and the columns represent the actions of Player 2.
+The values in each cell represent the rewards for Player 1 and Player 2 respectively. 
+For example, if Player 1 chooses Rock and Player 2 chooses Paper, Player 1 loses 1 and Player 2 wins 1.
+So, Player 1 receives a reward of -1 and Player 2 receives a reward of 1.
+
+Notice that in this game, there is no state or history involved. 
+The players make their decisions simultaneously and independently. 
+And the rewards are determined by the combination of actions chosen by the players.
+
+### Strategies
+Strategies are the choices made by players in a game. 
+For the game above a possible strategy for Player 1 could be to always choose Rock.
+Player 2 could always choose Paper.
+
+These are **pure strategies**. Strategies where a player chooses a single action with probability 1.
+
+In a normal-form game, players can also use **mixed strategies** where they choose actions with certain probabilities.
+For example if Player 1 chooses Rock with probability 0.5 and Paper with probability 0.5, this is a mixed strategy.
+
+In this blog, when we refer to strategies, we are referring to mixed strategies unless otherwise specified.
+
+### Strategy Profile 
+A _strategy profile_ is a collection of strategies, one for each player in the game.
+
+For example, in the rock-paper-scissors game, if Player 1 chooses Rock with probability 0.5 and Paper with probability 0.5,
+and Player 2 chooses Paper with probability 0.5 and Scissors with probability 0.5.
+Then the strategy profile would be (Rock: 0.5, Paper: 0.5) for Player 1 and (Paper: 0.5, Scissors: 0.5) for Player 2.
+
+### Best Responding Strategy
+Best Responding Strategy is the strategy that maximizes a player’s payoff, given the strategies chosen by other players. 
+It is a rational choice based on the idea that other players' strategies stay the same, 
+so the player cannot improve their payoff by changing their own strategy.
+
+For example, if Player 2 always chooses Paper, then the best responding strategy for Player 1 would be to always choose Scissors.
+
+### Satisfied Players
+Satisfied Players are those who are already using a best responding strategy to their opponents' current strategies.
+These players are already getting optimal reward considering the present strategies of other players.
+Therefore, it is intuitive to keep their strategies unchanged.
+
+### Unsatisfied Players
+ Unsatisfied Players are not using the best responding strategy but they can improve their reward by changing their strategy.
+  These players are in a suboptimal situation and can increase their payoff by changing their strategy.
 
 ### Nash Equilibrium
+
+A _Nash equilibrium_ is a concept in game theory that describes a set of strategies or a strategy profile, 
+one for each player, such that no player has an incentive to unilaterally change their strategy.
+In other words, a Nash equilibrium is a set of strategies where each player's strategy is optimal
+ given the strategies of the other players.
+
+ In the Rock-Paper-Scissors game, a Nash equilibrium would be if Player 1 chooses Rock with probabi
 
 Imagine a group of friends deciding what to do on a weekend. Each friend has their preferences (movies, bowling, or staying home), and their happiness depends not only on what they choose but also on what others decide.
 A Nash equilibrium happens when everyone has made their choice, and no one can be happier by changing their mind—as long as everyone else sticks to their own decision.
 Finding Nash equilibria is central to MARL but is often computationally challenging due to the coupled nature of the reward functions and the high-dimensional strategy space.
 
 
-### Strategies
-Strategies basically are the complete plan of action that specifies a player’s choice in every possible situation during the game.They consider all possible actions and reactions, which help players predict what will happen and make adjustments.  
+### Multi-Agent Reinforcement Learning (MARL)
 
-### Best Responding Strategy
-Best Responding Strategy is the strategy that maximizes a player’s payoff, given the strategies chosen by other players. It is a rational choice based on the idea that other players' strategies stay the same, so the player cannot improve their payoff by changing their own strategy.
+In MARL, multiple agents interact within an environment to achieve individual or collective goals. Each agent iteratively updates its strategy based on observations and feedback. While MARL has seen significant success in cooperative and adversarial scenarios, achieving convergence to equilibrium in complex, multi-agent environments remains a challenge.
 
-### Satisfied Players
-Satisfied Players are those who are already using a best responding strategy and have no incentive to change.  They are already in nash equilibrium condition, so they do not need to change the strategy.
 
-### Unsatisfied Players
- Unsatisfied Players are not using the best responding strategy but they can improve their payoff by changing their strategy. These players are in a suboptimal situation and can maximize their payoff by changing their strategy.
+
 
 ---
 
