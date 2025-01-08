@@ -1,8 +1,10 @@
 markdown: kramdown
 kramdown:
-    math_engine: katex
-    katex:
-        # display_mode: true
-        delimiters:
-            - {left: "$$", right: "$$", display: true}
-            - {left: "$", right: "$", display: false}
+    math_engine: mathjax
+    mathjax: 
+        input: "TeX"
+        inlineMath:
+            - ["$", "$"]
+        displayMath:
+            - ["$$", "$$"]
+          
