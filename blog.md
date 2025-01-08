@@ -163,13 +163,13 @@ A sequence of strategy profiles ${x^t}_{t=1}^\infty$ is a **satisficing path** i
 
 ### Nash Equilibrium
 
-A strategy profile $x^* = (x_1^*, x_2^*, \ldots, x_n^*)$ is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
+A strategy profile $\mathbf{x}_\star = (x_1^\star, x_2^\star, \ldots, x_n^\star)$ is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
 
 $$
 R_i(x_i^*, x_{-i}^*) \geq R_i(x_i, x_{-i}^*) \quad \forall x_i \in X_i, \quad \forall i \in \{1, \ldots, n\},
 $$
 
-where $x_{-i}^*$ represents the strategies of all players except $i$.
+where $\mathbf{x}^{-i}_\star$ represents the strategies of all players except $i$.
 
 ---
 
@@ -198,11 +198,9 @@ Based on $\mathbf{x}$, we can divide the players $[n]$ in to two disjoint sets,
   opponents' strategies $\mathbf{x}^{-i}$.
 - **Unsatisfied Players:**
   $$
-  \begin{align*}
   \text{UnSat}(\mathbf{x})
-  &= \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
-  &= [n] \setminus \text{Sat}(x) \\
-  \end{align*}
+  = \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
+  = [n] \setminus \text{Sat}(x) \\
   $$
   The players whose strategies are not a best response to their
   opponents' strategies.
@@ -320,9 +318,9 @@ Some properties of the expected reward function is of interest to us:
    is the set of all mixed strategies for player $i$: $\Delta_{\mathbb{A}^i}$.
 
    $$
-   \Delta_{\mathbb{A}^i} =
-   \{x^i \in \mathbb{R}^{\mathbb{A}^i}:
-   \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\}
+      \Delta_{\mathbb{A}^i} =
+      \{x^i \in \mathbb{R}^{\mathbb{A}^i}:
+      \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\}
    $$
 
    This is the probability simplex over the set of actions $\mathbb{A}^i$.
@@ -448,11 +446,13 @@ final step of the above process. We can show $i \le n - 1$.
   wasn't satisfied.
 - The number of unsatisfied players is strictly
   increasing at each time step.
-  $$
-    1 \leq |\text{UnSat}(\mathbf{x}_1)| < \dots
-     |\text{UnSat}(\mathbf{x}_t)| < \dots
-     |\text{UnSat}(\mathbf{x}_i)| \le n
-  $$
+
+$$
+   1 \leq |\text{UnSat}(\mathbf{x}_1)| < \dots
+   |\text{UnSat}(\mathbf{x}_t)| < \dots
+   |\text{UnSat}(\mathbf{x}_i)| \le n
+$$
+
 - Even if at each step $|\text{UnSat}(\mathbf{x}_t)|$ increases by 1,
   $i$ can be at most $n-1$.
 
@@ -529,7 +529,7 @@ $i \in \text{Sat}(\mathbf{x}_k)$. This leads to the following:
 > **Observation 1:** For any strategy $\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)$,
 > the satisfied players in $\mathbf{x}_k$ are also satisfied in $\mathbf{y}$. That is,
 > $$
-\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
+   \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
 $$
 
 Now if only we could show that $\mathbf{x}_\star \in \text{NoBetter}(\mathbf{x}_k)$, we would be done. <br>
@@ -654,8 +654,8 @@ $\mathbf{w}_\xi$ isn't just any random set of strategy profiles. It has some int
    From the continuity of the auxillary functions, for all $i \in \text{UnSat}(\mathbf{x}_k)$, 
    there exists $e_i > 0$ such that,
    $$
-   \mathbf{x} \in N_{e_i}(\mathbf{w}_\xi) \Rightarrow 
-   \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | < \frac{\sigma}{2}
+      \mathbf{x} \in N_{e_i}(\mathbf{w}_\xi) \Rightarrow 
+      \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | < \frac{\sigma}{2}
    $$
 
    That is, there is a neighbourhood around $\mathbf{x}_k$ where the value of $F^i(\mathbf{x})$ is less 
