@@ -1,4 +1,2 @@
-markdown: kramdown
+markdown: GFM
 use_math: true
-kramdown:
-  math_engine: katex
