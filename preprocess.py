@@ -11,6 +11,7 @@ def preprocess():
             lambda m: "\\\\(" + re.sub(r'(?<!\\)_', r'\\_', m.group(1)) + "\\\\)",
             data
         )
+        data = data.replace("\{", "\\{").replace("\}", "\\}")
     with open("index.md", "w") as f:
         f.write(data)
 
