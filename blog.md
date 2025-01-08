@@ -284,6 +284,8 @@ Future work could focus on:
 
 ## Proof of Theorem 1
 
+Before starting the proof, we introduce some notations and functions and their properties that will be needed in the proof.
+
 ### Some Notations
 
 Let $\Gamma$ be a finite $n$-player normal-form game.
