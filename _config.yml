@@ -1,4 +1,4 @@
 markdown: kramdown
+use_math: true
 kramdown:
-  math_engine: mathjax
-theme: minima
+  math_engine: katex
