@@ -207,7 +207,7 @@ Based on \\(\mathbf{x}\\), we can divide the players \\([n]\\) in to two disjoin
          = \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
          = [n] \setminus \text{Sat}(x) \\
    $$
-   
+
   The players whose strategies are not a best response to their
   opponents' strategies.
 
@@ -215,7 +215,7 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
 
 - **Acessible Strategies** \\(\text{Access}(\mathbf{x})\\):
 
-  $$
+   $$
       \text{Access}(\mathbf{x}) = \{
           \mathbf{y} \in \mathbf{X}: y^i=x^i,
           \forall i \in \text{Sat}(\mathbf{x})
@@ -534,9 +534,8 @@ strategy in \\(\text{NoBetter}(\mathbf{x}\_k)\\) which unsatisfy a previously sa
 
 > **Observation 1:** For any strategy \\(\mathbf{y} \in \text{NoBetter}(\mathbf{x}\_k)\\),
 > the satisfied players in \\(\mathbf{x}\_k\\) are also satisfied in \\(\mathbf{y}\\). That is,
-> $$
-   \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
-$$
+> \\( \text{Sat}(\mathbf{x}\_k) 
+\subseteq \text{Sat}(\mathbf{y})\\)
 
 Now if only we could show that \\(\mathbf{x}\_\star \in \text{NoBetter}(\mathbf{x}\_k)\\), we would be done. <br>
 But that is impossible because \\(\text{UnSat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{x}\_\star)\\). \\(\mathbf{x}\_\star\\) satisfies the unsatisfied players in \\(\mathbf{x}\_k\\). So, \\(\mathbf{x}\_\star\\) can not be in \\(\text{NoBetter}(\mathbf{x}\_k)\\).
@@ -577,9 +576,11 @@ For such a sequence to exist in , we need to show that for any \\(\zeta > 0\\), 
 
 We assume the contrary, that no such sequence exists. Then there exists an \\(\zeta > 0\\) such that 
 there is no \\(\mathbf{y} \in \text{NoBetter}(\mathbf{x}\_k)\\) such that \\(\mathbf{y} \in N\_\zeta(\mathbf{x}\_\star)\\). Which means, 
+
 $$
-\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset
+   \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset
 $$
+
 That is, there isn't any \\(\text{NoBetter}(\mathbf{x}\_k)\\) strategy in the \\(\zeta\\)-neighbourhood of \\(\mathbf{x}\_\star\\).
 We can prove a contradiction if we can show that there exists a strategy 
 \\(\mathbf{z} \in \text{NoBetter}(\mathbf{x}\_k) \cap N\_\zeta(\mathbf{x}\_\star)\\). 
@@ -590,17 +591,19 @@ We start by looking for \\(\text{NoBetter}(\mathbf{x}\_k)\\) strategies in the n
 
 
  We define \\(\mathbf{w}\_\xi \in \mathbf{X}\\) for \\(\xi \in (0,1]\\) as follows,
+
 $$
-w^i_\xi = \begin{cases} 
-    (1-\xi)x^i_k + \xi \text{Uniform}(\mathbb{A}^i), 
-    &\text{ if } i \in \text{UnSat}(\mathbf{x}_k) \\
-    x^i_k, & \text{ else. }
-\end{cases}
+   w^i_\xi = \begin{cases} 
+      (1-\xi)x^i_k + \xi \text{Uniform}(\mathbb{A}^i), 
+      &\text{ if } i \in \text{UnSat}(\mathbf{x}_k) \\
+      x^i_k, & \text{ else. }
+   \end{cases}
 $$
 
 Where, \\(\text{Uniform}(\mathbb{A}^i)\\) is the uniform distribution over the action set \\(\mathbb{A}^i\\). 
+
 $$
-\text{Uniform}(\mathbb{A}^i)(a^i) = \frac{1}{|\mathbb{A}^i|}
+   \text{Uniform}(\mathbb{A}^i)(a^i) = \frac{1}{|\mathbb{A}^i|}
 $$
 
 Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixture of the current strategy \\(x^i\_k\\) and the uniform distribution over the action set \\(\mathbb{A}^i\\). The mixture is weighted by \\(1-\xi\\) and \\(\xi\\)  respectively to ensure that \\(w^i\_\xi\\) remains a probability distribution.
@@ -619,14 +622,14 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
 
    This can be seen by choosing \\(\xi < \epsilon/2n\\).
 
-   $$
-   |\mathbf{x}_k - \mathbf{w}_\xi| = \sqrt{\sum_{i=1}^n \left |x^i_k - w^i_\xi \right |^2} 
-   = \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)} \left |x^i_k - w^i_\xi\right |^2} \\
-   = \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}  \left |x^i_k - (1-\xi)x^i_k - \xi \text{Uniform}(\mathbb{A}^i) \right |^2} \\
-   = \xi \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}   \left |x^i_k - \text{Uniform}(\mathbb{A}^i) \right |^2} \\
-   \le \xi \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}   2^2} 
-   \le 2\xi \sqrt{\sum_{i \in [n]} 1} \lt 2n\xi \lt \epsilon
-   $$
+      $$
+         |\mathbf{x}_k - \mathbf{w}_\xi| = \sqrt{\sum_{i=1}^n \left |x^i_k - w^i_\xi \right |^2} 
+         = \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)} \left |x^i_k - w^i_\xi\right |^2} \\
+         = \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}  \left |x^i_k - (1-\xi)x^i_k - \xi \text{Uniform}(\mathbb{A}^i) \right |^2} \\
+         = \xi \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}   \left |x^i_k - \text{Uniform}(\mathbb{A}^i) \right |^2} \\
+         \le \xi \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}   2^2} 
+         \le 2\xi \sqrt{\sum_{i \in [n]} 1} \lt 2n\xi \lt \epsilon
+      $$
 
    Note that the last line can be understood if we consider that
    every \\(x \in \Delta\_{\mathbb{A}^i}\\) is a vector in the \\(|\mathbb{A}^i|\\) dimensional hyper-sphere of radius 1,
@@ -651,6 +654,7 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
    For unsatisfied players \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(F^i(\mathbf{x}\_k) > 0\\).
    
    We can take,
+
    $$
       \sigma = \min_{i \in \text{UnSat}(\mathbf{x}_k)} F^i(w^i_\xi, \mathbf{x}^{-i}_k) > 0
    $$
@@ -659,6 +663,7 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
 
    From the continuity of the auxillary functions, for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), 
    there exists \\(e\_i > 0\\) such that,
+
    $$
       \mathbf{x} \in N_{e_i}(\mathbf{w}_\xi) \Rightarrow 
       \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | < \frac{\sigma}{2}
@@ -670,8 +675,8 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
 
    $$
       \left | F^i(\mathbf{x}) \right | \ge 
-       \left | F^i(\mathbf{x}_k) \right | - \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | 
-       > \sigma - \frac{\sigma}{2} = \frac{\sigma}{2}
+      \left | F^i(\mathbf{x}_k) \right | - \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | 
+      > \sigma - \frac{\sigma}{2} = \frac{\sigma}{2}
    $$
 
    Therefore, for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), there is some \\(e\_i > 0\\) such that
@@ -680,6 +685,7 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
    is also unsatisfied in the \\(e\_1\\)-neighbourhood of \\(\mathbf{x}\_k\\).
 
    Now we can extend this to all unsatisfied players, \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), if we Let
+
    $$
       \bar{e} = \min_{i \in \text{UnSat}(\mathbf{x}_k)} e_i
    $$
@@ -688,17 +694,20 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
    i.e. \\(N\_{\bar{e}}(\mathbf{x}\_k) \subseteq N\_{e\_i}(\mathbf{x}\_k)\\) for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\),
    all unsatisfied players \\(\text{UnSat}(\mathbf{x}\_k)\\) remain unsatisfied
     in the \\(\bar{e}\\)-neighbourhood of \\(\mathbf{x}\_k\\). Therefore, we have,
+
    $$
-   \text{UnSat}(\mathbf{x}_k) \subseteq \text{UnSat}(\mathbf{x}), 
-   \text{ for all } \mathbf{x} \in N_{\bar{e}}(\mathbf{x}_k)
+      \text{UnSat}(\mathbf{x}_k) \subseteq \text{UnSat}(\mathbf{x}), 
+      \text{ for all } \mathbf{x} \in N_{\bar{e}}(\mathbf{x}_k)
    $$
 
    So, now we know there is a neighbourhood around \\(\mathbf{x}\_k\\) where all the unsatisfied players remain unsatisfied.
    We also know that \\(\mathbf{w}\_\xi\\) is in the neighbourhood of \\(\mathbf{x}\_k\\) by property 3.
    So taking \\(\xi < \bar{e}/2n\\), we have \\(\mathbf{w}\_\xi \in N\_{\bar{e}}(\mathbf{x}\_k)\\). As a result,
+
    $$
-   \text{UnSat}(\mathbf{x}_k) \subseteq \text{UnSat}(\mathbf{w}_\xi)
+      \text{UnSat}(\mathbf{x}_k) \subseteq \text{UnSat}(\mathbf{w}_\xi)
    $$
+
    Also, by property 1, \\(w\_\xi \in \text{Access}(\mathbf{x}\_k)\\). That means, \\(\mathbf{w}\_\xi \in \text{NoBetter}(\mathbf{x}\_k)\\)
    for sufficiently small \\(\xi > 0\\).
 
@@ -706,12 +715,13 @@ Now that we now we have a set \\(\mathbf{w}\_k\\) of strategies in the neighbour
 We need to show that one of these strategies is in the neighbourhood of \\(\mathbf{x}\_\star\\).
 
 So, we define another set of strategies \\(\mathbf{z}\_\lambda \in \mathbf{X}\\) for \\(\lambda \in [0,1]\\) as follows,
+
 $$
-z^i_\lambda = \begin{cases}
-    (1-\lambda)x^i_\star + \lambda w^i_\xi, 
-    &\text{ if } i \in \text{UnSat}(\mathbf{x}_k) \\
-    x^i_k, & \text{ else. }
-\end{cases}
+   z^i_\lambda = \begin{cases}
+      (1-\lambda)x^i_\star + \lambda w^i_\xi, 
+      &\text{ if } i \in \text{UnSat}(\mathbf{x}_k) \\
+      x^i_k, & \text{ else. }
+   \end{cases}
 $$
 
 \\(\mathbf{z}\_\lambda\\) has properties similar to \\(\mathbf{w}\_\xi\\) except that it is centered around \\(\mathbf{x}\_\star\\).
@@ -738,9 +748,11 @@ $$
 
    By property 3, setting \\(\bar{\lambda} < \zeta/2n\\), we have \\(\mathbf{z}\_\lambda \in N\_\zeta(\mathbf{x}\_\star)\\).
    Now if \\(\mathbf{z}\_\lambda \in \text{NoBetter}(\mathbf{x}\_k)\\), we have,
+
    $$
       \mathbf{z}_\lambda \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)
    $$
+
    Which contradicts the assumption that \\(\text{NoBetter}(\mathbf{x}\_k) \cap N\_\zeta(\mathbf{x}\_\star) = \emptyset\\).
    So, \\(\mathbf{z}\_\lambda \notin \text{NoBetter}(\mathbf{x}\_k)\\) for all \\(\lambda \le \bar{\lambda}\\).
 
@@ -756,9 +768,10 @@ but only finitely many players \\([n]\\).
 
 So, there must be a player \\(i^{\dagger} \in \text{UnSat}(\mathbf{x}\_k)\\) 
 who is satisfied in infinitely many \\(\mathbf{z}\_\lambda\\). In other words,
+
 $$
    i^{\dagger} \in \text{Sat}(\mathbf{z}_\lambda) \Leftrightarrow z^{i^{\dagger}}_\lambda \in 
-\text{BR}^{i^{\dagger}}_{0}\left (\mathbf{z}^{-i^{\dagger}}_\lambda\right ), \text{ for infinitely many } \lambda \in (0, \bar{\lambda}]
+   \text{BR}^{i^{\dagger}}_{0}\left (\mathbf{z}^{-i^{\dagger}}_\lambda\right ), \text{ for infinitely many } \lambda \in (0, \bar{\lambda}]
 $$
 
 We take a \\(\lambda \in (0, \bar{\lambda}]\\) such that
@@ -770,8 +783,8 @@ Which means,
 
 $$
    R^{i^{\dagger}}\left (z^{i^{\dagger}}_\lambda, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) = 
-    R^{i^{\dagger}}\left (\delta_{a^{i^{\dagger}}}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ), 
-    \text{ for all } a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}
+      R^{i^{\dagger}}\left (\delta_{a^{i^{\dagger}}}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ), 
+      \text{ for all } a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}
 $$
 
 So, for any \\(a, a' \in \mathbb{A}^{i^{\dagger}}\\), we have,
@@ -816,24 +829,28 @@ Now that we have shown that there exists a sequence of strategies
 \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}\_k)\\) which converges to \\(\mathbf{x}\_\star\\),
 from observation 1,
  we know that the satisfied players in \\(\mathbf{x}\_k\\) are also satisfied in \\(\mathbf{y}\_t\\) for all \\(t\\). That is,
+
 $$
-\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y}_t)
+   \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y}_t)
 $$
+
 So it seems, the limit of \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) should also satisfy \\(\text{Sat}(\mathbf{x}\_k)\\).
 To mathematically show this, we again resort to our friends the *auxillary functions*.
 
 By property 3 of \\(F^i\\), for all \\(i \in \text{Sat}(\mathbf{x}\_k)\\), \\(F^i(\mathbf{x}\_k) = 0\\). 
 This also applies to \\(\{\mathbf{y}\_t\}\\) as \\(\text{Sat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{y}\_t)\\). 
 Therefore we have,
+
 $$
-F^i(\mathbf{y}_t) = 0, \text{ for all } t \in \mathbb{N} \text{ and } i \in \text{Sat}(\mathbf{x}_k)
+   F^i(\mathbf{y}_t) = 0, \text{ for all } t \in \mathbb{N} \text{ and } i \in \text{Sat}(\mathbf{x}_k)
 $$
 
 Since auxillary functions are continuous (property 1), 
 \\(\lim\_{t \to \infty} F^i(\mathbf{y}\_t)\\)  exists and is equal to value of the function at the limit point. Hence,
+
 $$
- 0 = \lim_{t \to \infty} F^i(\mathbf{y}_t) = F^i\left (\lim_{t \to \infty} \mathbf{y}_t\right ) = F^i(\mathbf{x}_\star), 
- \text{ for all } i \in \text{Sat}(\mathbf{x}_k)
+   0 = \lim_{t \to \infty} F^i(\mathbf{y}_t) = F^i\left (\lim_{t \to \infty} \mathbf{y}_t\right ) = F^i(\mathbf{x}_\star), 
+   \text{ for all } i \in \text{Sat}(\mathbf{x}_k)
 $$
 
 This implies that for all \\(i \in \text{Sat}(\mathbf{x}\_k)\\), \\(i\\) is also satisfied in \\(\mathbf{x}\_\star\\). That is,
