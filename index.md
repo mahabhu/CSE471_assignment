@@ -757,12 +757,12 @@ We take a $\lambda \in (0, \bar{\lambda}]$ such that
  $z^{i^{\dagger}}_\lambda$ a best response to $\mathbf{z}^{-i^{\dagger}}_\lambda$. 
 Recall by property 3, $\mathbf{z}_\lambda$ is a fully mixed strategy as $i^{\dagger} \in \text{UnSat}(\mathbf{x}_k)$,
  so $z^{i^{\dagger}}_\lambda(a^{i^{\dagger}}) > 0$ for all $a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}$.
-By lemma 1, we have that all the pure strategies $\{\delta_{a^{{i^{\dagger}}}}: a^{{i^{\dagger}}} \in\mathbb{A}^{i^{\dagger}}\}$ are also best responses to $\mathbf{z}^{-i^{\dagger}}_\lambda$.
+By lemma 1, we have that all the pure strategies $\{\delta_{a^{i^{\dagger}}}: a^{i^{\dagger}} \in\mathbb{A}^{i^{\dagger}}\}$ are also best responses to $\mathbf{z}^{-i^{\dagger}}_\lambda$.
 Which means,
 $$
    R^{i^{\dagger}}\left (z^{i^{\dagger}}_\lambda, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) = 
-    R^{i^{\dagger}}\left (\delta_{a^{{i^{\dagger}}}}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ), 
-    \text{ for all } a^{{i^{\dagger}}} \in \mathbb{A}^{i^{\dagger}}
+    R^{i^{\dagger}}\left (\delta_{a^{i^{\dagger}}}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ), 
+    \text{ for all } a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}
 $$
 
 So, for any $a, a' \in \mathbb{A}^{i^{\dagger}}$, we have,
