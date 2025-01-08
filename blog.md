@@ -193,15 +193,21 @@ Let $\mathbf{x} \in \mathbf{X}$ be a mixed strategy profile at some time step.
 Based on $\mathbf{x}$, we can divide the players $[n]$ in to two disjoint sets,
 
 - **Satisfied Players:**
-  $$\text{Sat}(\mathbf{x}) = \{i \in [n] : x_i \in \text{BR}^i_0(x_{-i})\}$$
-  The players whose strategies are a best response to their
+
+   $$
+      \text{Sat}(\mathbf{x}) = \{i \in [n] : x_i \in \text{BR}^i_0(x_{-i})\}
+   $$
+
+   The players whose strategies are a best response to their
   opponents' strategies $\mathbf{x}^{-i}$.
 - **Unsatisfied Players:**
-  $$
-  \text{UnSat}(\mathbf{x})
-  = \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
-  = [n] \setminus \text{Sat}(x) \\
-  $$
+
+   $$
+         \text{UnSat}(\mathbf{x})
+         = \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
+         = [n] \setminus \text{Sat}(x) \\
+   $$
+   
   The players whose strategies are not a best response to their
   opponents' strategies.
 
