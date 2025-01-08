@@ -5,6 +5,4 @@ kramdown:
         display_mode: true
         delimiters:
             - {left: "$$", right: "$$", display: true}
-            - {left: "\\[", right: "\\]", display: true}
             - {left: "$", right: "$", display: true}
-            - {left: "\\(", right: "\\)", display: true}
