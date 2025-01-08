@@ -163,13 +163,13 @@ A sequence of strategy profiles \\({x^t}\_{t=1}^\infty\\) is a **satisficing pat
 
 ### Nash Equilibrium
 
-A strategy profile \\(x^* = (x\_1^*, x\_2^*, \ldots, x\_n^*)\\) is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
+A strategy profile \\(\mathbf{x}\_\star = (x\_1^\star, x\_2^\star, \ldots, x\_n^\star)\\) is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
 
 $$
 R_i(x_i^*, x_{-i}^*) \geq R_i(x_i, x_{-i}^*) \quad \forall x_i \in X_i, \quad \forall i \in \{1, \ldots, n\},
 $$
 
-where \\(x\_{-i}^*\\) represents the strategies of all players except \\(i\\).
+where \\(\mathbf{x}^{-i}\_\star\\) represents the strategies of all players except \\(i\\).
 
 ---
 
@@ -198,11 +198,9 @@ Based on \\(\mathbf{x}\\), we can divide the players \\([n]\\) in to two disjoin
   opponents' strategies \\(\mathbf{x}^{-i}\\).
 - **Unsatisfied Players:**
   $$
-  \begin{align*}
   \text{UnSat}(\mathbf{x})
-  &= \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
-  &= [n] \setminus \text{Sat}(x) \\
-  \end{align*}
+  = \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
+  = [n] \setminus \text{Sat}(x) \\
   $$
   The players whose strategies are not a best response to their
   opponents' strategies.
@@ -320,9 +318,9 @@ Some properties of the expected reward function is of interest to us:
    is the set of all mixed strategies for player \\(i\\): \\(\Delta\_{\mathbb{A}^i}\\).
 
    $$
-   \Delta_{\mathbb{A}^i} =
-   \{x^i \in \mathbb{R}^{\mathbb{A}^i}:
-   \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\}
+      \Delta_{\mathbb{A}^i} =
+      \{x^i \in \mathbb{R}^{\mathbb{A}^i}:
+      \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\}
    $$
 
    This is the probability simplex over the set of actions \\(\mathbb{A}^i\\).
@@ -448,11 +446,13 @@ final step of the above process. We can show \\(i \le n - 1\\).
   wasn't satisfied.
 - The number of unsatisfied players is strictly
   increasing at each time step.
-  $$
-    1 \leq |\text{UnSat}(\mathbf{x}_1)| < \dots
-     |\text{UnSat}(\mathbf{x}_t)| < \dots
-     |\text{UnSat}(\mathbf{x}_i)| \le n
-  $$
+
+$$
+   1 \leq |\text{UnSat}(\mathbf{x}_1)| < \dots
+   |\text{UnSat}(\mathbf{x}_t)| < \dots
+   |\text{UnSat}(\mathbf{x}_i)| \le n
+$$
+
 - Even if at each step \\(|\text{UnSat}(\mathbf{x}\_t)|\\) increases by 1,
   \\(i\\) can be at most \\(n-1\\).
 
@@ -529,7 +529,7 @@ strategy in \\(\text{NoBetter}(\mathbf{x}\_k)\\) which unsatisfy a previously sa
 > **Observation 1:** For any strategy \\(\mathbf{y} \in \text{NoBetter}(\mathbf{x}\_k)\\),
 > the satisfied players in \\(\mathbf{x}\_k\\) are also satisfied in \\(\mathbf{y}\\). That is,
 > $$
-\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
+   \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
 $$
 
 Now if only we could show that \\(\mathbf{x}\_\star \in \text{NoBetter}(\mathbf{x}\_k)\\), we would be done. <br>
@@ -612,6 +612,7 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
 3. \\(\mathbf{w}\_\xi \in N\_\epsilon(\mathbf{x}\_k)\\), for sufficiently small \\(\xi > 0\\).
 
    This can be seen by choosing \\(\xi < \epsilon/2n\\).
+
    $$
    |\mathbf{x}_k - \mathbf{w}_\xi| = \sqrt{\sum_{i=1}^n \left |x^i_k - w^i_\xi \right |^2} 
    = \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)} \left |x^i_k - w^i_\xi\right |^2} \\
@@ -620,6 +621,7 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
    \le \xi \sqrt{\sum_{i \in \text{UnSat}(\mathbf{x}_k)}   2^2} 
    \le 2\xi \sqrt{\sum_{i \in [n]} 1} \lt 2n\xi \lt \epsilon
    $$
+
    Note that the last line can be understood if we consider that
    every \\(x \in \Delta\_{\mathbb{A}^i}\\) is a vector in the \\(|\mathbb{A}^i|\\) dimensional hyper-sphere of radius 1,
    since probabilities sum to 1. 
@@ -652,8 +654,8 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
    From the continuity of the auxillary functions, for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), 
    there exists \\(e\_i > 0\\) such that,
    $$
-   \mathbf{x} \in N_{e_i}(\mathbf{w}_\xi) \Rightarrow 
-   \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | < \frac{\sigma}{2}
+      \mathbf{x} \in N_{e_i}(\mathbf{w}_\xi) \Rightarrow 
+      \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | < \frac{\sigma}{2}
    $$
 
    That is, there is a neighbourhood around \\(\mathbf{x}\_k\\) where the value of \\(F^i(\mathbf{x})\\) is less 
@@ -759,6 +761,7 @@ Recall by property 3, \\(\mathbf{z}\_\lambda\\) is a fully mixed strategy as \\(
  so \\(z^{i^{\dagger}}\_\lambda(a^{i^{\dagger}}) > 0\\) for all \\(a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}\\).
 By lemma 1, we have that all the pure strategies \\(\{\delta\_{a^{i^{\dagger}}}: a^{i^{\dagger}} \in\mathbb{A}^{i^{\dagger}}\}\\) are also best responses to \\(\mathbf{z}^{-i^{\dagger}}\_\lambda\\).
 Which means,
+
 $$
    R^{i^{\dagger}}\left (z^{i^{\dagger}}_\lambda, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) = 
     R^{i^{\dagger}}\left (\delta_{a^{i^{\dagger}}}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ), 
@@ -766,6 +769,7 @@ $$
 $$
 
 So, for any \\(a, a' \in \mathbb{A}^{i^{\dagger}}\\), we have,
+
 $$
    R^{i^{\dagger}}\left (\delta_{a}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) = 
       R^{i^{\dagger}}\left (\delta_{a'}, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) \\
