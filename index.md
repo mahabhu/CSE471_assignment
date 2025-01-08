@@ -113,7 +113,7 @@ one for each player, such that no player has an incentive to unilaterally change
 In other words, a Nash equilibrium is a set of strategies where each player's strategy is optimal
  given the strategies of the other players.
 
- In the Rock-Paper-Scissors game, a Nash equilibrium would be if Player 1 chooses Rock with probabi
+ In the Rock-Paper-Scissors game, a Nash equilibrium would be if Player 1 chooses Rock with probabit
 
 Imagine a group of friends deciding what to do on a weekend. Each friend has their preferences (movies, bowling, or staying home), and their happiness depends not only on what they choose but also on what others decide.
 A Nash equilibrium happens when everyone has made their choice, and no one can be happier by changing their mind—as long as everyone else sticks to their own decision.
