@@ -148,28 +148,28 @@ The paper proves that such a path always exists. Interestingly, this result leve
 A finite \\(n\\)-player normal-form game \\(\Gamma\\) is defined by:
 
 1. \\(n\\): Number of players.
-2. \\(A = A_1 \times A_2 \times \cdots \times A_n\\): Set of joint actions.
-3. \\(r = (r_1, r_2, \ldots, r_n)\\): Reward functions, where \\(r_i: A \to \mathbb{R}\\) specifies the reward for player \\(i\\).
-4. Each player \\(i\\) receives a reward \\(R_i\\) based on the joint action profile \\(\overline{a} = (a_1, \ldots, a_n)\\), where \\(a_i \in A_i\\).
+2. \\(A = A\_1 \times A\_2 \times \cdots \times A\_n\\): Set of joint actions.
+3. \\(r = (r\_1, r\_2, \ldots, r\_n)\\): Reward functions, where \\(r\_i: A \to \mathbb{R}\\) specifies the reward for player \\(i\\).
+4. Each player \\(i\\) receives a reward \\(R\_i\\) based on the joint action profile \\(\overline{a} = (a\_1, \ldots, a\_n)\\), where \\(a\_i \in A\_i\\).
 
-The strategy profile \\(x = (x_1, x_2, \ldots, x_n)\\) consists of mixed strategies \\(x_i \in X_i = \Delta_{A^i}\\), where \\(\Delta_{A^i}\\) is the probability simplex over \\(A_i\\). A player's objective is to maximize their expected reward by choosing a strategy \\(x_i\\) from their strategy set \\(X_i\\), where \\(x_i\\) is a probability distribution over the action set \\(A_i\\).
+The strategy profile \\(x = (x\_1, x\_2, \ldots, x\_n)\\) consists of mixed strategies \\(x\_i \in X\_i = \Delta\_{A^i}\\), where \\(\Delta\_{A^i}\\) is the probability simplex over \\(A\_i\\). A player's objective is to maximize their expected reward by choosing a strategy \\(x\_i\\) from their strategy set \\(X\_i\\), where \\(x\_i\\) is a probability distribution over the action set \\(A\_i\\).
 
 ### Satisficing Paths
 
-A sequence of strategy profiles \\({x^t}_{t=1}^\infty\\) is a **satisficing path** if for all players \\(i\\):
+A sequence of strategy profiles \\({x^t}\_{t=1}^\infty\\) is a **satisficing path** if for all players \\(i\\):
 
-- \\(x_i^{t+1} = x_i^t\\) if \\(x_i^t\\) is a best response to \\(x_{-i}^t\\).
-- \\(x_i^{t+1} \in X_i\\) (freely updated) if \\(x_i^t\\) is not a best response.
+- \\(x\_i^{t+1} = x\_i^t\\) if \\(x\_i^t\\) is a best response to \\(x\_{-i}^t\\).
+- \\(x\_i^{t+1} \in X\_i\\) (freely updated) if \\(x\_i^t\\) is not a best response.
 
 ### Nash Equilibrium
 
-A strategy profile \\(x^* = (x_1^*, x_2^*, \ldots, x_n^*)\\) is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
+A strategy profile \\(x^* = (x\_1^*, x\_2^*, \ldots, x\_n^*)\\) is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
 
 $$
 R_i(x_i^*, x_{-i}^*) \geq R_i(x_i, x_{-i}^*) \quad \forall x_i \in X_i, \quad \forall i \in \{1, \ldots, n\},
 $$
 
-where \\(x_{-i}^*\\) represents the strategies of all players except \\(i\\).
+where \\(x\_{-i}^*\\) represents the strategies of all players except \\(i\\).
 
 ---
 
@@ -178,8 +178,8 @@ where \\(x_{-i}^*\\) represents the strategies of all players except \\(i\\).
 The central contribution of the paper is the following theorem:
 
 > Any finite normal-form game \\(\Gamma\\) has the satisficing paths property.
-> That is, for any \\(x_1 \in X\\), there exists a satisficing path \\((x_1 , x_2, \dots, x_T)\\) such that,
-for some finite \\(T=T(x_1)\\), the strategy profile \\(x_T\\) is a Nash equilibrium.
+> That is, for any \\(x\_1 \in X\\), there exists a satisficing path \\((x\_1 , x\_2, \dots, x\_T)\\) such that,
+for some finite \\(T=T(x\_1)\\), the strategy profile \\(x\_T\\) is a Nash equilibrium.
 
 We attempt to outline the proof steps of the theorem, sacrificing some rigour for an easier first read.
 Lets define some notations and functions to make our lives easier.
@@ -236,7 +236,7 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
   These are the accessible strategies that do not satisfy any player
   who were previously unsatisfied but might make a previously satisfied
   player unsatisfied. As a consequence,
-  \\(|\text{UnSat}(\mathbf{x_{t+1}})|\ge|\text{UnSat}(\mathbf{x_{t}})|\\).
+  \\(|\text{UnSat}(\mathbf{x\_{t+1}})|\ge|\text{UnSat}(\mathbf{x\_{t}})|\\).
 
   It is obvious that \\(\mathbf{x} \in \text{NoBetter}(\mathbf{x})\\)
   since \\(\text{UnSat}(\mathbf{x}) \subseteq \text{UnSat}(\mathbf{x})\\).
@@ -254,7 +254,7 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
   These are the accessible strategies that make the situation worse
   by making at least one previously satisfied player, unsatisfied. Additionally,
   all previously unsatisfied players remain unsatisfied as before. This means,
-  \\(|\text{UnSat}(\mathbf{x_{t+1}})|\geq|\text{UnSat}(\mathbf{x_{t}})+1|\\).
+  \\(|\text{UnSat}(\mathbf{x\_{t+1}})|\geq|\text{UnSat}(\mathbf{x\_{t}})+1|\\).
 
   \\(\text{Worse}(\mathbf{x})\\) can be empty (e.g. if \\(\text{UnSat}(\mathbf{x}=[n]\\)).
 
@@ -296,8 +296,8 @@ Some properties of the expected reward function is of interest to us:
         w_{\mathbf{x}^{-i}}(\mathbf{\bar{a}}) x^i(\bar{a}^i)
    $$
 
-   Here, \\(w_{\mathbf{x}^{-i}}(\mathbf{\bar{a}}) \in \mathbb{R}\\) is constant for a fixed
-   \\(\mathbf{x}^{-i}\\) and \\(\mathbf{\bar{a}}\\). This means \\(R_i(x^i, \mathbf{x}^{-i})\\)
+   Here, \\(w\_{\mathbf{x}^{-i}}(\mathbf{\bar{a}}) \in \mathbb{R}\\) is constant for a fixed
+   \\(\mathbf{x}^{-i}\\) and \\(\mathbf{\bar{a}}\\). This means \\(R\_i(x^i, \mathbf{x}^{-i})\\)
    is a linear function of \\(x^i\\) if \\(\mathbf{x}^{-i}\\) is fixed.
    Therefore, it is a multi-linear function of \\(\mathbf{x}\\).
 
@@ -316,8 +316,8 @@ Some properties of the expected reward function is of interest to us:
 
    This is because for fixed opponent strategies,
    the expected reward function is linear.
-   Upon fixing \\(\mathbf{x}^{-i}\\) the domain of \\(R_i(x^i, \mathbf{x}^{-i})\\)
-   is the set of all mixed strategies for player \\(i\\): \\(\Delta_{\mathbb{A}^i}\\).
+   Upon fixing \\(\mathbf{x}^{-i}\\) the domain of \\(R\_i(x^i, \mathbf{x}^{-i})\\)
+   is the set of all mixed strategies for player \\(i\\): \\(\Delta\_{\mathbb{A}^i}\\).
 
    $$
    \Delta_{\mathbb{A}^i} =
@@ -341,11 +341,11 @@ Some properties of the expected reward function is of interest to us:
 
    The maxima of a linear function over this triangle is attained at the vertices.
    Therefore, maxima are situated at either \\((1,0,0)\\), \\((0,1,0)\\) or \\((0,0,1)\\) which
-   correspond to the pure strategies \\(\delta_1\\), \\(\delta_2\\) and \\(\delta_3\\) respectively.
+   correspond to the pure strategies \\(\delta\_1\\), \\(\delta\_2\\) and \\(\delta\_3\\) respectively.
 
    Generalizing this to higher dimensions, the maximum value of the linear function
    \\(R^i(x^i, \mathbf{x}^{-i})\\) when \\(\mathbf{x}^{-i}\\) is fixed,
-   is attained at the pure strategies \\(\{\delta_a^i: a^i \in \mathbb{A}^i\}\\). Also note that
+   is attained at the pure strategies \\(\{\delta\_a^i: a^i \in \mathbb{A}^i\}\\). Also note that
    if multiple pure strategies attain the maximum value, then any mixture of these
    pure strategies also attains the maximum value.
 
@@ -364,12 +364,12 @@ We state this formally as a lemma.
 if and only if \\(x^i\\) is a mixture of pure strategies which are individually
 best responses to \\(\mathbf{x}^{-i}\\).
 Formally,
-\\(x^i \in \text{BR}^i_0(\mathbf{x}^{-i})\\) if and only if
-\\(x^i(a^i) \gt 0 \Rightarrow \delta_{a^i} \in \text{BR}^i_0(\mathbf{x}^{-i})\\).
+\\(x^i \in \text{BR}^i\_0(\mathbf{x}^{-i})\\) if and only if
+\\(x^i(a^i) \gt 0 \Rightarrow \delta\_{a^i} \in \text{BR}^i\_0(\mathbf{x}^{-i})\\).
 >
 >In other words, if \\(x^i\\) is a best response to \\(\mathbf{x}^{-i}\\),
 then \\(x^i\\) must be supported on the set of maximizers
-\\(\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}\\).
+\\(\argmax\_{a^i \in \mathbb{A}^i} \{ R^i(\delta\_{a^i}, \mathbf{x}^{-i})\}\\).
 
 ## Auxillary Functions
 
@@ -395,15 +395,15 @@ For any \\(i \in [n]\\) and any strategy profile \\((x^i, \mathbf{x}^{-i}) \in \
 
    This follows from the definition of \\(F^i\\) and property 3 of the expected reward function.
    The maximum expected reward for player \\(i\\) when the opponents' strategies are fixed
-   is that of the maximizing pure strategy. Therefore, \\(R^i(x^i, \mathbf{x}^{-i}) \le \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, \mathbf{x}^{-i})\\) for all \\(x^i \in \Delta_{\mathbb{A}^i}\\). This implies \\(F^i(x^i, \mathbf{x}^{-i}) \ge 0\\).
+   is that of the maximizing pure strategy. Therefore, \\(R^i(x^i, \mathbf{x}^{-i}) \le \max\_{a^i \in \mathbb{A}^i} R^i(\delta\_{a^i}, \mathbf{x}^{-i})\\) for all \\(x^i \in \Delta\_{\mathbb{A}^i}\\). This implies \\(F^i(x^i, \mathbf{x}^{-i}) \ge 0\\).
 
 3. For any \\(\mathbf{x}^{-1} \in \mathbf{X}^{-1}\\), \\(F^i(x^i, \mathbf{x}^{-i}) = 0\\) 
-   if and only if \\(i \in \text{Sat}(\mathbf{x})\\), i.e.    \\(x^i \in \text{BR}^i_0(\mathbf{x}^{-i})\\).
+   if and only if \\(i \in \text{Sat}(\mathbf{x})\\), i.e.    \\(x^i \in \text{BR}^i\_0(\mathbf{x}^{-i})\\).
 
    This again follows from the definition of \\(F^i\\) and property 3 of the expected reward function.
    \\(F^i(x^i, \mathbf{x}^{-i}) = 0\\) if and only if
-   \\(R^i(x^i, \mathbf{x}^{-i}) = \max_{a^i \in \mathbb{A}^i} R^i(\delta_{a^i}, 
-   \mathbf{x}^{-i}) = \max_{x^i \in \Delta_{\mathbb{A}^i}} R^i(x^i, \mathbf{x}^{-i})\\),
+   \\(R^i(x^i, \mathbf{x}^{-i}) = \max\_{a^i \in \mathbb{A}^i} R^i(\delta\_{a^i}, 
+   \mathbf{x}^{-i}) = \max\_{x^i \in \Delta\_{\mathbb{A}^i}} R^i(x^i, \mathbf{x}^{-i})\\),
    i.e. when the expected reward is maximum.
    This implies \\(x^i\\) is a best response to \\(\mathbf{x}^{-i}\\).
 
@@ -411,31 +411,31 @@ For any \\(i \in [n]\\) and any strategy profile \\((x^i, \mathbf{x}^{-i}) \in \
 
 Okay, now that we are done with a quite a lot of preliminaries we can begin the actual proof.
 
-Let \\(\mathbf{x}_1 \in \mathbf{X}\\) be any initial strategy.
+Let \\(\mathbf{x}\_1 \in \mathbf{X}\\) be any initial strategy.
 We now construct a satisficing path
-\\(\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_T\\) of finite length \\(T\\)
-where \\(\mathbf{x}_T\\) is a Nash equilibrium.
+\\(\mathbf{x}\_1 , \mathbf{x}\_2, \dots, \mathbf{x}\_T\\) of finite length \\(T\\)
+where \\(\mathbf{x}\_T\\) is a Nash equilibrium.
 
 #### **Step 1: Check Initial Strategy**
 
-If \\(\mathbf{x}_1\\) is a Nash equilibrium we are done.
+If \\(\mathbf{x}\_1\\) is a Nash equilibrium we are done.
 Otherwise we continue to the next step.
 
 #### **Step 2: Iteratively Choose Worse Strategies**
 
 We iteratively produce a satisficing path
-\\(\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_t, \dots, \mathbf{x}_i\\)
+\\(\mathbf{x}\_1 , \mathbf{x}\_2, \dots, \mathbf{x}\_t, \dots, \mathbf{x}\_i\\)
 as follows:
 
-1. We start with the initial strategy \\(\mathbf{x}_1\\) for \\(t=1\\).
+1. We start with the initial strategy \\(\mathbf{x}\_1\\) for \\(t=1\\).
 2. At each step, we arbitrarilly choose a worse strategy
    so that the number of unsatisfied players increases. <br>
-   We can choose \\(\mathbf{x}_{t+1} \in \text{Worse}(\mathbf{x}_t)\\) if
-   \\(\text{Worse}(\mathbf{x}_t) \neq \emptyset\\).
-3. If no worse strategy is accessible from \\(\mathbf{x}_t\\) at time step \\(t\\)
-   we stop, i.e. if \\(\text{Sat}(\mathbf{x}_t) = \emptyset\\)
+   We can choose \\(\mathbf{x}\_{t+1} \in \text{Worse}(\mathbf{x}\_t)\\) if
+   \\(\text{Worse}(\mathbf{x}\_t) \neq \emptyset\\).
+3. If no worse strategy is accessible from \\(\mathbf{x}\_t\\) at time step \\(t\\)
+   we stop, i.e. if \\(\text{Sat}(\mathbf{x}\_t) = \emptyset\\)
    (all players are already unsatisfied) or
-   \\(\text{Worse}(\mathbf{x}_t) = \emptyset\\)
+   \\(\text{Worse}(\mathbf{x}\_t) = \emptyset\\)
    (no worse strategy is accessible).
 
 #### **Step 3: Termination within at most \\(n-1\\) Steps**
@@ -443,8 +443,8 @@ as follows:
 The above process terminates in at most \\(n-1\\) steps. Let \\(i\\) be the
 final step of the above process. We can show \\(i \le n - 1\\).
 
-- Initially, \\(|\text{UnSat}(\mathbf{x}_1)| \geq 1\\) because
-  \\(\mathbf{x}_1\\) is not a Nash equilibrium and so at least one player
+- Initially, \\(|\text{UnSat}(\mathbf{x}\_1)| \geq 1\\) because
+  \\(\mathbf{x}\_1\\) is not a Nash equilibrium and so at least one player
   wasn't satisfied.
 - The number of unsatisfied players is strictly
   increasing at each time step.
@@ -453,37 +453,37 @@ final step of the above process. We can show \\(i \le n - 1\\).
      |\text{UnSat}(\mathbf{x}_t)| < \dots
      |\text{UnSat}(\mathbf{x}_i)| \le n
   $$
-- Even if at each step \\(|\text{UnSat}(\mathbf{x}_t)|\\) increases by 1,
+- Even if at each step \\(|\text{UnSat}(\mathbf{x}\_t)|\\) increases by 1,
   \\(i\\) can be at most \\(n-1\\).
 
 #### **Step 4: Check Final Strategy after Iteration**
 
 When \\(\text{UnSat}(x^T) = \emptyset\\), the strategy profile \\(x^T\\) satisfies the Nash equilibrium condition.
 
-The process terminates at \\(\mathbf{x}_k\\) if either all players are unsatisfied or no worse strategy is accessible.
+The process terminates at \\(\mathbf{x}\_k\\) if either all players are unsatisfied or no worse strategy is accessible.
 Therefore, there are two cases:
 
-**Case 1: \\(\text{Sat}(\mathbf{x}_k)=\emptyset\\)**
+**Case 1: \\(\text{Sat}(\mathbf{x}\_k)=\emptyset\\)**
 
 If all players are unsatisfied then the satisficing condition places no restrictions on the next strategy.
-Therefore, we can choose any strategy \\(\mathbf{x}_{k+1} \in \mathbf{X}\\), i.e. \\(\text{Access}(\mathbf{x}_k) = \mathbf{X}\\).
-We choose an arbitrary Nash equilibrium \\(\mathbf{z}_\star\\) and set \\(\mathbf{x}_{k+1} = \mathbf{z}_\star\\).
+Therefore, we can choose any strategy \\(\mathbf{x}\_{k+1} \in \mathbf{X}\\), i.e. \\(\text{Access}(\mathbf{x}\_k) = \mathbf{X}\\).
+We choose an arbitrary Nash equilibrium \\(\mathbf{z}\_\star\\) and set \\(\mathbf{x}\_{k+1} = \mathbf{z}\_\star\\).
 
-Therefore, taking \\(T=k+1 \le n\\) we have a satisficing path \\(\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{z}_\star\\) where \\(\mathbf{z}_\star\\) is a Nash equilibrium. We are done.
+Therefore, taking \\(T=k+1 \le n\\) we have a satisficing path \\(\mathbf{x}\_1 , \mathbf{x}\_2, \dots, \mathbf{x}\_k, \mathbf{z}\_\star\\) where \\(\mathbf{z}\_\star\\) is a Nash equilibrium. We are done.
 
-**Case 2:** \\(\text{Sat}(\mathbf{x}_k)\ne\emptyset\\) and \\(\text{Worse}(\mathbf{x}_k)=\emptyset\\)
+**Case 2:** \\(\text{Sat}(\mathbf{x}\_k)\ne\emptyset\\) and \\(\text{Worse}(\mathbf{x}\_k)=\emptyset\\)
 
-This is the trickier case. We need to show there exists a Nash equilibrium \\(\mathbf{x}_\star\\) such that \\(\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)\\).
+This is the trickier case. We need to show there exists a Nash equilibrium \\(\mathbf{x}\_\star\\) such that \\(\mathbf{x}\_\star \in \text{Access}(\mathbf{x}\_k)\\).
 
-#### **Step 5: Find the Nash equilibrium \\(\mathbf{x}_\star\\)**
+#### **Step 5: Find the Nash equilibrium \\(\mathbf{x}\_\star\\)**
 
-Since \\(\text{Sat}(\mathbf{x}_k)\ne\emptyset\\), we cannot change the strategies of satisfied players \\(\text{Sat}(\mathbf{x}_k)\\).
-Let \\(m = |\text{Sat}(\mathbf{x}_k)|\\) be the number of satisfied players.
-We can only change the strategies of \\(n-m\\) unsatisfied players \\(\text{UnSat}(\mathbf{x}_k)\\).
+Since \\(\text{Sat}(\mathbf{x}\_k)\ne\emptyset\\), we cannot change the strategies of satisfied players \\(\text{Sat}(\mathbf{x}\_k)\\).
+Let \\(m = |\text{Sat}(\mathbf{x}\_k)|\\) be the number of satisfied players.
+We can only change the strategies of \\(n-m\\) unsatisfied players \\(\text{UnSat}(\mathbf{x}\_k)\\).
 
 We can create a new game \\(\bar{\Gamma}\\) with \\(n-m\\) players by restricting the strategy space of the satisfied players to their current strategies.
-Let \\(\mathbf{\bar{x}}_\star\\) be a Nash equilibrium of the new game \\(\bar{\Gamma}\\). We can extend \\(\mathbf{\bar{x}}_\star\\) to a Nash equilibrium \\(\mathbf{x}_\star\\) of the original game \\(\Gamma\\) by setting the strategies of the satisfied players to their strategies
-in \\(\mathbf{x}_k\\). That is we set,
+Let \\(\mathbf{\bar{x}}\_\star\\) be a Nash equilibrium of the new game \\(\bar{\Gamma}\\). We can extend \\(\mathbf{\bar{x}}\_\star\\) to a Nash equilibrium \\(\mathbf{x}\_\star\\) of the original game \\(\Gamma\\) by setting the strategies of the satisfied players to their strategies
+in \\(\mathbf{x}\_k\\). That is we set,
 
 $$
 x^i_\star = \begin{cases}
@@ -492,19 +492,19 @@ x^i_\star = \begin{cases}
 \end{cases}
 $$
 
-Since \\(x^i_k = x^i_{\star}\\) for \\(i \in \text{Sat}(\mathbf{x}_k)\\), \\(\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)\\).
+Since \\(x^i\_k = x^i\_{\star}\\) for \\(i \in \text{Sat}(\mathbf{x}\_k)\\), \\(\mathbf{x}\_\star \in \text{Access}(\mathbf{x}\_k)\\).
 
-Therefore, we can set \\(T=k+1 \le n\\) and \\(\mathbf{x}_T = \mathbf{x}_\star\\) and we have a satisficing path \\(\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{x}_T\\) where \\(\mathbf{x}_T\\) is a Nash equilibrium. And we are done with the construction of the satisficing path to a Nash equilibrium from any initial strategy \\(\mathbf{x}_1 \in \mathbf{X}\\).
+Therefore, we can set \\(T=k+1 \le n\\) and \\(\mathbf{x}\_T = \mathbf{x}\_\star\\) and we have a satisficing path \\(\mathbf{x}\_1 , \mathbf{x}\_2, \dots, \mathbf{x}\_k, \mathbf{x}\_T\\) where \\(\mathbf{x}\_T\\) is a Nash equilibrium. And we are done with the construction of the satisficing path to a Nash equilibrium from any initial strategy \\(\mathbf{x}\_1 \in \mathbf{X}\\).
 
 ---
 
-But **wait**! We didn't proof that \\(\mathbf{x}_\star\\) is indeed a Nash equilibrium. We need to show that \\(\mathbf{x}_\star\\) is a Nash equilibrium of the original game \\(\Gamma\\). So, here comes the hard part.
+But **wait**! We didn't proof that \\(\mathbf{x}\_\star\\) is indeed a Nash equilibrium. We need to show that \\(\mathbf{x}\_\star\\) is a Nash equilibrium of the original game \\(\Gamma\\). So, here comes the hard part.
 
-#### Proof: \\(\mathbf{x}_\star\\) is a Nash equilibrium of \\(\Gamma\\)
+#### Proof: \\(\mathbf{x}\_\star\\) is a Nash equilibrium of \\(\Gamma\\)
 
-The way we constructed \\(\mathbf{x}_\star\\) from \\(\mathbf{\bar{x}}_\star\\), the players unsatisfied in \\(\mathbf{x}_k\\) are satisfied in \\(\mathbf{x}_\star\\).
+The way we constructed \\(\mathbf{x}\_\star\\) from \\(\mathbf{\bar{x}}\_\star\\), the players unsatisfied in \\(\mathbf{x}\_k\\) are satisfied in \\(\mathbf{x}\_\star\\).
 
-This is because \\(\mathbf{\bar{x}}_\star\\) is a Nash equilibrium of the restricted game \\(\bar{\Gamma}\\) we considered where only the the unsatisfied players \\(\text{UnSat}(\mathbf{x}_k)\\) were allowed to change their strategies. In a Nash equilibrium all the players are satisfied. Therefore, the players \\(\text{UnSat}(\mathbf{x}_k)\\) must be satisfied in \\(\mathbf{\bar{x}}_\star\\).
+This is because \\(\mathbf{\bar{x}}\_\star\\) is a Nash equilibrium of the restricted game \\(\bar{\Gamma}\\) we considered where only the the unsatisfied players \\(\text{UnSat}(\mathbf{x}\_k)\\) were allowed to change their strategies. In a Nash equilibrium all the players are satisfied. Therefore, the players \\(\text{UnSat}(\mathbf{x}\_k)\\) must be satisfied in \\(\mathbf{\bar{x}}\_\star\\).
 
 $$
 \text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)
@@ -516,39 +516,39 @@ $$
 \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)
 $$
 
-The satisfied players \\(\text{Sat}(\mathbf{x}_k)\\) should also satisfied in \\(\mathbf{x}_\star\\).
+The satisfied players \\(\text{Sat}(\mathbf{x}\_k)\\) should also satisfied in \\(\mathbf{x}\_\star\\).
 
-Here our old friends, the auxillary functions, come to the rescue. Using the auxillary functions, a bit of algebra and limits of sequences, we can show that the satisfied players \\(\text{Sat}(\mathbf{x}_k)\\) are also satisfied in \\(\mathbf{x}_\star\\).
+Here our old friends, the auxillary functions, come to the rescue. Using the auxillary functions, a bit of algebra and limits of sequences, we can show that the satisfied players \\(\text{Sat}(\mathbf{x}\_k)\\) are also satisfied in \\(\mathbf{x}\_\star\\).
 
 But before that, a simple observation. <br>
 In the case we are dealing with,
-\\(\text{Sat}(\mathbf{x}) \ne \emptyset\\) and \\(\text{Worse}(\mathbf{x}_k)=\emptyset\\). So, there is no worse
-strategy in \\(\text{NoBetter}(\mathbf{x}_k)\\) which unsatisfy a previously satisfied player
-\\(i \in \text{Sat}(\mathbf{x}_k)\\). This leads to the following:
+\\(\text{Sat}(\mathbf{x}) \ne \emptyset\\) and \\(\text{Worse}(\mathbf{x}\_k)=\emptyset\\). So, there is no worse
+strategy in \\(\text{NoBetter}(\mathbf{x}\_k)\\) which unsatisfy a previously satisfied player
+\\(i \in \text{Sat}(\mathbf{x}\_k)\\). This leads to the following:
 
-> **Observation 1:** For any strategy \\(\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)\\),
-> the satisfied players in \\(\mathbf{x}_k\\) are also satisfied in \\(\mathbf{y}\\). That is,
+> **Observation 1:** For any strategy \\(\mathbf{y} \in \text{NoBetter}(\mathbf{x}\_k)\\),
+> the satisfied players in \\(\mathbf{x}\_k\\) are also satisfied in \\(\mathbf{y}\\). That is,
 > $$
 \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
 $$
 
-Now if only we could show that \\(\mathbf{x}_\star \in \text{NoBetter}(\mathbf{x}_k)\\), we would be done. <br>
-But that is impossible because \\(\text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)\\). \\(\mathbf{x}_\star\\) satisfies the unsatisfied players in \\(\mathbf{x}_k\\). So, \\(\mathbf{x}_\star\\) can not be in \\(\text{NoBetter}(\mathbf{x}_k)\\).
+Now if only we could show that \\(\mathbf{x}\_\star \in \text{NoBetter}(\mathbf{x}\_k)\\), we would be done. <br>
+But that is impossible because \\(\text{UnSat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{x}\_\star)\\). \\(\mathbf{x}\_\star\\) satisfies the unsatisfied players in \\(\mathbf{x}\_k\\). So, \\(\mathbf{x}\_\star\\) can not be in \\(\text{NoBetter}(\mathbf{x}\_k)\\).
 
-Fortunately, though we can proof that a sequence of \\(\text{NoBetter}(\mathbf{x}_k)\\) strategies converges to \\(\mathbf{x}_\star\\).
+Fortunately, though we can proof that a sequence of \\(\text{NoBetter}(\mathbf{x}\_k)\\) strategies converges to \\(\mathbf{x}\_\star\\).
 
 --- 
 
 ### Lemma 2
 
-> If \\(\text{Worse}(\mathbf{x}_k) = \emptyset\\), then there exists a sequence of strategies 
-> \\(\{\mathbf{y}\_t\}_{t=1}^\infty\\) such that \\(\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)\\) for all \\(t\\) and \\(\lim_{t \to \infty} \mathbf{y}_t = \mathbf{x}_\star\\).
+> If \\(\text{Worse}(\mathbf{x}\_k) = \emptyset\\), then there exists a sequence of strategies 
+> \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) such that \\(\mathbf{y}\_t \in \text{NoBetter}(\mathbf{x}\_k)\\) for all \\(t\\) and \\(\lim\_{t \to \infty} \mathbf{y}\_t = \mathbf{x}\_\star\\).
 
 Before, we delve into the proof of the lemma, we need to brief about the algebra of the space of strategies \\(\mathbf{X}\\).
 
-As noted before, the strategies \\(x^i \in \mathcal{X}^i = \Delta_{\mathbb{A}^i}\\), which is the probability simplex in \\(\mathbb{R}^{\mathbb{A}^i}\\). That is to say, the strategies are vectors in \\(|\mathbb{A}^i|\\) dimensional space. Therefore, \\(\mathcal{X}^i\\) inherits the Euclidean metric.
+As noted before, the strategies \\(x^i \in \mathcal{X}^i = \Delta\_{\mathbb{A}^i}\\), which is the probability simplex in \\(\mathbb{R}^{\mathbb{A}^i}\\). That is to say, the strategies are vectors in \\(|\mathbb{A}^i|\\) dimensional space. Therefore, \\(\mathcal{X}^i\\) inherits the Euclidean metric.
 Distance and neighbourhoods in \\(\mathcal{X}^i\\) are defined in terms of the familiar Euclidean metric,
-\\(|x^i - y^i| = \sqrt{\sum_{a^i \in \mathbb{A}^i} (x^i(a^i) - y^i(a^i))^2}\\).
+\\(|x^i - y^i| = \sqrt{\sum\_{a^i \in \mathbb{A}^i} (x^i(a^i) - y^i(a^i))^2}\\).
 
 Similarly, the Euclidean metric applies to the mixed strategy profile space \\(\mathbf{X}\\). For \\(\mathbf{x}, \mathbf{y} \in \mathbf{X}\\), the distance between \\(\mathbf{x}\\) and \\(\mathbf{y}\\) can be defined as,
 
@@ -564,26 +564,26 @@ $$
 
 **Proof:**
 
-Recall the definition of limit of a sequence. A sequence \\(\{\mathbf{y}_t\}_{t=1}^\infty\\) converges to \\(\mathbf{x}_\star\\) if for any \\(\zeta > 0\\), there exists a \\(T\\) such that for all \\(t \ge T\\), \\(\mathbf{y}_t \in N_\zeta(\mathbf{x}_\star)\\). That is, there are \\(\mathbf{y}_t\\) arbitrarily close to \\(\mathbf{x}_\star\\). 
+Recall the definition of limit of a sequence. A sequence \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) converges to \\(\mathbf{x}\_\star\\) if for any \\(\zeta > 0\\), there exists a \\(T\\) such that for all \\(t \ge T\\), \\(\mathbf{y}\_t \in N\_\zeta(\mathbf{x}\_\star)\\). That is, there are \\(\mathbf{y}\_t\\) arbitrarily close to \\(\mathbf{x}\_\star\\). 
 
-For such a sequence to exist in , we need to show that for any \\(\zeta > 0\\), there exists a \\(\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)\\) such that 
-\\(\mathbf{y}_t \in N_\zeta(\mathbf{x}_\star)\\).
+For such a sequence to exist in , we need to show that for any \\(\zeta > 0\\), there exists a \\(\mathbf{y}\_t \in \text{NoBetter}(\mathbf{x}\_k)\\) such that 
+\\(\mathbf{y}\_t \in N\_\zeta(\mathbf{x}\_\star)\\).
 
 We assume the contrary, that no such sequence exists. Then there exists an \\(\zeta > 0\\) such that 
-there is no \\(\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)\\) such that \\(\mathbf{y} \in N_\zeta(\mathbf{x}_\star)\\). Which means, 
+there is no \\(\mathbf{y} \in \text{NoBetter}(\mathbf{x}\_k)\\) such that \\(\mathbf{y} \in N\_\zeta(\mathbf{x}\_\star)\\). Which means, 
 $$
 \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset
 $$
-That is, there isn't any \\(\text{NoBetter}(\mathbf{x}_k)\\) strategy in the \\(\zeta\\)-neighbourhood of \\(\mathbf{x}_\star\\).
+That is, there isn't any \\(\text{NoBetter}(\mathbf{x}\_k)\\) strategy in the \\(\zeta\\)-neighbourhood of \\(\mathbf{x}\_\star\\).
 We can prove a contradiction if we can show that there exists a strategy 
-\\(\mathbf{z} \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)\\). 
-We need to find a strategy \\(\mathbf{z} \in \text{NoBetter}(\mathbf{x}_k)\\) strategy near \\(\mathbf{x}_\star\\).
+\\(\mathbf{z} \in \text{NoBetter}(\mathbf{x}\_k) \cap N\_\zeta(\mathbf{x}\_\star)\\). 
+We need to find a strategy \\(\mathbf{z} \in \text{NoBetter}(\mathbf{x}\_k)\\) strategy near \\(\mathbf{x}\_\star\\).
 
 
-We start by looking for \\(\text{NoBetter}(\mathbf{x}_k)\\) strategies in the neighbourhood of \\(\mathbf{x}_k\\).
+We start by looking for \\(\text{NoBetter}(\mathbf{x}\_k)\\) strategies in the neighbourhood of \\(\mathbf{x}\_k\\).
 
 
- We define \\(\mathbf{w}_\xi \in \mathbf{X}\\) for \\(\xi \in (0,1]\\) as follows,
+ We define \\(\mathbf{w}\_\xi \in \mathbf{X}\\) for \\(\xi \in (0,1]\\) as follows,
 $$
 w^i_\xi = \begin{cases} 
     (1-\xi)x^i_k + \xi \text{Uniform}(\mathbb{A}^i), 
@@ -597,19 +597,19 @@ $$
 \text{Uniform}(\mathbb{A}^i)(a^i) = \frac{1}{|\mathbb{A}^i|}
 $$
 
-Note that for \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(w^i_\xi\\) is a mixture of the current strategy \\(x^i_k\\) and the uniform distribution over the action set \\(\mathbb{A}^i\\). The mixture is weighted by \\(1-\xi\\) and \\(\xi\\)  respectively to ensure that \\(w^i_\xi\\) remains a probability distribution.
+Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixture of the current strategy \\(x^i\_k\\) and the uniform distribution over the action set \\(\mathbb{A}^i\\). The mixture is weighted by \\(1-\xi\\) and \\(\xi\\)  respectively to ensure that \\(w^i\_\xi\\) remains a probability distribution.
 
-\\(\mathbf{w}_\xi\\) isn't just any random set of strategy profiles. It has some interesting properties:
-1. \\(\mathbf{w}_{\xi} \in \text{Access}(\mathbf{x}_k)\\). 
+\\(\mathbf{w}\_\xi\\) isn't just any random set of strategy profiles. It has some interesting properties:
+1. \\(\mathbf{w}\_{\xi} \in \text{Access}(\mathbf{x}\_k)\\). 
 
-    Since only the strategies of the unsatisfied players are changed in \\(\mathbf{w}_\xi\\).
-2. For \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(w^i_\xi\\) is fully mixed.
+    Since only the strategies of the unsatisfied players are changed in \\(\mathbf{w}\_\xi\\).
+2. For \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is fully mixed.
     
-    That is, it assigns non-zero probability \\(w^i_\xi(a^i)\\) to every action \\(a^i \in \mathbb{A}^i\\) when \\(i \in \text{UnSat}(\mathbf{x}_k)\\).
+    That is, it assigns non-zero probability \\(w^i\_\xi(a^i)\\) to every action \\(a^i \in \mathbb{A}^i\\) when \\(i \in \text{UnSat}(\mathbf{x}\_k)\\).
     This follows from the definition of \\(\text{Uniform}(\mathbb{A}^i)\\). As \\(\xi > 0\\), 
     every action \\(a^i \in \mathbb{A}^i\\) is assigned a non-zero probability of at least \\(\xi/|\mathbb{A}^i|\\).
 
-3. \\(\mathbf{w}_\xi \in N_\epsilon(\mathbf{x}_k)\\), for sufficiently small \\(\xi > 0\\).
+3. \\(\mathbf{w}\_\xi \in N\_\epsilon(\mathbf{x}\_k)\\), for sufficiently small \\(\xi > 0\\).
 
    This can be seen by choosing \\(\xi < \epsilon/2n\\).
    $$
@@ -621,14 +621,14 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(w^i_\xi\\) is a mixture
    \le 2\xi \sqrt{\sum_{i \in [n]} 1} \lt 2n\xi \lt \epsilon
    $$
    Note that the last line can be understood if we consider that
-   every \\(x \in \Delta_{\mathbb{A}^i}\\) is a vector in the \\(|\mathbb{A}^i|\\) dimensional hyper-sphere of radius 1,
+   every \\(x \in \Delta\_{\mathbb{A}^i}\\) is a vector in the \\(|\mathbb{A}^i|\\) dimensional hyper-sphere of radius 1,
    since probabilities sum to 1. 
-   So, \\(|x-y| \le 2\\) for all \\(x,y \in \Delta_{\mathbb{A}^i}.\\)
+   So, \\(|x-y| \le 2\\) for all \\(x,y \in \Delta\_{\mathbb{A}^i}.\\)
 
    This shows that for any \\(\epsilon > 0\\),
-   there is always a \\(\xi > 0\\) such that \\(\mathbf{w}_\xi \in N_\epsilon(\mathbf{x}_k)\\).
+   there is always a \\(\xi > 0\\) such that \\(\mathbf{w}\_\xi \in N\_\epsilon(\mathbf{x}\_k)\\).
 
-4. \\(\mathbf{w}_\xi \in \text{NoBetter}(\mathbf{x}_k)\\), for sufficiently small \\(\xi > 0\\).
+4. \\(\mathbf{w}\_\xi \in \text{NoBetter}(\mathbf{x}\_k)\\), for sufficiently small \\(\xi > 0\\).
 
    This can be shown by considering the auxillary functions \\(F^i\\). 
    By property 1 of the auxillary functions, \\(F^i\\) is continuous.
@@ -639,8 +639,8 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(w^i_\xi\\) is a mixture
    This is the idea behind the following argument.
 
    Property 3 of the auxillary functions says that 
-   \\(F^i(\mathbf{x}_k) = 0\\) if and only if \\(i \in \text{Sat}(\mathbf{x}_k)\\).
-   For unsatisfied players \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(F^i(\mathbf{x}_k) > 0\\).
+   \\(F^i(\mathbf{x}\_k) = 0\\) if and only if \\(i \in \text{Sat}(\mathbf{x}\_k)\\).
+   For unsatisfied players \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(F^i(\mathbf{x}\_k) > 0\\).
    
    We can take,
    $$
@@ -649,16 +649,16 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(w^i_\xi\\) is a mixture
   
 
 
-   From the continuity of the auxillary functions, for all \\(i \in \text{UnSat}(\mathbf{x}_k)\\), 
-   there exists \\(e_i > 0\\) such that,
+   From the continuity of the auxillary functions, for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), 
+   there exists \\(e\_i > 0\\) such that,
    $$
    \mathbf{x} \in N_{e_i}(\mathbf{w}_\xi) \Rightarrow 
    \left | F^i(\mathbf{x}) - F^i(\mathbf{x}_k) \right | < \frac{\sigma}{2}
    $$
 
-   That is, there is a neighbourhood around \\(\mathbf{x}_k\\) where the value of \\(F^i(\mathbf{x})\\) is less 
-   than \\(\sigma/2\\) away from \\(F^i(\mathbf{x}_k)\\).
-   Since, \\(F^i(\mathbf{x}_k) \ge \sigma\\), \\(F^i(\mathbf{x})\\) has to be more than \\(\frac{\sigma}{2}\\).
+   That is, there is a neighbourhood around \\(\mathbf{x}\_k\\) where the value of \\(F^i(\mathbf{x})\\) is less 
+   than \\(\sigma/2\\) away from \\(F^i(\mathbf{x}\_k)\\).
+   Since, \\(F^i(\mathbf{x}\_k) \ge \sigma\\), \\(F^i(\mathbf{x})\\) has to be more than \\(\frac{\sigma}{2}\\).
 
    $$
       \left | F^i(\mathbf{x}) \right | \ge 
@@ -666,38 +666,38 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(w^i_\xi\\) is a mixture
        > \sigma - \frac{\sigma}{2} = \frac{\sigma}{2}
    $$
 
-   Therefore, for all \\(i \in \text{UnSat}(\mathbf{x}_k)\\), there is some \\(e_i > 0\\) such that
-   \\(F^i(\mathbf{x})\\) is positive in the \\(e_1\\)-neighbourhood of \\(\mathbf{x}_k\\). Again, by property 3
-   of the auxillary functions, this implies for all \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(i\\) 
-   is also unsatisfied in the \\(e_1\\)-neighbourhood of \\(\mathbf{x}_k\\).
+   Therefore, for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), there is some \\(e\_i > 0\\) such that
+   \\(F^i(\mathbf{x})\\) is positive in the \\(e\_1\\)-neighbourhood of \\(\mathbf{x}\_k\\). Again, by property 3
+   of the auxillary functions, this implies for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(i\\) 
+   is also unsatisfied in the \\(e\_1\\)-neighbourhood of \\(\mathbf{x}\_k\\).
 
-   Now we can extend this to all unsatisfied players, \\(i \in \text{UnSat}(\mathbf{x}_k)\\), if we Let
+   Now we can extend this to all unsatisfied players, \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), if we Let
    $$
       \bar{e} = \min_{i \in \text{UnSat}(\mathbf{x}_k)} e_i
    $$
    
-   Since, \\(\bar{e}\\)-neighbourhood is a subset of \\(e_i\\)-neighbourhoods,
-   i.e. \\(N_{\bar{e}}(\mathbf{x}_k) \subseteq N_{e_i}(\mathbf{x}_k)\\) for all \\(i \in \text{UnSat}(\mathbf{x}_k)\\),
-   all unsatisfied players \\(\text{UnSat}(\mathbf{x}_k)\\) remain unsatisfied
-    in the \\(\bar{e}\\)-neighbourhood of \\(\mathbf{x}_k\\). Therefore, we have,
+   Since, \\(\bar{e}\\)-neighbourhood is a subset of \\(e\_i\\)-neighbourhoods,
+   i.e. \\(N\_{\bar{e}}(\mathbf{x}\_k) \subseteq N\_{e\_i}(\mathbf{x}\_k)\\) for all \\(i \in \text{UnSat}(\mathbf{x}\_k)\\),
+   all unsatisfied players \\(\text{UnSat}(\mathbf{x}\_k)\\) remain unsatisfied
+    in the \\(\bar{e}\\)-neighbourhood of \\(\mathbf{x}\_k\\). Therefore, we have,
    $$
    \text{UnSat}(\mathbf{x}_k) \subseteq \text{UnSat}(\mathbf{x}), 
    \text{ for all } \mathbf{x} \in N_{\bar{e}}(\mathbf{x}_k)
    $$
 
-   So, now we know there is a neighbourhood around \\(\mathbf{x}_k\\) where all the unsatisfied players remain unsatisfied.
-   We also know that \\(\mathbf{w}_\xi\\) is in the neighbourhood of \\(\mathbf{x}_k\\) by property 3.
-   So taking \\(\xi < \bar{e}/2n\\), we have \\(\mathbf{w}_\xi \in N_{\bar{e}}(\mathbf{x}_k)\\). As a result,
+   So, now we know there is a neighbourhood around \\(\mathbf{x}\_k\\) where all the unsatisfied players remain unsatisfied.
+   We also know that \\(\mathbf{w}\_\xi\\) is in the neighbourhood of \\(\mathbf{x}\_k\\) by property 3.
+   So taking \\(\xi < \bar{e}/2n\\), we have \\(\mathbf{w}\_\xi \in N\_{\bar{e}}(\mathbf{x}\_k)\\). As a result,
    $$
    \text{UnSat}(\mathbf{x}_k) \subseteq \text{UnSat}(\mathbf{w}_\xi)
    $$
-   Also, by property 1, \\(w_\xi \in \text{Access}(\mathbf{x}_k)\\). That means, \\(\mathbf{w}_\xi \in \text{NoBetter}(\mathbf{x}_k)\\)
+   Also, by property 1, \\(w\_\xi \in \text{Access}(\mathbf{x}\_k)\\). That means, \\(\mathbf{w}\_\xi \in \text{NoBetter}(\mathbf{x}\_k)\\)
    for sufficiently small \\(\xi > 0\\).
 
-Now that we now we have a set \\(\mathbf{w}_k\\) of strategies in the neighbourhood of \\(\mathbf{x}_k\\).
-We need to show that one of these strategies is in the neighbourhood of \\(\mathbf{x}_\star\\).
+Now that we now we have a set \\(\mathbf{w}\_k\\) of strategies in the neighbourhood of \\(\mathbf{x}\_k\\).
+We need to show that one of these strategies is in the neighbourhood of \\(\mathbf{x}\_\star\\).
 
-So, we define another set of strategies \\(\mathbf{z}_\lambda \in \mathbf{X}\\) for \\(\lambda \in [0,1]\\) as follows,
+So, we define another set of strategies \\(\mathbf{z}\_\lambda \in \mathbf{X}\\) for \\(\lambda \in [0,1]\\) as follows,
 $$
 z^i_\lambda = \begin{cases}
     (1-\lambda)x^i_\star + \lambda w^i_\xi, 
@@ -706,58 +706,58 @@ z^i_\lambda = \begin{cases}
 \end{cases}
 $$
 
-\\(\mathbf{z}_\lambda\\) has properties similar to \\(\mathbf{w}_\xi\\) except that it is centered around \\(\mathbf{x}_\star\\).
-1. \\(\mathbf{z}_\lambda \in \text{Access}(\mathbf{x}_\star)\\).
+\\(\mathbf{z}\_\lambda\\) has properties similar to \\(\mathbf{w}\_\xi\\) except that it is centered around \\(\mathbf{x}\_\star\\).
+1. \\(\mathbf{z}\_\lambda \in \text{Access}(\mathbf{x}\_\star)\\).
 
-   Since again, only the strategies of the unsatisfied players are changed in \\(\mathbf{z}_\lambda\\).
+   Since again, only the strategies of the unsatisfied players are changed in \\(\mathbf{z}\_\lambda\\).
 
-2. For \\(i \in \text{UnSat}(\mathbf{x}_k)\\), \\(z^i_\lambda\\) is fully mixed. 
+2. For \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(z^i\_\lambda\\) is fully mixed. 
 
-   This is because \\(w^i_\xi\\) is fully mixed and \\(\lambda > 0\\),
+   This is because \\(w^i\_\xi\\) is fully mixed and \\(\lambda > 0\\),
    so each action \\(a^i \in \mathbb{A}^i\\) is assigned a non-zero probability of at least \\(\xi\lambda/|\mathbb{A}^i|\\).
 
-3. \\(\mathbf{z}_\lambda \in N_{\zeta}(\mathbf{x}_\star)\\), for sufficiently small \\(\lambda > 0\\). 
+3. \\(\mathbf{z}\_\lambda \in N\_{\zeta}(\mathbf{x}\_\star)\\), for sufficiently small \\(\lambda > 0\\). 
 
    We can choose \\(\lambda < \zeta/2n\\) with a similar reasoning. Therefore for any \\(\zeta > 0\\),
-   there is always a \\(\lambda > 0\\) such that \\(\mathbf{z}_\lambda \in N_\zeta(\mathbf{x}_\star)\\).
+   there is always a \\(\lambda > 0\\) such that \\(\mathbf{z}\_\lambda \in N\_\zeta(\mathbf{x}\_\star)\\).
 
-4. \\(\mathbf{z}_\lambda \notin \text{NoBetter}(\mathbf{x}_k)\\), for  all \\(\lambda \le \bar{\lambda}\\)
+4. \\(\mathbf{z}\_\lambda \notin \text{NoBetter}(\mathbf{x}\_k)\\), for  all \\(\lambda \le \bar{\lambda}\\)
    for some \\(\bar{\lambda} > 0\\).
 
    This follows from property 3 and 
-   the assumption that \\(\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset\\)
+   the assumption that \\(\text{NoBetter}(\mathbf{x}\_k) \cap N\_\zeta(\mathbf{x}\_\star) = \emptyset\\)
    which we want to contradict.
 
-   By property 3, setting \\(\bar{\lambda} < \zeta/2n\\), we have \\(\mathbf{z}_\lambda \in N_\zeta(\mathbf{x}_\star)\\).
-   Now if \\(\mathbf{z}_\lambda \in \text{NoBetter}(\mathbf{x}_k)\\), we have,
+   By property 3, setting \\(\bar{\lambda} < \zeta/2n\\), we have \\(\mathbf{z}\_\lambda \in N\_\zeta(\mathbf{x}\_\star)\\).
+   Now if \\(\mathbf{z}\_\lambda \in \text{NoBetter}(\mathbf{x}\_k)\\), we have,
    $$
       \mathbf{z}_\lambda \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)
    $$
-   Which contradicts the assumption that \\(\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset\\).
-   So, \\(\mathbf{z}_\lambda \notin \text{NoBetter}(\mathbf{x}_k)\\) for all \\(\lambda \le \bar{\lambda}\\).
+   Which contradicts the assumption that \\(\text{NoBetter}(\mathbf{x}\_k) \cap N\_\zeta(\mathbf{x}\_\star) = \emptyset\\).
+   So, \\(\mathbf{z}\_\lambda \notin \text{NoBetter}(\mathbf{x}\_k)\\) for all \\(\lambda \le \bar{\lambda}\\).
 
 Now that we have the tools at our disposal, we derive the contradiction.
 
-From property 1 and 3 of \\(\mathbf{z}_\lambda\\), we know that for \\(\lambda \in (0, \bar{\lambda}]\\), 
-\\(\mathbf{z}_\lambda \in \text{Access}(\mathbf{x}_\star)\\) but \\(\mathbf{z}_\lambda \notin \text{NoBetter}(\mathbf{x}_k)\\).
-This implies at least one player is satisfied at \\(\mathbf{z}_\lambda\\) who was unsatisfied at \\(\mathbf{x}_k\\).
+From property 1 and 3 of \\(\mathbf{z}\_\lambda\\), we know that for \\(\lambda \in (0, \bar{\lambda}]\\), 
+\\(\mathbf{z}\_\lambda \in \text{Access}(\mathbf{x}\_\star)\\) but \\(\mathbf{z}\_\lambda \notin \text{NoBetter}(\mathbf{x}\_k)\\).
+This implies at least one player is satisfied at \\(\mathbf{z}\_\lambda\\) who was unsatisfied at \\(\mathbf{x}\_k\\).
 
-Therefore, for all \\(\lambda \in (0, \bar{\lambda}]\\) there is a player \\(i \in \text{UnSat}(\mathbf{x}_k)\\)
-such that \\(i \in \text{Sat}(\mathbf{z}_\lambda)\\). But note that there are infinitely many \\(\lambda\\), 
+Therefore, for all \\(\lambda \in (0, \bar{\lambda}]\\) there is a player \\(i \in \text{UnSat}(\mathbf{x}\_k)\\)
+such that \\(i \in \text{Sat}(\mathbf{z}\_\lambda)\\). But note that there are infinitely many \\(\lambda\\), 
 but only finitely many players \\([n]\\). 
 
-So, there must be a player \\(i^{\dagger} \in \text{UnSat}(\mathbf{x}_k)\\) 
-who is satisfied in infinitely many \\(\mathbf{z}_\lambda\\). In other words,
+So, there must be a player \\(i^{\dagger} \in \text{UnSat}(\mathbf{x}\_k)\\) 
+who is satisfied in infinitely many \\(\mathbf{z}\_\lambda\\). In other words,
 $$
    i^{\dagger} \in \text{Sat}(\mathbf{z}_\lambda) \Leftrightarrow z^{i^{\dagger}}_\lambda \in 
 \text{BR}^{i^{\dagger}}_{0}\left (\mathbf{z}^{-i^{\dagger}}_\lambda\right ), \text{ for infinitely many } \lambda \in (0, \bar{\lambda}]
 $$
 
 We take a \\(\lambda \in (0, \bar{\lambda}]\\) such that
- \\(z^{i^{\dagger}}_\lambda\\) a best response to \\(\mathbf{z}^{-i^{\dagger}}_\lambda\\). 
-Recall by property 3, \\(\mathbf{z}_\lambda\\) is a fully mixed strategy as \\(i^{\dagger} \in \text{UnSat}(\mathbf{x}_k)\\),
- so \\(z^{i^{\dagger}}_\lambda(a^{i^{\dagger}}) > 0\\) for all \\(a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}\\).
-By lemma 1, we have that all the pure strategies \\(\{\delta_{a^{i^{\dagger}}}: a^{i^{\dagger}} \in\mathbb{A}^{i^{\dagger}}\}\\) are also best responses to \\(\mathbf{z}^{-i^{\dagger}}_\lambda\\).
+ \\(z^{i^{\dagger}}\_\lambda\\) a best response to \\(\mathbf{z}^{-i^{\dagger}}\_\lambda\\). 
+Recall by property 3, \\(\mathbf{z}\_\lambda\\) is a fully mixed strategy as \\(i^{\dagger} \in \text{UnSat}(\mathbf{x}\_k)\\),
+ so \\(z^{i^{\dagger}}\_\lambda(a^{i^{\dagger}}) > 0\\) for all \\(a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}\\).
+By lemma 1, we have that all the pure strategies \\(\{\delta\_{a^{i^{\dagger}}}: a^{i^{\dagger}} \in\mathbb{A}^{i^{\dagger}}\}\\) are also best responses to \\(\mathbf{z}^{-i^{\dagger}}\_\lambda\\).
 Which means,
 $$
    R^{i^{\dagger}}\left (z^{i^{\dagger}}_\lambda, \mathbf{z}^{-i^{\dagger}}_\lambda\right ) = 
@@ -789,52 +789,52 @@ But we showed above that there are infinitely many \\(\lambda \in (0, \bar{\lamb
 This can only happen if the polynomial is identically zero. That is, the coefficients of the polynomial are all zero.
 
 Therefore, \\((1)\\) holds for all \\(\lambda \in (0, 1]\\), meaning for any \\(\lambda \in (0, 1]\\), 
-\\(z^{i^{\dagger}}_\lambda \in \text{BR}^{i^{\dagger}}_{0}\left (\mathbf{z}^{-i^{\dagger}}_\lambda\right )\\) and
-\\(i^{\dagger} \in \text{Sat}(\mathbf{z}_\lambda)\\).
+\\(z^{i^{\dagger}}\_\lambda \in \text{BR}^{i^{\dagger}}\_{0}\left (\mathbf{z}^{-i^{\dagger}}\_\lambda\right )\\) and
+\\(i^{\dagger} \in \text{Sat}(\mathbf{z}\_\lambda)\\).
 
-Taking \\(\lambda = 1\\), we get, \\( \mathbf{z}_1 = \mathbf{w}_\xi\\). So, \\(i^{\dagger} \in \text{Sat}(\mathbf{w}_\xi)\\).
-Recall for sufficiently small \\(\xi > 0\\), \\(\mathbf{w}_\xi \in \text{NoBetter}(\mathbf{x}_k)\\). 
-Therefore, \\(i^{\dagger} \in \text{UnSat}(\mathbf{w}_\xi)\\) implies \\(i^{\dagger} \in \text{UnSat}(\mathbf{w}_\xi)\\).
+Taking \\(\lambda = 1\\), we get, \\( \mathbf{z}\_1 = \mathbf{w}\_\xi\\). So, \\(i^{\dagger} \in \text{Sat}(\mathbf{w}\_\xi)\\).
+Recall for sufficiently small \\(\xi > 0\\), \\(\mathbf{w}\_\xi \in \text{NoBetter}(\mathbf{x}\_k)\\). 
+Therefore, \\(i^{\dagger} \in \text{UnSat}(\mathbf{w}\_\xi)\\) implies \\(i^{\dagger} \in \text{UnSat}(\mathbf{w}\_\xi)\\).
 A contradiction.
 
-Thus, we see that there exists a sequence of strategies \\(\{\mathbf{y}_t\}_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}_k)\\)
-such that \\(\lim_{t \to \infty} \mathbf{y}_t = \mathbf{x}_\star\\). \\(\square\\)
+Thus, we see that there exists a sequence of strategies \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}\_k)\\)
+such that \\(\lim\_{t \to \infty} \mathbf{y}\_t = \mathbf{x}\_\star\\). \\(\square\\)
 
 ---
 
 Now that we have shown that there exists a sequence of strategies 
-\\(\{\mathbf{y}_t\}_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}_k)\\) which converges to \\(\mathbf{x}_\star\\),
+\\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}\_k)\\) which converges to \\(\mathbf{x}\_\star\\),
 from observation 1,
- we know that the satisfied players in \\(\mathbf{x}_k\\) are also satisfied in \\(\mathbf{y}_t\\) for all \\(t\\). That is,
+ we know that the satisfied players in \\(\mathbf{x}\_k\\) are also satisfied in \\(\mathbf{y}\_t\\) for all \\(t\\). That is,
 $$
 \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y}_t)
 $$
-So it seems, the limit of \\(\{\mathbf{y}_t\}_{t=1}^\infty\\) should also satisfy \\(\text{Sat}(\mathbf{x}_k)\\).
+So it seems, the limit of \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) should also satisfy \\(\text{Sat}(\mathbf{x}\_k)\\).
 To mathematically show this, we again resort to our friends the *auxillary functions*.
 
-By property 3 of \\(F^i\\), for all \\(i \in \text{Sat}(\mathbf{x}_k)\\), \\(F^i(\mathbf{x}_k) = 0\\). 
-This also applies to \\(\{\mathbf{y}_t\}\\) as \\(\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y}_t)\\). 
+By property 3 of \\(F^i\\), for all \\(i \in \text{Sat}(\mathbf{x}\_k)\\), \\(F^i(\mathbf{x}\_k) = 0\\). 
+This also applies to \\(\{\mathbf{y}\_t\}\\) as \\(\text{Sat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{y}\_t)\\). 
 Therefore we have,
 $$
 F^i(\mathbf{y}_t) = 0, \text{ for all } t \in \mathbb{N} \text{ and } i \in \text{Sat}(\mathbf{x}_k)
 $$
 
 Since auxillary functions are continuous (property 1), 
-\\(\lim_{t \to \infty} F^i(\mathbf{y}_t)\\)  exists and is equal to value of the function at the limit point. Hence,
+\\(\lim\_{t \to \infty} F^i(\mathbf{y}\_t)\\)  exists and is equal to value of the function at the limit point. Hence,
 $$
  0 = \lim_{t \to \infty} F^i(\mathbf{y}_t) = F^i\left (\lim_{t \to \infty} \mathbf{y}_t\right ) = F^i(\mathbf{x}_\star), 
  \text{ for all } i \in \text{Sat}(\mathbf{x}_k)
 $$
 
-This implies that for all \\(i \in \text{Sat}(\mathbf{x}_k)\\), \\(i\\) is also satisfied in \\(\mathbf{x}_\star\\). That is,
-\\( \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star) \\)
-And since, \\( \text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star) \\) by construction of \\(\mathbf{x}_\star\\),
+This implies that for all \\(i \in \text{Sat}(\mathbf{x}\_k)\\), \\(i\\) is also satisfied in \\(\mathbf{x}\_\star\\). That is,
+\\( \text{Sat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{x}\_\star) \\)
+And since, \\( \text{UnSat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{x}\_\star) \\) by construction of \\(\mathbf{x}\_\star\\),
 we have that,
 $$
    \text{Sat}(\mathbf{x}_k) \cup \text{UnSat}(\mathbf{x}_k) = [n] = \text{Sat}(\mathbf{x}_\star)
 $$
 
-Therefore, \\(\mathbf{x}_\star\\) is indeed a Nash equilibrium. 
+Therefore, \\(\mathbf{x}\_\star\\) is indeed a Nash equilibrium. 
 This finally, finally concludes the proof. \\(\blacksquare\\)
 
 ## Insights and Implications
@@ -874,7 +874,7 @@ is used to aggregate rewards across time.
 
 Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms. The authors have attempted to generalize Theorem 1 for Markov games too by conducting the proofs parallely.
 
-To begin, one can construct a satisficing path \\(\{\pi_1, \pi_2, \dots, \pi_k\}\\) by growing the set of unsatisfied players at each iteration until either \\(\text{UnSat}(\pi_k) = \{1, 2, \dots, n\}\\) or \\(\text{Worse}(\pi_k) = \emptyset\\). In the latter case, one can consider the subgame involving only the players in \\(\text{UnSat}(\pi_k)\\) and obtain a Markov perfect equilibrium \\(\tilde{\pi}_{\star}\\) for that subgame, which can then be extended to a policy profile \\(\pi_{\star} \in \text{Acc}(\pi_k)\\) by putting
+To begin, one can construct a satisficing path \\(\{\pi\_1, \pi\_2, \dots, \pi\_k\}\\) by growing the set of unsatisfied players at each iteration until either \\(\text{UnSat}(\pi\_k) = \{1, 2, \dots, n\}\\) or \\(\text{Worse}(\pi\_k) = \emptyset\\). In the latter case, one can consider the subgame involving only the players in \\(\text{UnSat}(\pi\_k)\\) and obtain a Markov perfect equilibrium \\(\tilde{\pi}\_{\star}\\) for that subgame, which can then be extended to a policy profile \\(\pi\_{\star} \in \text{Acc}(\pi\_k)\\) by putting
 
 $$
 \pi^i_{\star}=
@@ -884,7 +884,7 @@ $$
 \end{cases}
 $$
 
-Showing that this policy \\(\pi_{\star} \in \Pi\\) is a Markov perfect equilibrium of the \\(n\\)-player Markov game, extends Theorem 1 to Markov games. We can define \\(\{f^i\}_{i = 1}^n\\) analogous to the auxillary function \\(\{F^i\}_{i = 1}^n\\) defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 1 to the multi-state case.<br>
+Showing that this policy \\(\pi\_{\star} \in \Pi\\) is a Markov perfect equilibrium of the \\(n\\)-player Markov game, extends Theorem 1 to Markov games. We can define \\(\{f^i\}\_{i = 1}^n\\) analogous to the auxillary function \\(\{F^i\}\_{i = 1}^n\\) defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 1 to the multi-state case.<br>
 
 Unfortunately, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven.
 
