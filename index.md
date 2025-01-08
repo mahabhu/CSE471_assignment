@@ -498,7 +498,7 @@ Therefore, we can set $T=k+1 \le n$ and $\mathbf{x}_T = \mathbf{x}_\star$ and we
 
 ---
 
-But **wait**! We didn't proof that $\mathbf{x}_\star$ is indeed a Nash equilibrium. We need to show that $\mathbf{x}_\star$ is a Nash equilibrium of the original game $\Gamma$. So, here comes the hard part.
+But **wait**! We didn't proof that ${\mathbf{x}_\star}$ is indeed a Nash equilibrium. We need to show that $\mathbf{x}_\star$ is a Nash equilibrium of the original game $\Gamma$. So, here comes the hard part.
 
 #### Proof: $\mathbf{x}_\star$ is a Nash equilibrium of $\Gamma$
 
