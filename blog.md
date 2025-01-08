@@ -10,6 +10,7 @@
 
 ## Introduction
 
+In this blog we break down the paper [Paths to Equilibrium in Games](https://openreview.net/forum?id=LxxIiInmuF) presented at NeurIPS 2024.
 The paper deals with paths to equilibrium in finite normal-form games, a central topic in game-theory.
 In a finite normal-form game, the players interact with each other and update their strategies to maximise their rewards.
 The rewards of the players are determined by the combination of chosen strategies. Eventually, the game reaches
@@ -108,70 +109,108 @@ Therefore, it is intuitive to keep their strategies unchanged.
 
 ### Nash Equilibrium
 
-A _Nash equilibrium_ is a concept in game theory that describes a set of strategies or a strategy profile, 
-one for each player, such that no player has an incentive to unilaterally change their strategy.
-In other words, a Nash equilibrium is a set of strategies where each player's strategy is optimal
- given the strategies of the other players.
+A _Nash equilibrium_ is a concept in game theory that describes a set of strategies or a strategy profile, such that no player has an incentive to unilaterally change their strategy.
+In other words, a Nash equilibrium is a set of strategies where each player's strategy is optimal given the strategies of the other players. So, we can say that a Nash equilibrium is a state of the game where all players are satisfied.
 
- In the Rock-Paper-Scissors game, a Nash equilibrium would be if Player 1 chooses Rock with probabi
+In the Rock-Paper-Scissors game, a Nash equilibrium would be if both players choose each action with probability 1/3. Because in this case, no player can improve their reward by changing their strategy.
 
-Imagine a group of friends deciding what to do on a weekend. Each friend has their preferences (movies, bowling, or staying home), and their happiness depends not only on what they choose but also on what others decide.
+Consider another example. Imagine a group of friends deciding what to do on a weekend. Each friend has their preferences (movies, bowling, or staying home), and their happiness depends not only on what they choose but also on what others decide.
 A Nash equilibrium happens when everyone has made their choice, and no one can be happier by changing their mind—as long as everyone else sticks to their own decision.
-Finding Nash equilibria is central to MARL but is often computationally challenging due to the coupled nature of the reward functions and the high-dimensional strategy space.
 
 
 ### Multi-Agent Reinforcement Learning (MARL)
 
-In MARL, multiple agents interact within an environment to achieve individual or collective goals. Each agent iteratively updates its strategy based on observations and feedback. While MARL has seen significant success in cooperative and adversarial scenarios, achieving convergence to equilibrium in complex, multi-agent environments remains a challenge.
+Multi-Agent Reinforcement Learning (MARL) is a subfield of reinforcement learning where multiple agents interact within an environment to achieve individual or collective goals. Each agent learns to make decisions by interacting with the environment and receiving feedback in the form of rewards.
 
-
-
-
----
-
-## Problem Statement
-
-The authors investigate whether **satisficing paths**—strategy update sequences where satisfied agents (those already using their best response) do not change their strategies, and unsatisfied agents freely explore—can always lead to a Nash equilibrium in finite normal-form games.
-
-### Core Question
-
-For any finite normal-form game and any initial strategy profile, can we construct a satisficing path that guarantees convergence to Nash equilibrium?
-
-### Key Insight
-
-The paper proves that such a path always exists. Interestingly, this result leverages **suboptimal updates**—a departure from conventional reward improving approaches to achieve equilibrium and avoid cyclical behaviors.
-
-## Mathematical Framework
-
-### Game Representation
-
-A finite $n$-player normal-form game $\Gamma$ is defined by:
-
-1. $n$: Number of players.
-2. $A = A_1 \times A_2 \times \cdots \times A_n$: Set of joint actions.
-3. $r = (r_1, r_2, \ldots, r_n)$: Reward functions, where $r_i: A \to \mathbb{R}$ specifies the reward for player $i$.
-4. Each player $i$ receives a reward $R_i$ based on the joint action profile $\overline{a} = (a_1, \ldots, a_n)$, where $a_i \in A_i$.
-
-The strategy profile $x = (x_1, x_2, \ldots, x_n)$ consists of mixed strategies $x_i \in X_i = \Delta_{A^i}$, where $\Delta_{A^i}$ is the probability simplex over $A_i$. A player's objective is to maximize their expected reward by choosing a strategy $x_i$ from their strategy set $X_i$, where $x_i$ is a probability distribution over the action set $A_i$.
+MARL algorithms are often used to find Nash Equilibrium in games. These algorithms use a combination of reinforcement learning techniques and game theory concepts to help agents learn the best strategies to reach equilibrium.
 
 ### Satisficing Paths
 
-A sequence of strategy profiles ${x^t}_{t=1}^\infty$ is a **satisficing path** if for all players $i$:
+A _satisficing path_ is a sequence of strategy profiles where satisfied players (those already using their best response) do not change their strategies, and unsatisfied players freely explore new strategies. The idea is that satisfied players are already in a good position, so they don't need to change their strategies, while unsatisfied players can explore new strategies to improve their rewards.
 
-- $x_i^{t+1} = x_i^t$ if $x_i^t$ is a best response to $x_{-i}^t$.
-- $x_i^{t+1} \in X_i$ (freely updated) if $x_i^t$ is not a best response.
+
+## Problem Statement
+
+The authors investigate whether **satisficing paths** can always lead to a Nash equilibrium in finite normal-form games.
+
+### Core Question
+
+>For any finite normal-form game and any initial strategy profile, can we construct a satisficing path that guarantees convergence to Nash equilibrium?
+
+### Key Insight
+
+The paper proves that such a path **always exists**. Interestingly, this result leverages **suboptimal updates**—a departure from conventional reward improving approaches to achieve equilibrium and avoid cyclical behaviors.
+
+## Mathematical Framework
+
+Now that we have a basic understanding of what the paper is about, we make things 
+a bit more concrete by introducing the mathematical framework used in the paper.
+
+### Game Representation
+
+A finite $n$-player normal-form game $\Gamma$ is defined by a tuple $(n, \mathbf{A}, \mathbf{r})$, where:
+
+1. $n$: Number of players.
+
+   We often denote the set of players as $[n] = \{1, 2, \ldots, n\}$.
+2. $\mathbf{A} = \mathbb{A}^1 \times \mathbb{A}^2 \times \cdots \times \mathbb{A}^n$: Set of joint actions.
+
+   Here each set $\mathbb{A}^i$ represents the action set for player $i$.
+
+3. $\mathbf{r} = (r^1, r^2, \ldots, r^n)$: Reward functions.
+
+   Here $r^i: \mathbf{A} \to \mathbb{R}$ specifies the reward for player $i$
+   for each joint action $\mathbf{a} \in \mathbf{A}$.
+
+### Description of Play
+Each player selects a mixed strategy $x^i \in \mathcal{X}^i = \Delta_{\mathbb{A}^i}$, where $\Delta_{\mathbb{A}^i}$ is the set of 
+probability distributions over the action set $\mathbb{A}^i$. That is, each player
+assigns some probability to each action in their action set.
+
+The combination of mixed strategies chosen by all players is called the strategy profile $\mathbf{x} = (x^1, x^2, \ldots, x^n) \in \mathbf{X} = 
+\mathcal{X}^1 \times \mathcal{X}^2 \times \cdots \times \mathcal{X}^n$.
+
+To denote the strategies of all players except $i$, we use $\mathbf{x}^{-i} = (x^1, x^2, \ldots, x^{i-1}, x^{i+1}, \ldots, x^n) \in \mathbf{X}^{-i}$.
+
+Each player selects their mixed strategy independently and simultaneously without knowing the strategies chosen by other players. Each player then samples an action according to their mixed strategy, $a^i \sim x^i$ and receives a reward $r^i(\mathbf{a})$ based on the joint action $\mathbf{a} = (a^1, a^2, \ldots, a^n)$.
+
+
+### Objective
+
+Each player tries to maximize their expected reward, which is the expected value of their reward function given by the mixed strategies chosen by all players:
+
+$$
+   R^i(\mathbf{x}) = \mathbb{E}_{\mathbf{a} \sim \mathbf{x}}[r^i(\mathbf{a})]
+$$
+
+### Best Response
+
+A mixed strategy $x^i_\star \in \mathcal{X}^i$ is a **best response** to the mixed strategies of other players $\mathbf{x}^{-i} \in \mathbf{X}^{-i}$ if it maximizes the expected reward of player $i$:
+
+$$
+   x_\star^i \in \text{BR}^i_0(\mathbf{x}^{-i}) \quad \text{if} \quad 
+   R^i(x_\star^i, \mathbf{x}^{-i}) \geq R^i(x^{i}, \mathbf{x}^{-i}) \quad 
+   \text{for all} \quad x^{i} \in X^i
+$$
+
+Here $\text{BR}^i_0(\mathbf{x}^{-i})$ is the set of mixed strategies that are best responses to $\mathbf{x}^{-i}$.
+
+### Satisficing Paths
+
+A sequence of strategy profiles $(x_t)_{t\ge 1}$ is a **satisficing path** if,
+for every $t \ge 1$, for all the players $i \in [n]$:
+$$
+   x^i_t \in \text{BR}^i_0(x_{t-1}^{-i}) 
+   \Rightarrow x^i_{t + 1} = x^i_t
+$$
 
 ### Nash Equilibrium
 
-A strategy profile $\mathbf{x}_\star = (x_1^\star, x_2^\star, \ldots, x_n^\star)$ is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy:
+A strategy profile $\mathbf{x}_\star = (x_1^\star, x_2^\star, \ldots, x_n^\star)$ is a **Nash equilibrium** if no player can unilaterally improve their reward by changing their strategy. That is if,
 
 $$
-R_i(x_i^*, x_{-i}^*) \geq R_i(x_i, x_{-i}^*) \quad \forall x_i \in X_i, \quad \forall i \in \{1, \ldots, n\},
+   x^i_\star \in \text{BR}^i_0(\mathbf{x}_\star^{-i}) \quad \text{for all} \quad i \in [n]
 $$
-
-where $\mathbf{x}^{-i}_\star$ represents the strategies of all players except $i$.
-
----
 
 ## Theorem
 
@@ -181,10 +220,71 @@ The central contribution of the paper is the following theorem:
 > That is, for any $x_1 \in X$, there exists a satisficing path $(x_1 , x_2, \dots, x_T)$ such that,
 for some finite $T=T(x_1)$, the strategy profile $x_T$ is a Nash equilibrium.
 
-We attempt to outline the proof steps of the theorem, sacrificing some rigour for an easier first read.
-Lets define some notations and functions to make our lives easier.
+The proof is very long and involves a lot of mathematical rigour.
+So, we defer the full proof to the end of the blog for those who are interested in the details. We outline the proof in a more informal way in the next section.
 
-## Some Notations
+## Proof Outline
+
+For a normal-form game $\Gamma$, 
+we construct a sequence of strategy profiles $(\mathbf{x}_t)_{t=1}^{T}$ that satisfies the conditions of a satisficing path, starting from an initial strategy profile $\mathbf{x}_1$ and ending at a Nash equilibrium $\mathbf{x}_T$.
+- We iteratively construct $\mathbf{x}_{t+1}$ from $\mathbf{x}_{t}$ starting from $\mathbf{x}_1$.
+- Choose $\mathbf{x}_{t+1}$ after $\mathbf{x}_t$ such that:
+   - $\mathbf{x}_{t+1}$ satisfies the satisficing path condition.
+   - $\mathbf{x}_{t+1}$ increases the number of unsatisfied players.
+- The process continues until we reach a strategy profile $\mathbf{x}_T$ where no more unsatisfied players can be added.
+- At this point, we either have a strategy profile with all unsatisfied players or a mix of satisfied and unsatisfied players.
+
+   **Case 1**: If all players are unsatisfied, we can make any update to reach a Nash equilibrium $\mathbf{x}_T$ in one step.
+
+   **Case 2**: If we have a mix of satisfied and unsatisfied players, we can still reach a Nash equilibrium $\mathbf{x}_T$ at once by changing the strategies of only the unsatisfied players.
+
+This construction iterative builds a satisficing path to a Nash equilibrium in 
+at most $n$ steps. This proves the theorem on a high level. The detailed proof is provided at the end of the blog.
+
+## Insights and Implications
+
+### Key Takeaways
+
+1. **Convergence Assurance**: Satisficing paths guarantee convergence to Nash equilibrium in finite normal-form games. Thereore, algorithms that follow satisficing paths can be assured of reaching equilibrium.
+
+2. **Sub-optimal Updates**: Always choosing the best response for each player often leads to cyclical behaviors in adversial dynamics. Choosing sub-optimal updates can help in reaching equilibrium more effectively.
+
+3. **Distributed Applicability**: This approach can be implemented in decentralized systems since each player can locally estimate if they are satisfied or unsatisfied. However, finding the best response may require global information which is not 
+needed in this approach.
+
+### Implications for MARL
+
+- **Exploration and Exploitation**: The satisficing principle enables 
+exploration with some degree of randomness when the players are unsatisfied. While 
+it also allows exploitation by maintaining the current strategy when satisfied.
+
+- **Alternating between Reward Improving and Suboptimal Periods**: As the proof shows, sometimes making suboptimal changes to strategies is essential for reaching equilibrium. This insight can be used to design MARL algorithms that alternate between reward-improving and suboptimal periods to reach equilibrium more effectively.
+
+## Broader Applications
+
+### Markov Games:
+
+A Markov game is the stateful generalization of a normal-form game. It extends the concept of normal-form games to multi-state and multi-player settings. In Markov games, players interact with each other and the environment in a sequential manner, where the state of the environment changes based on the actions taken by the players. 
+
+The results of this paper can be extended to Markov games, providing a theoretical foundation for MARL algorithms in more complex environments.
+Unfortunately, the proof technique used in the paper doesn't readily extend to Markov games. 
+
+### Decentralized Learning
+
+In many cases players can evaluate their strategy compared to an optimal strategy, even when they only have partial information. In decentralized algorithms, each player only has access to partial or local information. The satisficing principle can be applied in these scenarios to help agents reach equilibrium without requiring global information.
+
+ The "win–stay" part of the satisficing principle serves as a local stopping condition. Players can estimate if they are satisfied or unsatisfied based on their local information. If they are satisfied, they can stop updating their strategy. If not they aren't required to know the global state of the game since they don't 
+ need to find the best response.
+
+## Future Works
+Future work could focus on:
+- Extending results to multi-state Markov games and continuous-action spaces.
+- Incorporating $\epsilon$-best responses to account for small estimation errors.
+- Developing efficient algorithms to construct satisfying paths in large-scale and decentralized systems.
+
+## Proof of Theorem 1
+
+### Some Notations
 
 Let $\Gamma$ be a finite $n$-player normal-form game.
 
@@ -262,7 +362,7 @@ Some subsets of the set strategies $\mathbf{X}$ is of particular interest to us:
 
   $\text{Worse}(\mathbf{x})$ can be empty (e.g. if $\text{UnSat}(\mathbf{x}=[n]$).
 
-## Expected Reward Function
+### Expected Reward Function
 
 The Expected Reward function $R^i$ for player $i$ is their expected reward
 which can be defined as:
@@ -375,7 +475,7 @@ $x^i(a^i) \gt 0 \Rightarrow \delta_{a^i} \in \text{BR}^i_0(\mathbf{x}^{-i})$.
 then $x^i$ must be supported on the set of maximizers
 $\argmax_{a^i \in \mathbb{A}^i} \{ R^i(\delta_{a^i}, \mathbf{x}^{-i})\}$.
 
-## Auxillary Functions
+### Auxillary Functions
 
 We now discuss a set of functions we call the auxillary functions $\{ F^i: i \in [n] \}$.
 They will come in handy later in the proof.
@@ -411,7 +511,7 @@ For any $i \in [n]$ and any strategy profile $(x^i, \mathbf{x}^{-i}) \in \mathbf
    i.e. when the expected reward is maximum.
    This implies $x^i$ is a best response to $\mathbf{x}^{-i}$.
 
-## Proof
+### Proof
 
 Okay, now that we are done with a quite a lot of preliminaries we can begin the actual proof.
 
@@ -857,6 +957,7 @@ This implies that for all $i \in \text{Sat}(\mathbf{x}_k)$, $i$ is also satisfie
 $ \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star) $
 And since, $ \text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star) $ by construction of $\mathbf{x}_\star$,
 we have that,
+
 $$
    \text{Sat}(\mathbf{x}_k) \cup \text{UnSat}(\mathbf{x}_k) = [n] = \text{Sat}(\mathbf{x}_\star)
 $$
@@ -864,26 +965,9 @@ $$
 Therefore, $\mathbf{x}_\star$ is indeed a Nash equilibrium. 
 This finally, finally concludes the proof. $\blacksquare$
 
-## Insights and Implications
+### Application to Markov Games
 
-### Key Takeaways
-
-1. **Convergence Assurance**: Satisficing paths guarantee convergence to Nash equilibrium in finite normal-form games.
-2. **Breaking Cycles**: The use of suboptimal updates avoids cyclical behaviors common in adversarial dynamics.
-3. **Distributed Applicability**: This approach can be implemented in decentralized systems where agents independently assess their satisfaction.
-
-### Implications for MARL
-
-- **Exploration and Exploitation**: The satisficing principle balances exploration (for unsatisfied agents) and exploitation (for satisfied agents).
-- **Scalability**: Reducing updates for satisfied agents minimizes computational overhead in large systems.
-
----
-
-## Broader Applications
-
-### Markov Games:
-
-A Markov game is a generalization of both normal form games (multiplayer, singleton state) and Markov Decision Process (single player, multi state). There are $n$ players and discounted rewards, described by a list
+Markov game is a generalization of both normal form games (multiplayer, singleton state) and Markov Decision Process (single player, multi state). There are $n$ players and discounted rewards, described by a list
 $\mathcal{G} = (n, \mathcal{S}, \mathcal{A}, \mathcal{T}, \mathbf{r}, \gamma)$,
 where $\mathcal{S}$ is a finite set of states,
 $\mathcal{A} = \mathcal{A}^1 \times \cdots \times \mathcal{A}^n$
@@ -904,31 +988,21 @@ Markov games refine the Nash equilibrium concept into **Markov perfect equilibri
 To begin, one can construct a satisficing path $\{\pi_1, \pi_2, \dots, \pi_k\}$ by growing the set of unsatisfied players at each iteration until either $\text{UnSat}(\pi_k) = \{1, 2, \dots, n\}$ or $\text{Worse}(\pi_k) = \emptyset$. In the latter case, one can consider the subgame involving only the players in $\text{UnSat}(\pi_k)$ and obtain a Markov perfect equilibrium $\tilde{\pi}_{\star}$ for that subgame, which can then be extended to a policy profile $\pi_{\star} \in \text{Acc}(\pi_k)$ by putting
 
 $$
-\pi^i_{\star}=
-\begin{cases}
-    \tilde{\pi}^i_{\star}, &\text{ if } i \in \text{UnSat}(\pi_k), \\
-    \pi^i_k, &\text{ if } i \in \text{Sat}(\pi_k).
-\end{cases}
+   \pi^i_{\star}=
+   \begin{cases}
+      \tilde{\pi}^i_{\star}, &\text{ if } i \in \text{UnSat}(\pi_k), \\
+      \pi^i_k, &\text{ if } i \in \text{Sat}(\pi_k).
+   \end{cases}
 $$
 
-Showing that this policy $\pi_{\star} \in \Pi$ is a Markov perfect equilibrium of the $n$-player Markov game, extends Theorem 1 to Markov games. We can define $\{f^i\}_{i = 1}^n$ analogous to the auxillary function $\{F^i\}_{i = 1}^n$ defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 1 to the multi-state case.<br>
+Showing that this policy $\pi_{\star} \in \Pi$ is a Markov perfect equilibrium of the $n$-player Markov game, extends Theorem 1 to Markov games. We can define $\{f^i\}_{i = 1}^n$ analogous to the auxillary function $\{F^i\}_{i = 1}^n$ defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 2 to the multi-state case.<br>
 
-Unfortunately, the extension of Lemma 1 introduces unresolved states which breaks the analysis, and hence remains unproven.
+Unfortunately, the extension of Lemma 2 introduces unresolved states which breaks the analysis, and hence remains unproven.
 
-### Decentralized Learning
-
-In many cases players can evaluate their strategy compared to an optimal strategy, even when they only have partial information. In decentralized algorithms, each player must do so using only information that they can access or estimate locally. For our case, the "win–stay" part of the satisficing principle serves as a local stopping condition, allowing the players to update their strategy without having to look at the entire strategy space. The results of this paper suggest that limitation like this can still be overcome by adapted this algorithm to broader classes of games, while still maintaining guarantees of convergence to equilibrium.
-
-## Future Works
-Future work could focus on:
-- Extending results to multi-state Markov games and continuous-action spaces.
-- Exploring satisfying paths under practical constraints, such as limited exploration or partial observability.
-- Incorporating ϵ-best responses to account for small estimation errors.
-- Developing efficient algorithms to construct satisfying paths in large-scale and decentralized systems.
-
----
 ## Conclusion
 
-This work redefines equilibrium-seeking dynamics in games by introducing satisficing paths. By allowing exploratory updates for unsatisfied agents and freezing satisfied agents, it guarantees convergence to Nash equilibrium in finite normal-form games.
+The paper gives a theoretical foundation for the convergence of MARL algorithms to Nash equilibrium in normal-form games. The paper proofs satisficing paths can converge to Nash equilibrium. The proof construction gives insights 
+for algorithm design and analysis in MARL. It shows that sometimes worse as opposed to best responding strategies can lead to convergence.
 
-This theoretical breaithrough inspires new MARL algorithms that prioritize robust and decentralized learning dynamics, paving the way for advanced applications in AI, distributed systems, and strategic decision-making.
+The theoretical guarantee provides by the paper can be used to improve 
+MARL algorithms. It also explores the possibility of extending the results to Markov games and other more complex settings. 
