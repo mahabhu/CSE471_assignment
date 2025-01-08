@@ -473,16 +473,16 @@ Therefore, taking $T=k+1 \le n$ we have a satisficing path $\mathbf{x}_1 , \math
 
 **Case 2:** $\text{Sat}(\mathbf{x}_k)\ne\emptyset$ and $\text{Worse}(\mathbf{x}_k)=\emptyset$
 
-This is the trickier case. We need to show there exists a Nash equilibrium $\mathbf{x}_\star$ such that $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$.
+This is the trickier case. We need to show there exists a Nash equilibrium $\mathbf{x_\star}$ such that $\mathbf{x_\star} \in \text{Access}(\mathbf{x}_k)$.
 
-#### **Step 5: Find the Nash equilibrium $\mathbf{x}_\star$**
+#### **Step 5: Find the Nash equilibrium $\mathbf{x_\star}$**
 
 Since $\text{Sat}(\mathbf{x}_k)\ne\emptyset$, we cannot change the strategies of satisfied players $\text{Sat}(\mathbf{x}_k)$.
 Let $m = |\text{Sat}(\mathbf{x}_k)|$ be the number of satisfied players.
 We can only change the strategies of $n-m$ unsatisfied players $\text{UnSat}(\mathbf{x}_k)$.
 
 We can create a new game $\bar{\Gamma}$ with $n-m$ players by restricting the strategy space of the satisfied players to their current strategies.
-Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\bar{\Gamma}$. We can extend $\mathbf{\bar{x}}_\star$ to a Nash equilibrium $\mathbf{x}_\star$ of the original game $\Gamma$ by setting the strategies of the satisfied players to their strategies
+Let $\mathbf{\bar{x}}_\star$ be a Nash equilibrium of the new game $\bar{\Gamma}$. We can extend $\mathbf{\bar{x}}_\star$ to a Nash equilibrium $\mathbf{x_\star}$ of the original game $\Gamma$ by setting the strategies of the satisfied players to their strategies
 in $\mathbf{x}_k$. That is we set,
 
 $$
@@ -492,33 +492,33 @@ x^i_\star = \begin{cases}
 \end{cases}
 $$
 
-Since $x^i_k = x^i_{\star}$ for $i \in \text{Sat}(\mathbf{x}_k)$, $\mathbf{x}_\star \in \text{Access}(\mathbf{x}_k)$.
+Since $x^i_k = x^i_{\star}$ for $i \in \text{Sat}(\mathbf{x}_k)$, $\mathbf{x_\star} \in \text{Access}(\mathbf{x}_k)$.
 
-Therefore, we can set $T=k+1 \le n$ and $\mathbf{x}_T = \mathbf{x}_\star$ and we have a satisficing path $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{x}_T$ where $\mathbf{x}_T$ is a Nash equilibrium. And we are done with the construction of the satisficing path to a Nash equilibrium from any initial strategy $\mathbf{x}_1 \in \mathbf{X}$.
+Therefore, we can set $T=k+1 \le n$ and $\mathbf{x}_T = \mathbf{x_\star}$ and we have a satisficing path $\mathbf{x}_1 , \mathbf{x}_2, \dots, \mathbf{x}_k, \mathbf{x}_T$ where $\mathbf{x}_T$ is a Nash equilibrium. And we are done with the construction of the satisficing path to a Nash equilibrium from any initial strategy $\mathbf{x}_1 \in \mathbf{X}$.
 
 ---
 
-But **wait**! We didn't proof that ${\mathbf{x}_\star}$ is indeed a Nash equilibrium. We need to show that $\mathbf{x}_\star$ is a Nash equilibrium of the original game $\Gamma$. So, here comes the hard part.
+But **wait**! We didn't proof that ${\mathbf{x_\star}}$ is indeed a Nash equilibrium. We need to show that $\mathbf{x_\star}$ is a Nash equilibrium of the original game $\Gamma$. So, here comes the hard part.
 
-#### Proof: $\mathbf{x}_\star$ is a Nash equilibrium of $\Gamma$
+#### Proof: $\mathbf{x_\star}$ is a Nash equilibrium of $\Gamma$
 
-The way we constructed $\mathbf{x}_\star$ from $\mathbf{\bar{x}}_\star$, the players unsatisfied in $\mathbf{x}_k$ are satisfied in $\mathbf{x}_\star$.
+The way we constructed $\mathbf{x_\star}$ from $\mathbf{\bar{x}}_\star$, the players unsatisfied in $\mathbf{x}_k$ are satisfied in $\mathbf{x_\star}$.
 
 This is because $\mathbf{\bar{x}}_\star$ is a Nash equilibrium of the restricted game $\bar{\Gamma}$ we considered where only the the unsatisfied players $\text{UnSat}(\mathbf{x}_k)$ were allowed to change their strategies. In a Nash equilibrium all the players are satisfied. Therefore, the players $\text{UnSat}(\mathbf{x}_k)$ must be satisfied in $\mathbf{\bar{x}}_\star$.
 
 $$
-\text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)
+\text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x_\star})
 $$
 
 What remains to be shown is,
 
 $$
-\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)
+\text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x_\star})
 $$
 
-The satisfied players $\text{Sat}(\mathbf{x}_k)$ should also satisfied in $\mathbf{x}_\star$.
+The satisfied players $\text{Sat}(\mathbf{x}_k)$ should also satisfied in $\mathbf{x_\star}$.
 
-Here our old friends, the auxillary functions, come to the rescue. Using the auxillary functions, a bit of algebra and limits of sequences, we can show that the satisfied players $\text{Sat}(\mathbf{x}_k)$ are also satisfied in $\mathbf{x}_\star$.
+Here our old friends, the auxillary functions, come to the rescue. Using the auxillary functions, a bit of algebra and limits of sequences, we can show that the satisfied players $\text{Sat}(\mathbf{x}_k)$ are also satisfied in $\mathbf{x_\star}$.
 
 But before that, a simple observation. <br>
 In the case we are dealing with,
@@ -532,17 +532,17 @@ $i \in \text{Sat}(\mathbf{x}_k)$. This leads to the following:
 \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y})
 $$
 
-Now if only we could show that $\mathbf{x}_\star \in \text{NoBetter}(\mathbf{x}_k)$, we would be done. <br>
-But that is impossible because $\text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star)$. $\mathbf{x}_\star$ satisfies the unsatisfied players in $\mathbf{x}_k$. So, $\mathbf{x}_\star$ can not be in $\text{NoBetter}(\mathbf{x}_k)$.
+Now if only we could show that $\mathbf{x_\star} \in \text{NoBetter}(\mathbf{x}_k)$, we would be done. <br>
+But that is impossible because $\text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x_\star})$. $\mathbf{x_\star}$ satisfies the unsatisfied players in $\mathbf{x}_k$. So, $\mathbf{x_\star}$ can not be in $\text{NoBetter}(\mathbf{x}_k)$.
 
-Fortunately, though we can proof that a sequence of $\text{NoBetter}(\mathbf{x}_k)$ strategies converges to $\mathbf{x}_\star$.
+Fortunately, though we can proof that a sequence of $\text{NoBetter}(\mathbf{x}_k)$ strategies converges to $\mathbf{x_\star}$.
 
 --- 
 
 ### Lemma 2
 
 > If $\text{Worse}(\mathbf{x}_k) = \emptyset$, then there exists a sequence of strategies 
-> $\{\mathbf{y}\_t\}_{t=1}^\infty$ such that $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)$ for all $t$ and $\lim_{t \to \infty} \mathbf{y}_t = \mathbf{x}_\star$.
+> $\{\mathbf{y}\_t\}_{t=1}^\infty$ such that $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)$ for all $t$ and $\lim_{t \to \infty} \mathbf{y}_t = \mathbf{x_\star}$.
 
 Before, we delve into the proof of the lemma, we need to brief about the algebra of the space of strategies $\mathbf{X}$.
 
@@ -564,20 +564,20 @@ $$
 
 **Proof:**
 
-Recall the definition of limit of a sequence. A sequence $\{\mathbf{y}_t\}_{t=1}^\infty$ converges to $\mathbf{x}_\star$ if for any $\zeta > 0$, there exists a $T$ such that for all $t \ge T$, $\mathbf{y}_t \in N_\zeta(\mathbf{x}_\star)$. That is, there are $\mathbf{y}_t$ arbitrarily close to $\mathbf{x}_\star$. 
+Recall the definition of limit of a sequence. A sequence $\{\mathbf{y}_t\}_{t=1}^\infty$ converges to $\mathbf{x_\star}$ if for any $\zeta > 0$, there exists a $T$ such that for all $t \ge T$, $\mathbf{y}_t \in N_\zeta(\mathbf{x_\star})$. That is, there are $\mathbf{y}_t$ arbitrarily close to $\mathbf{x_\star}$. 
 
 For such a sequence to exist in , we need to show that for any $\zeta > 0$, there exists a $\mathbf{y}_t \in \text{NoBetter}(\mathbf{x}_k)$ such that 
-$\mathbf{y}_t \in N_\zeta(\mathbf{x}_\star)$.
+$\mathbf{y}_t \in N_\zeta(\mathbf{x_\star})$.
 
 We assume the contrary, that no such sequence exists. Then there exists an $\zeta > 0$ such that 
-there is no $\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)$ such that $\mathbf{y} \in N_\zeta(\mathbf{x}_\star)$. Which means, 
+there is no $\mathbf{y} \in \text{NoBetter}(\mathbf{x}_k)$ such that $\mathbf{y} \in N_\zeta(\mathbf{x_\star})$. Which means, 
 $$
-\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset
+\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x_\star}) = \emptyset
 $$
-That is, there isn't any $\text{NoBetter}(\mathbf{x}_k)$ strategy in the $\zeta$-neighbourhood of $\mathbf{x}_\star$.
+That is, there isn't any $\text{NoBetter}(\mathbf{x}_k)$ strategy in the $\zeta$-neighbourhood of $\mathbf{x_\star}$.
 We can prove a contradiction if we can show that there exists a strategy 
-$\mathbf{z} \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)$. 
-We need to find a strategy $\mathbf{z} \in \text{NoBetter}(\mathbf{x}_k)$ strategy near $\mathbf{x}_\star$.
+$\mathbf{z} \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x_\star})$. 
+We need to find a strategy $\mathbf{z} \in \text{NoBetter}(\mathbf{x}_k)$ strategy near $\mathbf{x_\star}$.
 
 
 We start by looking for $\text{NoBetter}(\mathbf{x}_k)$ strategies in the neighbourhood of $\mathbf{x}_k$.
@@ -695,7 +695,7 @@ $\mathbf{w}_\xi$ isn't just any random set of strategy profiles. It has some int
    for sufficiently small $\xi > 0$.
 
 Now that we now we have a set $\mathbf{w}_k$ of strategies in the neighbourhood of $\mathbf{x}_k$.
-We need to show that one of these strategies is in the neighbourhood of $\mathbf{x}_\star$.
+We need to show that one of these strategies is in the neighbourhood of $\mathbf{x_\star}$.
 
 So, we define another set of strategies $\mathbf{z}_\lambda \in \mathbf{X}$ for $\lambda \in [0,1]$ as follows,
 $$
@@ -706,8 +706,8 @@ z^i_\lambda = \begin{cases}
 \end{cases}
 $$
 
-$\mathbf{z}_\lambda$ has properties similar to $\mathbf{w}_\xi$ except that it is centered around $\mathbf{x}_\star$.
-1. $\mathbf{z}_\lambda \in \text{Access}(\mathbf{x}_\star)$.
+$\mathbf{z}_\lambda$ has properties similar to $\mathbf{w}_\xi$ except that it is centered around $\mathbf{x_\star}$.
+1. $\mathbf{z}_\lambda \in \text{Access}(\mathbf{x_\star})$.
 
    Since again, only the strategies of the unsatisfied players are changed in $\mathbf{z}_\lambda$.
 
@@ -716,30 +716,30 @@ $\mathbf{z}_\lambda$ has properties similar to $\mathbf{w}_\xi$ except that it i
    This is because $w^i_\xi$ is fully mixed and $\lambda > 0$,
    so each action $a^i \in \mathbb{A}^i$ is assigned a non-zero probability of at least $\xi\lambda/|\mathbb{A}^i|$.
 
-3. $\mathbf{z}_\lambda \in N_{\zeta}(\mathbf{x}_\star)$, for sufficiently small $\lambda > 0$. 
+3. $\mathbf{z}_\lambda \in N_{\zeta}(\mathbf{x_\star})$, for sufficiently small $\lambda > 0$. 
 
    We can choose $\lambda < \zeta/2n$ with a similar reasoning. Therefore for any $\zeta > 0$,
-   there is always a $\lambda > 0$ such that $\mathbf{z}_\lambda \in N_\zeta(\mathbf{x}_\star)$.
+   there is always a $\lambda > 0$ such that $\mathbf{z}_\lambda \in N_\zeta(\mathbf{x_\star})$.
 
 4. $\mathbf{z}_\lambda \notin \text{NoBetter}(\mathbf{x}_k)$, for  all $\lambda \le \bar{\lambda}$
    for some $\bar{\lambda} > 0$.
 
    This follows from property 3 and 
-   the assumption that $\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset$
+   the assumption that $\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x_\star}) = \emptyset$
    which we want to contradict.
 
-   By property 3, setting $\bar{\lambda} < \zeta/2n$, we have $\mathbf{z}_\lambda \in N_\zeta(\mathbf{x}_\star)$.
+   By property 3, setting $\bar{\lambda} < \zeta/2n$, we have $\mathbf{z}_\lambda \in N_\zeta(\mathbf{x_\star})$.
    Now if $\mathbf{z}_\lambda \in \text{NoBetter}(\mathbf{x}_k)$, we have,
    $$
-      \mathbf{z}_\lambda \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star)
+      \mathbf{z}_\lambda \in \text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x_\star})
    $$
-   Which contradicts the assumption that $\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x}_\star) = \emptyset$.
+   Which contradicts the assumption that $\text{NoBetter}(\mathbf{x}_k) \cap N_\zeta(\mathbf{x_\star}) = \emptyset$.
    So, $\mathbf{z}_\lambda \notin \text{NoBetter}(\mathbf{x}_k)$ for all $\lambda \le \bar{\lambda}$.
 
 Now that we have the tools at our disposal, we derive the contradiction.
 
 From property 1 and 3 of $\mathbf{z}_\lambda$, we know that for $\lambda \in (0, \bar{\lambda}]$, 
-$\mathbf{z}_\lambda \in \text{Access}(\mathbf{x}_\star)$ but $\mathbf{z}_\lambda \notin \text{NoBetter}(\mathbf{x}_k)$.
+$\mathbf{z}_\lambda \in \text{Access}(\mathbf{x_\star})$ but $\mathbf{z}_\lambda \notin \text{NoBetter}(\mathbf{x}_k)$.
 This implies at least one player is satisfied at $\mathbf{z}_\lambda$ who was unsatisfied at $\mathbf{x}_k$.
 
 Therefore, for all $\lambda \in (0, \bar{\lambda}]$ there is a player $i \in \text{UnSat}(\mathbf{x}_k)$
@@ -798,12 +798,12 @@ Therefore, $i^{\dagger} \in \text{UnSat}(\mathbf{w}_\xi)$ implies $i^{\dagger} \
 A contradiction.
 
 Thus, we see that there exists a sequence of strategies $\{\mathbf{y}_t\}_{t=1}^\infty$ in $\text{NoBetter}(\mathbf{x}_k)$
-such that $\lim_{t \to \infty} \mathbf{y}_t = \mathbf{x}_\star$. $\square$
+such that $\lim_{t \to \infty} \mathbf{y}_t = \mathbf{x_\star}$. $\square$
 
 ---
 
 Now that we have shown that there exists a sequence of strategies 
-$\{\mathbf{y}_t\}_{t=1}^\infty$ in $\text{NoBetter}(\mathbf{x}_k)$ which converges to $\mathbf{x}_\star$,
+$\{\mathbf{y}_t\}_{t=1}^\infty$ in $\text{NoBetter}(\mathbf{x}_k)$ which converges to $\mathbf{x_\star}$,
 from observation 1,
  we know that the satisfied players in $\mathbf{x}_k$ are also satisfied in $\mathbf{y}_t$ for all $t$. That is,
 $$
@@ -822,19 +822,19 @@ $$
 Since auxillary functions are continuous (property 1), 
 $\lim_{t \to \infty} F^i(\mathbf{y}_t)$  exists and is equal to value of the function at the limit point. Hence,
 $$
- 0 = \lim_{t \to \infty} F^i(\mathbf{y}_t) = F^i\left (\lim_{t \to \infty} \mathbf{y}_t\right ) = F^i(\mathbf{x}_\star), 
+ 0 = \lim_{t \to \infty} F^i(\mathbf{y}_t) = F^i\left (\lim_{t \to \infty} \mathbf{y}_t\right ) = F^i(\mathbf{x_\star}), 
  \text{ for all } i \in \text{Sat}(\mathbf{x}_k)
 $$
 
-This implies that for all $i \in \text{Sat}(\mathbf{x}_k)$, $i$ is also satisfied in $\mathbf{x}_\star$. That is,
-$ \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star) $
-And since, $ \text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x}_\star) $ by construction of $\mathbf{x}_\star$,
+This implies that for all $i \in \text{Sat}(\mathbf{x}_k)$, $i$ is also satisfied in $\mathbf{x_\star}$. That is,
+$ \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x_\star}) $
+And since, $ \text{UnSat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{x_\star}) $ by construction of $\mathbf{x_\star}$,
 we have that,
 $$
-   \text{Sat}(\mathbf{x}_k) \cup \text{UnSat}(\mathbf{x}_k) = [n] = \text{Sat}(\mathbf{x}_\star)
+   \text{Sat}(\mathbf{x}_k) \cup \text{UnSat}(\mathbf{x}_k) = [n] = \text{Sat}(\mathbf{x_\star})
 $$
 
-Therefore, $\mathbf{x}_\star$ is indeed a Nash equilibrium. 
+Therefore, $\mathbf{x_\star}$ is indeed a Nash equilibrium. 
 This finally, finally concludes the proof. $\blacksquare$
 
 ## Insights and Implications
