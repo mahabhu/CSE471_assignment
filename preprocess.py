@@ -6,7 +6,7 @@ import re
 def preprocess():
     with open("blog.md", "r") as f:
         data = f.read()
-        data = re.sub(r'(?<!\$)\$([^\$]+)\$(?!\$)', r'\(\1\)', data)
+        data = re.sub(r'(?<!\$)\$([^\$]+)\$(?!\$)', r'\\\\(\1\\\\)', data)
     with open("index.md", "w") as f:
         f.write(data)
 
