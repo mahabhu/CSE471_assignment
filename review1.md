@@ -1,4 +1,4 @@
-# Comprehensive Review of the Blog on Aligner: Efficient Alignment by Learning to Correct  
+# Review of the Blog on Aligner: Efficient Alignment by Learning to Correct  
 
 **Reviewer**: Ashrafur Rahman, Fatema Tuj Johora, Mashroor Hasan Bhuiyan
 
