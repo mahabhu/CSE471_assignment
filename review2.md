@@ -6,26 +6,28 @@
 
 ## Strengths of the Blog  
 
-### **1. Accessible Introduction to Complex Topics**  
-This blog effectively breaks down a complex topic into simple terms. It starts by explaining the motivation behind Graphormer, highlighting the challenges Transformers face in graph representation, and then presents Graphormer as the solution. It further provides a brief overview of Graphormer, explores structural encoding, and explains the implementation details.
+### **1. Introduction**  
+This blog starts by explaining challenges Transformers face in graph representation, and the motivation behind Graphormer by showing the components of a GNN. Then it provides a brief overview of Transformer and Graphormer, explores the different structural encoding, and the implementation details.
 
-### **2. Clear Explanation of Core Innovations**  
+### **2. Explanation of Core Additions**  
 
 The blog provides a concise overview of Graphormer’s key contributions, including:  
-- **Centrality Encoding:** Highlighting the significance of individual nodes.  
+- **Centrality Encoding:** Captures node importance using degree centrality.  
 - **Spatial Encoding:** Capturing relationships through shortest path distances.  
-- **Edge Encoding:** Incorporating edge-specific features to improve graph representation.    
+- **Edge Encoding:** Incorporating edge-specific features. 
+- **Graphormer Layer:** Explains how it adds on top of traditional Transformer.
+- **Special Node:** Represents the entire graph.
 
 These are explained with clarity, making the blog effective for readers with a moderate understanding of the subject.  
 
 ### **3. Visual Aids and Mathematical Rigor**  
-The use of mathematical formulations and visual diagrams (e.g., for message passing and structural encodings) enhances comprehension. These visuals help bridge the gap between theoretical concepts and their practical applications.  
+The blog goes through high level mathematical formulations and visual diagrams for message passing and structural encodings to enhance comprehension.  
 
 ### **4. Contextual Relevance**  
 By positioning Graphormer as a solution to limitations in Graph Neural Networks (GNNs)—such as over-smoothing and limited scalability—the blog underscores its real-world significance.  
 
 ### **5. Results and Comparisons**  
-The blog highlights Graphormer’s performance improvements across various benchmarks, such as OGB-LSC, MolHIV, and ZINC. This quantitative evidence reinforces its claims of superiority over traditional GNNs and Transformer-based alternatives.  
+The blog highlights Graphormer’s performance improvements across various benchmarks, such as OGB-LSC, MolHIV, and ZINC. Near the end it highlights the advantages and contributions.  
 
 ---
 
@@ -51,19 +53,22 @@ The blog discusses the importance of Graphormer but does not mention anything ab
 
 ---
 
-## Opportunities for Improvement  
+## Opportunities for Improvement 
 
-### **1. Expand on Graphormer’s Challenges**  
-Provide a balanced view by elaborating on potential drawbacks, such as computational complexity or training resource requirements.  
+### **1. Better High Level Comprehension**
+While it is somewhat suited for intermediate to advanced reader, it is far from comprehensible or easy for a person with non-technical background to read and get the gist idea. It can be explained as if a high school student is being introduced.
 
-### **2. Deeper Comparative Analysis**  
-Include a more detailed comparison of Graphormer with traditional GNNs and other Transformer-based models across different datasets and tasks.  
+### **2. Expand on Graphormer’s Challenges**  
+Can provide a balanced view by elaborating on potential drawbacks, such as computational complexity or training resource requirements.   
 
-### **3. Targeted Insights for Practitioners**  
-Offer actionable insights for practitioners, such as scenarios where Graphormer would be the most effective or strategies to mitigate its limitations.  
+### **3. Deeper Comparative Analysis**  
+Should include a more detailed comparison of Graphormer with traditional GNNs and other Transformer-based models across different datasets and tasks.  
 
-### **4. Interactive Content**  
-Add links to code repositories, datasets, or interactive examples for readers to experiment with Graphormer themselves.  
+### **4. Targeted Insights for Practitioners**  
+Can offer actionable insights for practitioners, such as scenarios where Graphormer would be the most effective or strategies to mitigate its limitations.  
+
+### **5. Interactive Content**  
+Can add links to code repositories, datasets, or interactive examples for readers to experiment with Graphormer themselves.  
 
 ---
 
