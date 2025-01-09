@@ -1,3 +1,8 @@
+# this script is automatically run by github actions to preprocess
+# all markdown files in the repository. It replaces all inline math
+# expressions with the appropriate \(\) delimiters and underscores
+# and curly braces with the appropriate escape sequences.
+
 import re
 import os
 
