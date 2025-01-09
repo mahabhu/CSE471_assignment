@@ -299,7 +299,7 @@ Based on \\(\mathbf{x}\\), we can divide the players \\([n]\\) in to two disjoin
 - **Satisfied Players:**
 
    $$
-      \text{Sat}(\mathbf{x}) = \\{i \in [n] : x_i \in \text{BR}^i_0(x_{-i})\\}
+      \text{Sat}(\mathbf{x}) = \{i \in [n] : x_i \in \text{BR}^i_0(x_{-i})\}
    $$
 
    The players whose strategies are a best response to their
@@ -308,7 +308,7 @@ Based on \\(\mathbf{x}\\), we can divide the players \\([n]\\) in to two disjoin
 
    $$
          \text{UnSat}(\mathbf{x})
-         = \\{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\\} \\
+         = \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
          = [n] \setminus \text{Sat}(x) \\
    $$
 
@@ -320,10 +320,10 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
 - **Acessible Strategies** \\(\text{Access}(\mathbf{x})\\):
 
    $$
-      \text{Access}(\mathbf{x}) = \\{
+      \text{Access}(\mathbf{x}) = \{
           \mathbf{y} \in \mathbf{X}: y^i=x^i,
           \forall i \in \text{Sat}(\mathbf{x})
-       \\}
+       \}
   $$
 
   These are the strategies that can be chosen after \\(\mathbf{x}\\)
@@ -335,10 +335,10 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
   \\(\text{NoBetter}(\mathbf{x}) \subseteq \text{Access}(\mathbf{x})\\):
 
   $$
-        \text{NoBetter}(\mathbf{x}) = \\{
+        \text{NoBetter}(\mathbf{x}) = \{
             \mathbf{y} \in \text{Access}(\mathbf{x}):
             \text{UnSat}(\mathbf{x}) \subseteq \text{UnSat}(\mathbf{y})
-         \\}
+         \}
   $$
 
   These are the accessible strategies that do not satisfy any player
@@ -353,10 +353,10 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
   \\(\text{Worse}(\mathbf{x}) \subseteq \text{NoBetter}(\mathbf{x})\\):
 
   $$
-        \text{Worse}(\mathbf{x}) = \\{
+        \text{Worse}(\mathbf{x}) = \{
             \mathbf{y} \in \text{NoBetter}(\mathbf{x}):
             \text{UnSat}(\mathbf{x}) \subsetneq \text{UnSat}(\mathbf{y})
-         \\}
+         \}
   $$
 
   These are the accessible strategies that make the situation worse
@@ -430,8 +430,8 @@ Some properties of the expected reward function is of interest to us:
 
    $$
       \Delta_{\mathbb{A}^i} =
-      \\{x^i \in \mathbb{R}^{\mathbb{A}^i}:
-      \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\\}
+      \{x^i \in \mathbb{R}^{\mathbb{A}^i}:
+      \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\}
    $$
 
    This is the probability simplex over the set of actions \\(\mathbb{A}^i\\).
@@ -669,8 +669,11 @@ $$
 For \\(\zeta > 0\\), the \\(\zeta\\)-neighbourhood of a strategy profile \\(\mathbf{x} \in \mathbf{X}\\) can be defined as,
 
 $$
-N_\zeta(\mathbf{x}) = \\{\mathbf{y} \in \mathbf{X}: |\mathbf{x} - \mathbf{y}| < \zeta\\}
+N_\zeta(\mathbf{x}) = \{\mathbf{y} \in \mathbf{X}: |\mathbf{x} - \mathbf{y}| < \zeta\}
 $$
+
+Neighbourhoods can be thoughts of as balls in high-dimensional space. It
+is a generalization of open sets \\((x - \zeta, x + \zeta)\\) in \\(\mathbb{R}\\) to higher dimensions.
 
 **Proof:**
 

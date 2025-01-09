@@ -4,14 +4,18 @@
 import re
 
 def preprocess():
+
+    def replacer(m):
+        content = m.group(1)
+        content = re.sub(r'(?<!\\)_', r'\\_', content)
+        content = re.sub(r'\\{', r'\\\\{', content)
+        content = re.sub(r'\\}', r'\\\\}', content)
+        return "\\\\(" + content + "\\\\)"
+
     with open("blog.md", "r") as f:
         data = f.read()
-        data = re.sub(
-            r'(?<!\$)\$([^\$]+)\$(?!\$)',
-            lambda m: "\\\\(" + re.sub(r'(?<!\\)_', r'\\_', m.group(1)) + "\\\\)",
-            data
-        )
-        data = data.replace(r"\{", r"\\{").replace(r"\}", r"\\}")
+        data = re.sub(r'(?<!\$)\$([^\$]+)\$(?!\$)', replacer, data)
+
     with open("index.md", "w") as f:
         f.write(data)
 
