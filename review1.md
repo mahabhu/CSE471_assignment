@@ -71,7 +71,8 @@ up against other alignment methods in terms of alignment quality, robustness, or
 
 ## **Conclusion**  
 
-Overall, the blog provides a short but effective overview of the
-`Aligner` paper. While it glosses over some technicalities and doesn't delve too much into the results, but we understand that
-adding more details would make the blog more informative at the
-cost of simplicity and conciseness.
+Overall, the blog provides a short but effective overview of the `Aligner` paper. The blog
+also serves as a good starting point for readers
+to learn about alignment.
+While it glosses over some technicalities and doesn't delve too much into the results, we understand that
+adding more details would make the blog more informative at the cost of simplicity and conciseness.
