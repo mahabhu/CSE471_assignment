@@ -1025,5 +1025,5 @@ details wouldn't do justice to the elegance of the proof. So, we decided to
 to break it down in a way that is accessible to a wider audience. We hope that this blog was a first (hopefully satisfying) journey into mathematical rigour for some of the readers.
 
 We hope you found it interesting.
-If there are any errors or suggestions, create an issue or pull request in the [GitHub repository](https://github.com/mahabhu/CSE471_report/).
+If there are any errors or suggestions, create an issue or pull request in the [GitHub repository](https://github.com/mahabhu/CSE471_assignment).
 Thank you for sticking to the end.
