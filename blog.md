@@ -1012,7 +1012,7 @@ Unfortunately, the extension of Lemma 2 introduces unresolved states which break
 The paper gives a theoretical foundation for the convergence of MARL algorithms to Nash equilibrium in normal-form games. The paper proofs satisficing paths can converge to Nash equilibrium. The proof construction gives insights 
 for algorithm design and analysis in MARL. It shows that sometimes worse as opposed to best responding strategies can lead to convergence.
 
-The theoretical guarantee provides by the paper can be used to improve 
+The theoretical guarantee provided by the paper can be used to improve 
 MARL algorithms. It also explores the possibility of extending the results to Markov games and other more complex settings. 
 
 
