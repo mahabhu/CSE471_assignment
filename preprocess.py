@@ -1,11 +1,7 @@
-# read the blog.md and for every $...$ block (but not $$..$$) replace with \(..\) block
-# and write to index.md
-
 import re
 import os
 
 def preprocess(input_file="blog.md", output_file="index.md"):
-
     def replacer(m):
         content = m.group(1)
         content = re.sub(r'(?<!\\)_', r'\\_', content)
