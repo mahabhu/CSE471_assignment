@@ -1018,7 +1018,7 @@ MARL algorithms. It also explores the possibility of extending the results to Ma
 
 ## Endnotes
 
-The paper centered around the 
+The paper is centered around the 
 proof of one theorem, but it was a long and complex proof. We thought
 just presenting the outline of the proof and skipping all the mathematical
 details wouldn't do justice to the elegance of the proof. So, we decided to
