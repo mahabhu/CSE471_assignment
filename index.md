@@ -12,9 +12,12 @@
 
 In this blog we break down the paper [Paths to Equilibrium in Games](https://openreview.net/forum?id=LxxIiInmuF) presented at NeurIPS 2024.
 The paper deals with paths to equilibrium in finite normal-form games, a central topic in game-theory.
-In a finite normal-form game, the players interact with each other and update their strategies to maximise their rewards.
-The rewards of the players are determined by the combination of chosen strategies. Eventually, the game reaches
-a point where no player can improve their reward by changing their strategy. This is called a Nash Equilibrium.
+In a finite normal-form game, there are \\(n\\) players who interact with each other and update their strategies to win.  A very familiar
+example of such a game, is the game of Rock-Paper-Scissors.
+
+The concept of winning or losing is generalised by defining rewards.
+Rewards are dictated by the combination of chosen strategies. The more
+reward a player gets, the better their strategy is. The goal of each player is to maximize their reward. Eventually, the game reaches a point where no player can improve their reward by changing their strategy. This is called a Nash Equilibrium.
 
 Many different algorithms have been developed to find Nash Equilibrium in normal-form games.
 Particularly Multi-Agent Reinforcement Learning (MARL) algorithms have been used to find Nash Equilibrium in games.
@@ -33,10 +36,6 @@ This paper focuses on answering this question and shows that for any finite \\(n
 and any starting strategy, it is always possible to create such a path. 
 The study also shows that sometimes making counterintuitive changes to strategy changes,
  e.g. temporarily switching to strategies that lower rewards, are essential for reaching equilibrium. 
-
- These findings are important for improving MARL and similar algorithms, providing theoretical guarantees as 
-   well as practical insights into helping them reach equilibrium more effectively.
- Also, the results might be extended to stateful Markov games.
 
 ## Definitions:
 
@@ -126,7 +125,7 @@ MARL algorithms are often used to find Nash Equilibrium in games. These algorith
 
 ### Satisficing Paths
 
-A _satisficing path_ is a sequence of strategy profiles where satisfied players (those already using their best response) do not change their strategies, and unsatisfied players freely explore new strategies. The idea is that satisfied players are already in a good position, so they don't need to change their strategies, while unsatisfied players can explore new strategies to improve their rewards.
+A _satisficing path_ is a sequence of strategy profiles where satisfied players (those already using their best response) do not change their strategies, and unsatisfied players freely explore new strategies. The idea is that satisfied players are already in a good position, so they don't need to change their strategies, while unsatisfied players can explore new strategies to improve their rewards. Many existing MARL algorithms use satisficing paths to reach equilibrium.
 
 
 ## Problem Statement
@@ -137,7 +136,7 @@ The authors investigate whether **satisficing paths** can always lead to a Nash 
 
 >For any finite normal-form game and any initial strategy profile, can we construct a satisficing path that guarantees convergence to Nash equilibrium?
 
-### Key Insight
+## Results
 
 The paper proves that such a path **always exists**. Interestingly, this result leverages **suboptimal updates**—a departure from conventional reward improving approaches to achieve equilibrium and avoid cyclical behaviors.
 
@@ -152,7 +151,7 @@ A finite \\(n\\)-player normal-form game \\(\Gamma\\) is defined by a tuple \\((
 
 1. \\(n\\): Number of players.
 
-   We often denote the set of players as \\([n] = \{1, 2, \ldots, n\}\\).
+   We often denote the set of players as \\([n] = \\{1, 2, \ldots, n\\}\\).
 2. \\(\mathbf{A} = \mathbb{A}^1 \times \mathbb{A}^2 \times \cdots \times \mathbb{A}^n\\): Set of joint actions.
 
    Here each set \\(\mathbb{A}^i\\) represents the action set for player \\(i\\).
@@ -212,7 +211,7 @@ $$
    x^i_\star \in \text{BR}^i_0(\mathbf{x}_\star^{-i}) \quad \text{for all} \quad i \in [n]
 $$
 
-## Theorem
+## Theorem 1
 
 The central contribution of the paper is the following theorem:
 
@@ -220,8 +219,8 @@ The central contribution of the paper is the following theorem:
 > That is, for any \\(x\_1 \in X\\), there exists a satisficing path \\((x\_1 , x\_2, \dots, x\_T)\\) such that,
 for some finite \\(T=T(x\_1)\\), the strategy profile \\(x\_T\\) is a Nash equilibrium.
 
-The proof is very long and involves a lot of mathematical rigour.
-So, we defer the full proof to the end of the blog for those who are interested in the details. We outline the proof in a more informal way in the next section.
+The proof is very long and involves a lot of mathematical rigour. 
+So, we defer the full proof to the end of the blog for those who are interested in the details. We outline the proof in a more informal way in the next section. The curious readers are encouraged to take the time to read the enitre proof for an excting journey.
 
 ## Proof Outline
 
@@ -247,7 +246,10 @@ at most \\(n\\) steps. This proves the theorem on a high level. The detailed pro
 
 1. **Convergence Assurance**: Satisficing paths guarantee convergence to Nash equilibrium in finite normal-form games. Thereore, algorithms that follow satisficing paths can be assured of reaching equilibrium.
 
-2. **Sub-optimal Updates**: Always choosing the best response for each player often leads to cyclical behaviors in adversial dynamics. Choosing sub-optimal updates can help in reaching equilibrium more effectively.
+2. **Sub-optimal Updates**: Always choosing the best response for each player often leads to cyclical behaviors in adversial dynamics, i.e.
+if the game is non-cooperative, the players may never reach equilibrium and
+cycle between strategies that benefit one player at the expense of others.
+ Choosing sub-optimal updates can help in reaching equilibrium more effectively.
 
 3. **Distributed Applicability**: This approach can be implemented in decentralized systems since each player can locally estimate if they are satisfied or unsatisfied. However, finding the best response may require global information which is not 
 needed in this approach.
@@ -267,7 +269,7 @@ it also allows exploitation by maintaining the current strategy when satisfied.
 A Markov game is the stateful generalization of a normal-form game. It extends the concept of normal-form games to multi-state and multi-player settings. In Markov games, players interact with each other and the environment in a sequential manner, where the state of the environment changes based on the actions taken by the players. 
 
 The results of this paper can be extended to Markov games, providing a theoretical foundation for MARL algorithms in more complex environments.
-Unfortunately, the proof technique used in the paper doesn't readily extend to Markov games. 
+Unfortunately, the proof technique used in the paper doesn't readily extend to Markov games. However, that doesn't suggest that the results are not applicable to Markov games but the necessity of different proof techniques.
 
 ### Decentralized Learning
 
@@ -297,7 +299,7 @@ Based on \\(\mathbf{x}\\), we can divide the players \\([n]\\) in to two disjoin
 - **Satisfied Players:**
 
    $$
-      \text{Sat}(\mathbf{x}) = \{i \in [n] : x_i \in \text{BR}^i_0(x_{-i})\}
+      \text{Sat}(\mathbf{x}) = \\{i \in [n] : x_i \in \text{BR}^i_0(x_{-i})\\}
    $$
 
    The players whose strategies are a best response to their
@@ -306,7 +308,7 @@ Based on \\(\mathbf{x}\\), we can divide the players \\([n]\\) in to two disjoin
 
    $$
          \text{UnSat}(\mathbf{x})
-         = \{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\} \\
+         = \\{i \in [n] : x_i \notin \text{BR}^i_0(x_{-i})\\} \\
          = [n] \setminus \text{Sat}(x) \\
    $$
 
@@ -318,10 +320,10 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
 - **Acessible Strategies** \\(\text{Access}(\mathbf{x})\\):
 
    $$
-      \text{Access}(\mathbf{x}) = \{
+      \text{Access}(\mathbf{x}) = \\{
           \mathbf{y} \in \mathbf{X}: y^i=x^i,
           \forall i \in \text{Sat}(\mathbf{x})
-       \}
+       \\}
   $$
 
   These are the strategies that can be chosen after \\(\mathbf{x}\\)
@@ -333,10 +335,10 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
   \\(\text{NoBetter}(\mathbf{x}) \subseteq \text{Access}(\mathbf{x})\\):
 
   $$
-        \text{NoBetter}(\mathbf{x}) = \{
+        \text{NoBetter}(\mathbf{x}) = \\{
             \mathbf{y} \in \text{Access}(\mathbf{x}):
             \text{UnSat}(\mathbf{x}) \subseteq \text{UnSat}(\mathbf{y})
-         \}
+         \\}
   $$
 
   These are the accessible strategies that do not satisfy any player
@@ -351,10 +353,10 @@ Some subsets of the set strategies \\(\mathbf{X}\\) is of particular interest to
   \\(\text{Worse}(\mathbf{x}) \subseteq \text{NoBetter}(\mathbf{x})\\):
 
   $$
-        \text{Worse}(\mathbf{x}) = \{
+        \text{Worse}(\mathbf{x}) = \\{
             \mathbf{y} \in \text{NoBetter}(\mathbf{x}):
             \text{UnSat}(\mathbf{x}) \subsetneq \text{UnSat}(\mathbf{y})
-         \}
+         \\}
   $$
 
   These are the accessible strategies that make the situation worse
@@ -391,7 +393,8 @@ Some properties of the expected reward function is of interest to us:
 
 1. \\(R^i\\) is a multi-linear function.
 
-   This can be easily seen since
+   That is it is a linear function with respect to each of it's parameter,
+   the mixed strategy \\(x^i\\) of player \\(i\\). This can be easily seen since
 
    $$
        R^i(x^i, \mathbf{x}^{-i}) =
@@ -409,7 +412,7 @@ Some properties of the expected reward function is of interest to us:
 
 2. \\(R^i\\) is continuous.
 
-   This follows from the fact that it is a linear function.
+   This follows from the fact that it is a multi-linear function.
 
 3. Pure strategies attain the maximum expected reward when opponent strategies are fixed.
 
@@ -427,8 +430,8 @@ Some properties of the expected reward function is of interest to us:
 
    $$
       \Delta_{\mathbb{A}^i} =
-      \{x^i \in \mathbb{R}^{\mathbb{A}^i}:
-      \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\}
+      \\{x^i \in \mathbb{R}^{\mathbb{A}^i}:
+      \sum_{a^i \in \mathbb{A}^i} x^i(a^i) = 1, x^i(a^i) \geq 0\\}
    $$
 
    This is the probability simplex over the set of actions \\(\mathbb{A}^i\\).
@@ -439,7 +442,7 @@ Some properties of the expected reward function is of interest to us:
    are the pure strategies.
 
    To visualise this, consider a 3D probability simplex for a player with 3 actions
-   \\(\mathbb{A}^i = \{1,2,3\} \\).
+   \\(\mathbb{A}^i = \\{1,2,3\\} \\).
    The probability simplex is situated on the plane \\(x+y+z=1\\), with each axis
    representing the probability of choosing one of the actions.
 
@@ -451,7 +454,7 @@ Some properties of the expected reward function is of interest to us:
 
    Generalizing this to higher dimensions, the maximum value of the linear function
    \\(R^i(x^i, \mathbf{x}^{-i})\\) when \\(\mathbf{x}^{-i}\\) is fixed,
-   is attained at the pure strategies \\(\{\delta\_a^i: a^i \in \mathbb{A}^i\}\\). Also note that
+   is attained at the pure strategies \\(\\{\delta\_a^i: a^i \in \mathbb{A}^i\\}\\). Also note that
    if multiple pure strategies attain the maximum value, then any mixture of these
    pure strategies also attains the maximum value.
 
@@ -475,11 +478,11 @@ Formally,
 >
 >In other words, if \\(x^i\\) is a best response to \\(\mathbf{x}^{-i}\\),
 then \\(x^i\\) must be supported on the set of maximizers
-\\(\argmax\_{a^i \in \mathbb{A}^i} \{ R^i(\delta\_{a^i}, \mathbf{x}^{-i})\}\\).
+\\(\argmax\_{a^i \in \mathbb{A}^i} \\{ R^i(\delta\_{a^i}, \mathbf{x}^{-i})\\}\\).
 
 ### Auxillary Functions
 
-We now discuss a set of functions we call the auxillary functions \\(\{ F^i: i \in [n] \}\\).
+We now discuss a set of functions we call the auxillary functions \\(\\{ F^i: i \in [n] \\}\\).
 They will come in handy later in the proof.
 The functions \\(F^i: \mathbf{X} \to \mathbb{R}\\) are defined as:
 
@@ -530,7 +533,7 @@ Otherwise we continue to the next step.
 #### **Step 2: Iteratively Choose Worse Strategies**
 
 We iteratively produce a satisficing path
-\\(\mathbf{x}\_1 , \mathbf{x}\_2, \dots, \mathbf{x}\_t, \dots, \mathbf{x}\_i\\)
+\\(\mathbf{x}\_1 , \mathbf{x}\_2, \dots, \mathbf{x}\_t, \dots, \mathbf{x}\_k\\)
 as follows:
 
 1. We start with the initial strategy \\(\mathbf{x}\_1\\) for \\(t=1\\).
@@ -558,7 +561,7 @@ final step of the above process. We can show \\(i \le n - 1\\).
 $$
    1 \leq |\text{UnSat}(\mathbf{x}_1)| < \dots
    |\text{UnSat}(\mathbf{x}_t)| < \dots
-   |\text{UnSat}(\mathbf{x}_i)| \le n
+   |\text{UnSat}(\mathbf{x}_k)| \le n
 $$
 
 - Even if at each step \\(|\text{UnSat}(\mathbf{x}\_t)|\\) increases by 1,
@@ -566,7 +569,7 @@ $$
 
 #### **Step 4: Check Final Strategy after Iteration**
 
-When \\(\text{UnSat}(x^T) = \emptyset\\), the strategy profile \\(x^T\\) satisfies the Nash equilibrium condition.
+When \\(\text{UnSat}(\mathbf{x}\_k) = \emptyset\\), the strategy profile \\(\mathbf{x}\_k\\) satisfies the Nash equilibrium condition.
 
 The process terminates at \\(\mathbf{x}\_k\\) if either all players are unsatisfied or no worse strategy is accessible.
 Therefore, there are two cases:
@@ -649,7 +652,7 @@ Fortunately, though we can proof that a sequence of \\(\text{NoBetter}(\mathbf{x
 ### Lemma 2
 
 > If \\(\text{Worse}(\mathbf{x}\_k) = \emptyset\\), then there exists a sequence of strategies 
-> \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) such that \\(\mathbf{y}\_t \in \text{NoBetter}(\mathbf{x}\_k)\\) for all \\(t\\) and \\(\lim\_{t \to \infty} \mathbf{y}\_t = \mathbf{x}\_\star\\).
+> \\(\\{\mathbf{y}\_t\\}\_{t=1}^\infty\\) such that \\(\mathbf{y}\_t \in \text{NoBetter}(\mathbf{x}\_k)\\) for all \\(t\\) and \\(\lim\_{t \to \infty} \mathbf{y}\_t = \mathbf{x}\_\star\\).
 
 Before, we delve into the proof of the lemma, we need to brief about the algebra of the space of strategies \\(\mathbf{X}\\).
 
@@ -666,12 +669,12 @@ $$
 For \\(\zeta > 0\\), the \\(\zeta\\)-neighbourhood of a strategy profile \\(\mathbf{x} \in \mathbf{X}\\) can be defined as,
 
 $$
-N_\zeta(\mathbf{x}) = \{\mathbf{y} \in \mathbf{X}: |\mathbf{x} - \mathbf{y}| < \zeta\}
+N_\zeta(\mathbf{x}) = \\{\mathbf{y} \in \mathbf{X}: |\mathbf{x} - \mathbf{y}| < \zeta\\}
 $$
 
 **Proof:**
 
-Recall the definition of limit of a sequence. A sequence \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) converges to \\(\mathbf{x}\_\star\\) if for any \\(\zeta > 0\\), there exists a \\(T\\) such that for all \\(t \ge T\\), \\(\mathbf{y}\_t \in N\_\zeta(\mathbf{x}\_\star)\\). That is, there are \\(\mathbf{y}\_t\\) arbitrarily close to \\(\mathbf{x}\_\star\\). 
+Recall the definition of limit of a sequence. A sequence \\(\\{\mathbf{y}\_t\\}\_{t=1}^\infty\\) converges to \\(\mathbf{x}\_\star\\) if for any \\(\zeta > 0\\), there exists a \\(T\\) such that for all \\(t \ge T\\), \\(\mathbf{y}\_t \in N\_\zeta(\mathbf{x}\_\star)\\). That is, there are \\(\mathbf{y}\_t\\) arbitrarily close to \\(\mathbf{x}\_\star\\). 
 
 For such a sequence to exist in , we need to show that for any \\(\zeta > 0\\), there exists a \\(\mathbf{y}\_t \in \text{NoBetter}(\mathbf{x}\_k)\\) such that 
 \\(\mathbf{y}\_t \in N\_\zeta(\mathbf{x}\_\star)\\).
@@ -810,13 +813,13 @@ Note that for \\(i \in \text{UnSat}(\mathbf{x}\_k)\\), \\(w^i\_\xi\\) is a mixtu
       \text{UnSat}(\mathbf{x}_k) \subseteq \text{UnSat}(\mathbf{w}_\xi)
    $$
 
-   Also, by property 1, \\(w\_\xi \in \text{Access}(\mathbf{x}\_k)\\). That means, \\(\mathbf{w}\_\xi \in \text{NoBetter}(\mathbf{x}\_k)\\)
+   Also, by property 1, \\(\mathbf{w}\_\xi \in \text{Access}(\mathbf{x}\_k)\\). That means, \\(\mathbf{w}\_\xi \in \text{NoBetter}(\mathbf{x}\_k)\\)
    for sufficiently small \\(\xi > 0\\).
 
-Now that we now we have a set \\(\mathbf{w}\_k\\) of strategies in the neighbourhood of \\(\mathbf{x}\_k\\).
+Now that we now we have a set \\(\mathbf{w}\_\xi\\) of strategies in the neighbourhood of \\(\mathbf{x}\_k\\).
 We need to show that one of these strategies is in the neighbourhood of \\(\mathbf{x}\_\star\\).
 
-So, we define another set of strategies \\(\mathbf{z}\_\lambda \in \mathbf{X}\\) for \\(\lambda \in [0,1]\\) as follows,
+So, we define another set of strategies \\(\mathbf{z}\_\lambda \in \mathbf{X}\\) for \\(\lambda \in (0,1]\\) as follows,
 
 $$
    z^i_\lambda = \begin{cases}
@@ -848,7 +851,7 @@ $$
    the assumption that \\(\text{NoBetter}(\mathbf{x}\_k) \cap N\_\zeta(\mathbf{x}\_\star) = \emptyset\\)
    which we want to contradict.
 
-   By property 3, setting \\(\bar{\lambda} < \zeta/2n\\), we have \\(\mathbf{z}\_\lambda \in N\_\zeta(\mathbf{x}\_\star)\\).
+   By property 3, setting \\(\lambda \le \bar{\lambda} < \zeta/2n\\), we have \\(\mathbf{z}\_\lambda \in N\_\zeta(\mathbf{x}\_\star)\\).
    Now if \\(\mathbf{z}\_\lambda \in \text{NoBetter}(\mathbf{x}\_k)\\), we have,
 
    $$
@@ -880,7 +883,7 @@ We take a \\(\lambda \in (0, \bar{\lambda}]\\) such that
  \\(z^{i^{\dagger}}\_\lambda\\) a best response to \\(\mathbf{z}^{-i^{\dagger}}\_\lambda\\). 
 Recall by property 3, \\(\mathbf{z}\_\lambda\\) is a fully mixed strategy as \\(i^{\dagger} \in \text{UnSat}(\mathbf{x}\_k)\\),
  so \\(z^{i^{\dagger}}\_\lambda(a^{i^{\dagger}}) > 0\\) for all \\(a^{i^{\dagger}} \in \mathbb{A}^{i^{\dagger}}\\).
-By lemma 1, we have that all the pure strategies \\(\{\delta\_{a^{i^{\dagger}}}: a^{i^{\dagger}} \in\mathbb{A}^{i^{\dagger}}\}\\) are also best responses to \\(\mathbf{z}^{-i^{\dagger}}\_\lambda\\).
+By lemma 1, we have that all the pure strategies \\(\\{\delta\_{a^{i^{\dagger}}}: a^{i^{\dagger}} \in\mathbb{A}^{i^{\dagger}}\\}\\) are also best responses to \\(\mathbf{z}^{-i^{\dagger}}\_\lambda\\).
 Which means,
 
 $$
@@ -922,13 +925,13 @@ Recall for sufficiently small \\(\xi > 0\\), \\(\mathbf{w}\_\xi \in \text{NoBett
 Therefore, \\(i^{\dagger} \in \text{UnSat}(\mathbf{w}\_\xi)\\) implies \\(i^{\dagger} \in \text{UnSat}(\mathbf{w}\_\xi)\\).
 A contradiction.
 
-Thus, we see that there exists a sequence of strategies \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}\_k)\\)
+Thus, we see that there exists a sequence of strategies \\(\\{\mathbf{y}\_t\\}\_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}\_k)\\)
 such that \\(\lim\_{t \to \infty} \mathbf{y}\_t = \mathbf{x}\_\star\\). \\(\square\\)
 
 ---
 
 Now that we have shown that there exists a sequence of strategies 
-\\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}\_k)\\) which converges to \\(\mathbf{x}\_\star\\),
+\\(\\{\mathbf{y}\_t\\}\_{t=1}^\infty\\) in \\(\text{NoBetter}(\mathbf{x}\_k)\\) which converges to \\(\mathbf{x}\_\star\\),
 from observation 1,
  we know that the satisfied players in \\(\mathbf{x}\_k\\) are also satisfied in \\(\mathbf{y}\_t\\) for all \\(t\\). That is,
 
@@ -936,11 +939,11 @@ $$
    \text{Sat}(\mathbf{x}_k) \subseteq \text{Sat}(\mathbf{y}_t)
 $$
 
-So it seems, the limit of \\(\{\mathbf{y}\_t\}\_{t=1}^\infty\\) should also satisfy \\(\text{Sat}(\mathbf{x}\_k)\\).
+So it seems, the limit of \\(\\{\mathbf{y}\_t\\}\_{t=1}^\infty\\) should also satisfy \\(\text{Sat}(\mathbf{x}\_k)\\).
 To mathematically show this, we again resort to our friends the *auxillary functions*.
 
 By property 3 of \\(F^i\\), for all \\(i \in \text{Sat}(\mathbf{x}\_k)\\), \\(F^i(\mathbf{x}\_k) = 0\\). 
-This also applies to \\(\{\mathbf{y}\_t\}\\) as \\(\text{Sat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{y}\_t)\\). 
+This also applies to \\(\\{\mathbf{y}\_t\\}\\) as \\(\text{Sat}(\mathbf{x}\_k) \subseteq \text{Sat}(\mathbf{y}\_t)\\). 
 Therefore we have,
 
 $$
@@ -987,7 +990,7 @@ is used to aggregate rewards across time.
 
 Markov games refine the Nash equilibrium concept into **Markov perfect equilibrium**, which is a key focus for MARL algorithms. The authors have attempted to generalize Theorem 1 for Markov games too by conducting the proofs parallely.
 
-To begin, one can construct a satisficing path \\(\{\pi\_1, \pi\_2, \dots, \pi\_k\}\\) by growing the set of unsatisfied players at each iteration until either \\(\text{UnSat}(\pi\_k) = \{1, 2, \dots, n\}\\) or \\(\text{Worse}(\pi\_k) = \emptyset\\). In the latter case, one can consider the subgame involving only the players in \\(\text{UnSat}(\pi\_k)\\) and obtain a Markov perfect equilibrium \\(\tilde{\pi}\_{\star}\\) for that subgame, which can then be extended to a policy profile \\(\pi\_{\star} \in \text{Acc}(\pi\_k)\\) by putting
+To begin, one can construct a satisficing path \\(\\{\pi\_1, \pi\_2, \dots, \pi\_k\\}\\) by growing the set of unsatisfied players at each iteration until either \\(\text{UnSat}(\pi\_k) = \\{1, 2, \dots, n\\}\\) or \\(\text{Worse}(\pi\_k) = \emptyset\\). In the latter case, one can consider the subgame involving only the players in \\(\text{UnSat}(\pi\_k)\\) and obtain a Markov perfect equilibrium \\(\tilde{\pi}\_{\star}\\) for that subgame, which can then be extended to a policy profile \\(\pi\_{\star} \in \text{Acc}(\pi\_k)\\) by putting
 
 $$
    \pi^i_{\star}=
@@ -997,7 +1000,7 @@ $$
    \end{cases}
 $$
 
-Showing that this policy \\(\pi\_{\star} \in \Pi\\) is a Markov perfect equilibrium of the \\(n\\)-player Markov game, extends Theorem 1 to Markov games. We can define \\(\{f^i\}\_{i = 1}^n\\) analogous to the auxillary function \\(\{F^i\}\_{i = 1}^n\\) defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 2 to the multi-state case.<br>
+Showing that this policy \\(\pi\_{\star} \in \Pi\\) is a Markov perfect equilibrium of the \\(n\\)-player Markov game, extends Theorem 1 to Markov games. We can define \\(\\{f^i\\}\_{i = 1}^n\\) analogous to the auxillary function \\(\\{F^i\\}\_{i = 1}^n\\) defined for normal form games which satisfy same properties e.g. the continuity and semi-definiteness properties. Hence, one possible technique for completing this proof requires extending Lemma 2 to the multi-state case.<br>
 
 Unfortunately, the extension of Lemma 2 introduces unresolved states which breaks the analysis, and hence remains unproven.
 
@@ -1008,3 +1011,16 @@ for algorithm design and analysis in MARL. It shows that sometimes worse as oppo
 
 The theoretical guarantee provides by the paper can be used to improve 
 MARL algorithms. It also explores the possibility of extending the results to Markov games and other more complex settings. 
+
+
+## Endnotes
+
+The paper centered around the 
+proof of one theorem, but it was a long and complex proof. We thought
+just presenting the outline of the proof and skipping all the mathematical
+details wouldn't do justice to the elegance of the proof. So, we decided to
+to break it down in a way that is accessible to a wider audience. We hope that this blog was a first (hopefully satisfying) journey into mathematical rigour for some of the readers.
+
+We hope you found it interesting.
+If there are any errors or suggestions, create an issue or pull request in the [GitHub repository](https://github.com/mahabhu/CSE471_report/).
+Thank you for sticking to the end.
