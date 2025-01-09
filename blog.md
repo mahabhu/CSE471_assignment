@@ -672,6 +672,9 @@ $$
 N_\zeta(\mathbf{x}) = \{\mathbf{y} \in \mathbf{X}: |\mathbf{x} - \mathbf{y}| < \zeta\}
 $$
 
+Neighbourhoods can be thoughts of as balls in high-dimensional space. It
+is a generalization of open sets $(x - \zeta, x + \zeta)$ in $\mathbb{R}$ to higher dimensions.
+
 **Proof:**
 
 Recall the definition of limit of a sequence. A sequence $\{\mathbf{y}_t\}_{t=1}^\infty$ converges to $\mathbf{x}_\star$ if for any $\zeta > 0$, there exists a $T$ such that for all $t \ge T$, $\mathbf{y}_t \in N_\zeta(\mathbf{x}_\star)$. That is, there are $\mathbf{y}_t$ arbitrarily close to $\mathbf{x}_\star$. 
