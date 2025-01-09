@@ -7,13 +7,14 @@
 ## Strengths of the Blog  
 
 ### **1. Accessible Introduction to Complex Topics**  
-The blog does a commendable job of breaking down a highly technical subject into digestible segments. It begins with an overview of the challenges Transformers face in graph representation and introduces Graphormer as a solution, making it easy for readers to follow the progression.  
+This blog effectively breaks down a complex topic into simple terms. It starts by explaining the motivation behind Graphormer, highlighting the challenges Transformers face in graph representation, and then presents Graphormer as the solution. It further provides a brief overview of Graphormer, explores structural encoding, and explains the implementation details.
 
 ### **2. Clear Explanation of Core Innovations**  
-The blog succinctly covers Graphormer’s key contributions, such as:  
-- **Centrality Encoding:** Highlighting node importance.  
+
+The blog provides a concise overview of Graphormer’s key contributions, including:  
+- **Centrality Encoding:** Highlighting the significance of individual nodes.  
 - **Spatial Encoding:** Capturing relationships through shortest path distances.  
-- **Edge Encoding:** Incorporating edge-specific features.  
+- **Edge Encoding:** Incorporating edge-specific features to improve graph representation.    
 
 These are explained with clarity, making the blog effective for readers with a moderate understanding of the subject.  
 
@@ -31,18 +32,22 @@ The blog highlights Graphormer’s performance improvements across various bench
 ## Weaknesses of the Blog  
 
 ### **1. Limited Discussion of Challenges**  
-While the blog showcases Graphormer’s strengths, it fails to address its challenges comprehensively. For example, the quadratic complexity of self-attention in large graphs is briefly mentioned in the referenced paper but not explored in detail here.  
+
+While the blog highlights Graphormer’s strengths, it briefly mentions the quadratic complexity of self-attention in large graphs but doesn’t explore this challenge in detail.
 
 ### **2. Simplified Results Analysis**  
-The blog presents Graphormer’s results without delving into nuanced comparisons. For instance:  
-- How does Graphormer perform on sparse vs. dense graphs?  
-- Are there specific domains (e.g., chemistry, social networks) where it excels or struggles?  
+
+The blog presents Graphormer’s results without exploring detailed comparisons. For example:   
+- Does the performance differ in different types of graphs, like: sparse,dense. If yes,then how
+- Are there particular domains (e.g., chemistry, social networks) where Graphormer performs well or encounters difficulties?
 
 ### **3. Lack of Technical Depth for Advanced Readers**  
-Though the blog is accessible, it simplifies technical concepts like spatial and edge encoding. Advanced readers might expect deeper discussions, such as the mathematical proofs of Graphormer’s ability to surpass 1-WL GNN limitations.  
+
+This blog explains technical concepts like spatial and edge encoding but does not provide mathematical proofs, such as demonstrating Graphormer’s ability to surpass the limitations of the 1-WL GNN. Advanced readers may expect a deeper exploration of these topics.
 
 ### **4. Missing Future Directions**  
-While the blog praises Graphormer, it could explore future enhancements, such as scaling it for extremely large graphs or optimizing attention mechanisms. This would add a forward-looking perspective.  
+
+The blog discusses the importance of Graphormer but does not mention anything about potential future work or improvements, such as scaling it for larger graphs or refining attention mechanisms for better performance.
 
 ---
 
